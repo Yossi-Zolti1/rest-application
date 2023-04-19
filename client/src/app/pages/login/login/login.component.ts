@@ -8,7 +8,6 @@ import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 export class LoginComponent implements OnInit {
 
   constructor() { }
-  userLogin = true;
   form = new FormGroup({
     name: new FormControl('', Validators.required),
     email: new FormControl(''),
@@ -20,17 +19,7 @@ export class LoginComponent implements OnInit {
     password: new FormControl('')
   })
   //Buttons clicks functionalities 
-  user_register() {
-    this.userLogin = false;
-  }
-  user_login() {
-    this.userLogin = true;
-  }
-  register(e: any) {
-  
-  }
   login() {
-    
   }
   ngOnInit(): void {
   }
