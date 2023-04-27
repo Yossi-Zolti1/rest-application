@@ -1,0 +1,8 @@
+HOST="localhost"
+USER="root"
+PASSWORD=""
+DATABASE="vryuyjth"
+
+SECRET_WORD="exampleWord"
+PORT="3000"
+
