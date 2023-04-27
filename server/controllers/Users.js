@@ -43,7 +43,7 @@ class User {
     let newDataToValid = {
       email: request.body.email,
       phone: request.body.phone,
-      name: request.body.userName,
+      name: request.body.name,
       password: request.body.password,
     }
 

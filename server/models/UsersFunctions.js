@@ -2,6 +2,7 @@ import db from "../database/db.js";
 import joi from "joi"
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv'
+import bcrypt from 'bcrypt';
 dotenv.config();
 
 class UsersFunctions {
