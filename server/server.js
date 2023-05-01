@@ -4,6 +4,7 @@ import * as url from 'url';
 import cors from 'cors';
 import { notFound } from './middleware/pageNotFound.js';
 import user from './src/router/user.js';
+import admin from './src/router/admin.js';
 import dotenv from 'dotenv';
 dotenv.config();
 // import logger from'./middleware/logger.js';
@@ -38,7 +39,7 @@ export default function server() {
    });
 
    app.use('/user', user);
-   // app.use('/upload', uploadImage);
+   app.use('/admin', admin);
    app.use('*', notFound);
 
 }

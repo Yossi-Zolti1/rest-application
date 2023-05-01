@@ -11,9 +11,10 @@ const auth =async (req, res, next) => {
          res.status(401).json("auth failed");
     }
     try {
-        let decodeToken = await jwt.verify(token, process.env.SECRET_WORD);
+        let decodeToken = jwt.verify(token, process.env.SECRET_WORD);
          req.userId = decodeToken._id
          req.email = decodeToken._email
+         req.role = decodeToken._role
         next();
     } catch (error) {
          res.status(401).json("token invalid or expaired");

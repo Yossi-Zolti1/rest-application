@@ -11,13 +11,12 @@ class UsersFunctions {
   static validAddUser(body) {
     let userSchema = joi.object({
       email: joi.string().required().email().messages({ 'string.email': 'Email error', }),
-      phone: joi.string().trim(),
-      name: joi.string().trim().min(3).required(),
+      phone: joi.string().trim().min(9).pattern(/^[0-9]+$/).required(),
+      name: joi.string().trim().min(3).pattern(/^[a-zA-Z]+$/).required(),
       password: joi.string().trim().min(9)
         .regex(/[A-Z]/) // at least one uppercase letter
         .regex(/[a-z]/) // at least one lowercase letter
         .regex(/[0-9]/) // at least one number
-        .regex(/[@$!%*?&]/) // at least one special character (@ $ ! % * ? &)
         .required(),
     });
     return userSchema.validate(body)
@@ -39,19 +38,18 @@ class UsersFunctions {
         .regex(/[A-Z]/) // at least one uppercase letter
         .regex(/[a-z]/) // at least one lowercase letter
         .regex(/[0-9]/) // at least one number
-        .regex(/[@$!%*?&]/) // at least one special character (@ $ ! % * ? &)
         .required(),
     });
     return userSchema.validate(body)
   }
 
   static async findByEmail(email) {
-    let sql = `SELECT id,password,email FROM users WHERE email = ?`;
+    let sql = `SELECT id,password,email,role FROM users WHERE email = ?`;
     return await db.execute(sql, [email]);
   }
 
-  static async genToken(id,email) {
-    let token = jwt.sign({ _id: id, _email: email }, process.env.SECRET_WORD, { expiresIn: "1d" })
+  static async genToken(id,email,role) {
+    let token = jwt.sign({ _id: id, _email: email,_role: role }, process.env.SECRET_WORD, { expiresIn: "1d" })
     return token;
   }
 
