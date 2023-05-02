@@ -31,7 +31,7 @@ export default function server() {
    );
 
    app.listen(process.env.PORT, () => {
-      console.log('Example app listening on port 3000!');
+      console.log(`Server is running on port ${process.env.PORT}`);
    });
 
    app.get('/', (req, res) => {

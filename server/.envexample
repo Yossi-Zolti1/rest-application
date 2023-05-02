@@ -1,8 +1,11 @@
 HOST="localhost"
 USER="root"
 PASSWORD=""
-DATABASE="vryuyjth"
+DATABASE="rest_app"
 
-SECRET_WORD="exampleWord"
+SECRET_WORD="8k88l8l8"
 PORT="3000"
 
+EMAIL_PASSWORD="cuusjxeyodwqlhiz"
+
+CLIENT_HOST="localhost:8080"

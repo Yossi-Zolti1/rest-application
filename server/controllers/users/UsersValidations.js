@@ -1,12 +1,8 @@
-import db from "../database/db.js";
-import joi from "joi"
-import jwt from 'jsonwebtoken';
-import dotenv from 'dotenv'
-import bcrypt from 'bcrypt';
-dotenv.config();
+import joi from "joi";
 
-class UsersFunctions {
-  constructor() { }
+class UsersValidations {
+  constructor() {
+  }
 
   static validAddUser(body) {
     let userSchema = joi.object({
@@ -22,15 +18,6 @@ class UsersFunctions {
     return userSchema.validate(body)
   }
 
-  static async save(newData) {
-
-    newData.password = await bcrypt.hash(newData.password.toString(), 10);
-
-    let sql = `INSERT INTO users (name, phone, email,password,role) VALUES (?,?,?,?,?)`;
-
-    return await db.query(sql, [newData.name, newData.phone, newData.email, newData.password,"user"]);
-  }
-
   static validLogin(body) {
     let userSchema = joi.object({
       email: joi.string().required().email().messages({ 'string.email': 'Email error', }),
@@ -42,19 +29,15 @@ class UsersFunctions {
     });
     return userSchema.validate(body)
   }
-
-  static async findByEmail(email) {
-    let sql = `SELECT id,password,email,role FROM users WHERE email = ?`;
-    return await db.execute(sql, [email]);
+  
+  static validResetPassword(body) {
+    let userSchema = joi.object({
+      newPassword: joi.string().trim().min(6),
+    });
+    return userSchema.validate(body)
   }
 
-  static async genToken(id,email,role) {
-    let token = jwt.sign({ _id: id, _email: email,_role: role }, process.env.SECRET_WORD, { expiresIn: "1d" })
-    return token;
-  }
-
-
-  
-  
 }
-export default UsersFunctions;
+
+export default UsersValidations;
+
