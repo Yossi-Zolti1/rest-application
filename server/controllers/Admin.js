@@ -8,6 +8,7 @@ class Admin {
   constructor() {
   }
   
+    // code 1 part 2 
   static async createRestManager(request, response) {
     const { email, phone, name, password } = request.body;
     const managerData = { email, phone, name, password };
