@@ -5,7 +5,9 @@ export function MailValidator(
   if (!control.value) {
     return {mail: 'שדה זו חובה'};
   }
-  if(control.value == Validators.email ){
+  const regex = new RegExp("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$");
+  const valid = regex.test(control.value);
+  if(!valid){
     return {mail: 'כתובת מייל לא חוקית'}
   }
   return null;
