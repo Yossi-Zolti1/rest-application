@@ -7,6 +7,7 @@ import { HomePageComponent } from './pages/home-page/home-page/home-page.compone
 import { LoginComponent } from './pages/login/login/login.component';
 import { RegisterComponent } from './pages/register/register/register.component';
 import { HeaderComponent } from './components/header/header/header.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { HeaderComponent } from './components/header/header/header.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
