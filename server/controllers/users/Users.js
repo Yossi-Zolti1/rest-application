@@ -1,5 +1,7 @@
 import bcrypt from 'bcrypt';
-import UsersFunctions from '../models/UsersFunctions.js';
+import UsersCRUD from '../../models/UsersCRUD.js';
+import UsersValidations from './UsersValidations.js';
+import Utils from '../Utils.js';
 
 const LOGIN_FAILED_ERROR = "Authentication failed";
 const VALIDATION_ERROR = "Validation error";
@@ -15,13 +17,13 @@ class User {
 
     const { email, password } = request.body;
     try {
-      const validation = UsersFunctions.validLogin({ email, password });
+      const validation = UsersValidations.validLogin({ email, password });
       if (validation.error) {
         console.log(validation.error.details);
         return response.status(400).json({ message: VALIDATION_ERROR, details: validation.error.details });
       }
   
-      const [users] = await UsersFunctions.findByEmail(email);
+      const [users] = await UsersCRUD.findByEmail(email);
       const user = users[0];
       if (!user?.email) {
         return response.status(400).json({ message: LOGIN_FAILED_ERROR });
@@ -35,7 +37,7 @@ class User {
       }
   
       const { id, email: userEmail, role } = user;
-      const newToken = await UsersFunctions.genToken(id, userEmail, role,"1d");
+      const newToken = await Utils.genToken(id, userEmail, role,"1d");
   
       return response.status(200).json({ token: newToken });
     } catch (error) {
@@ -50,7 +52,7 @@ class User {
     const userData = { email, phone, name, password };
   
     try {
-      const validation = UsersFunctions.validAddUser(userData);
+      const validation = UsersValidations.validAddUser(userData);
       if (validation.error) {
         console.log(validation.error.details);
         return response.status(400).json({ message: VALIDATION_ERROR, details: validation.error.details });
@@ -79,7 +81,7 @@ class User {
         return response.status(401).json("האימייל לא רשום במערכת");
       }
 
-      const newToken = await UsersFunctions.genToken(user[0][0]?.id, user[0][0]?.email, user[0][0]?.role,"1h");
+      const newToken = await Utils.genToken(user[0][0]?.id, user[0][0]?.email, user[0][0]?.role,"1h");
 
       Mail.sendEmail(request.body.email, user[0][0]?.id, newToken);
       response.status(200).json(user);
@@ -92,7 +94,7 @@ class User {
   static async resetPassword(req, response) {
 
     try {
-      let validUser = UsersFunctions.validResetPassword(req.body.password);
+      let validUser = UsersValidations.validResetPassword(req.body.password);
       if (validUser.error) {
         console.log(validUser.error.details);
         return response.status(400).json(validUser.error.details);

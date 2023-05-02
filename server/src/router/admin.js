@@ -1,6 +1,6 @@
 import express from 'express'
 const router = express.Router();
-import AdminClass from '../../controllers/Admin.js';
+import AdminClass from '../../controllers/admin/Admin.js';
 import authToken from '../../middleware/authToken.js';
 
 
