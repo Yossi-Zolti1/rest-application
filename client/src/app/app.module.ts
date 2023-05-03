@@ -8,6 +8,7 @@ import { LoginComponent } from './pages/login/login/login.component';
 import { RegisterComponent } from './pages/register/register/register.component';
 import { HeaderComponent } from './components/header/header/header.component';
 import { HttpClientModule } from '@angular/common/http';
+import { RegisterOwnerComponent } from './components/admin/registerOwner/register-owner/register-owner.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { HttpClientModule } from '@angular/common/http';
     HomePageComponent,
     LoginComponent,
     RegisterComponent,
-    HeaderComponent
+    HeaderComponent,
+    RegisterOwnerComponent
   ],
   imports: [
     BrowserModule,

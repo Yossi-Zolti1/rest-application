@@ -17,8 +17,8 @@ export class AuthService {
    }
   registerUser(user: User){
     return this.http.post(environment.baseUrl + '/user/createUser', user).pipe(catchError(error => {
-      const statusCode = error.status;
-      return of(statusCode);
+      const err = error;
+      return of(err);
      }))
   }
   login(user: UserLogin){

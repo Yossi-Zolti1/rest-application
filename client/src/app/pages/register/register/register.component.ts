@@ -34,13 +34,15 @@ export class RegisterComponent implements OnInit {
   }
   register(){
     this.auth.registerUser(this.registerForm.value).subscribe(res => {res;
-    if(res === 400){
-      this.registerForm.reset();
-      alert("ההרשמה נכשלה")
-    }
-    else{
-      this.router.navigate(['login'])
-    }
+      res.error.message.code;
+      debugger;
+    // if(res.message.code === 'ER_DUP_ENTRY'){
+    //   this.registerForm.reset();
+    //   alert("ההרשמה נכשלה")
+    // }
+    // else{
+    //   this.router.navigate(['login'])
+    // }
     })
   }
   ngOnInit(): void {
