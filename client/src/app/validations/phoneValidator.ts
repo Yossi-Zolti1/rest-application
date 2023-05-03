@@ -1,14 +1,14 @@
 import { AbstractControl } from '@angular/forms';
-export function MailValidator(
+export function PhoneValidator(
   control: AbstractControl
 ): { [key: string]: string } | null {
   if (!control.value) {
-    return {mail: 'שדה זו חובה'};
+    return {phone: 'שדה זו חובה'};
   }
-  const regex = new RegExp("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$");
+  const regex = /^[0-9]{9,}$/;
   const valid = regex.test(control.value);
   if(!valid){
-    return {mail: 'כתובת מייל לא חוקית'}
+    return {phone: 'טלפון אמור להכיל רק ספרות ומינימום 9 ספרות'}
   }
   return null;
 }

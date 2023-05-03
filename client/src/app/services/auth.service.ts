@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, catchError, of, throwError } from 'rxjs';
 import { User } from '../core/user';
 
 @Injectable({
@@ -9,7 +9,10 @@ import { User } from '../core/user';
 export class AuthService {
 
   constructor(private http: HttpClient) { }
-  registerUser(user: User): Observable<any>{
-    return this.http.post<any>('http://localhost:3000/user/createUser', user)
+  registerUser(user: User){
+    return this.http.post('http://localhost:3000/user/createUser', user).pipe(catchError(error => {
+      const statusCode = error.status;
+      return of(statusCode);
+     }))
   }
 }

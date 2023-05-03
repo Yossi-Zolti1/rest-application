@@ -59,7 +59,7 @@ class User {
       }
   
       try {
-        const [users, _] = await UsersFunctions.save(userData);
+        const [users, _] = await UsersCRUD.save(userData);
         response.status(200).json(users.insertId);
       } catch (error) {
         console.log(error);

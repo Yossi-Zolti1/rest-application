@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {  FormBuilder } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { MailValidator } from 'src/app/validations/mailValidator';
 import { NameValidator } from 'src/app/validations/nameValidator';
+import { PasswordValidator } from 'src/app/validations/passwordValidator';
+import { PhoneValidator } from 'src/app/validations/phoneValidator';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -10,12 +13,12 @@ import { NameValidator } from 'src/app/validations/nameValidator';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private auth: AuthService, public fb: FormBuilder) { }
+  constructor(private auth: AuthService, public fb: FormBuilder, private router: Router) { }
   registerForm = this.fb.group({
     email: ['', [MailValidator]],
     name: ['', [NameValidator]],
-    password: [''],
-    phone:[''],
+    password: ['',PasswordValidator],
+    phone:['', PhoneValidator],
   });
   get name() {
     return this.registerForm.get('name');
@@ -23,9 +26,22 @@ export class RegisterComponent implements OnInit {
   get email() {
     return this.registerForm.get('email');
   }
+  get password() {
+    return this.registerForm.get('password');
+  }
+  get phone() {
+    return this.registerForm.get('phone');
+  }
   register(){
-    debugger;
-     this.auth.registerUser(this.registerForm.value).subscribe(res => {res; debugger;})
+    this.auth.registerUser(this.registerForm.value).subscribe(res => {res;
+    if(res === 400){
+      this.registerForm.reset();
+      alert("ההרשמה נכשלה")
+    }
+    else{
+      this.router.navigate(['login'])
+    }
+    })
   }
   ngOnInit(): void {
   }
