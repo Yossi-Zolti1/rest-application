@@ -9,6 +9,6 @@ router.post('/createUser', UsersClass.createUser);
 router.post('/login', UsersClass.Login);
 
 router.post('/forgotPassword', UsersClass.forgotPassword);
-router.post('/resetPassword',authToken, UsersClass.resetPassword);
+router.put('/resetPassword',authToken, UsersClass.resetPassword);
 
 export default router;
