@@ -21,6 +21,8 @@ export class LoginComponent implements OnInit {
         alert('אין משתמש כזה במערכת')
       }
       else{
+        localStorage.setItem('token', res.token);
+        const role = this.auth.getRole();
       }
       })
   }
