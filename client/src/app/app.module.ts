@@ -7,8 +7,9 @@ import { HomePageComponent } from './pages/home-page/home-page/home-page.compone
 import { LoginComponent } from './pages/login/login/login.component';
 import { RegisterComponent } from './pages/register/register/register.component';
 import { HeaderComponent } from './components/header/header/header.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { RegisterOwnerComponent } from './components/admin/registerOwner/register-owner/register-owner.component';
+import { Interceptor } from './services/http.interceptor';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,9 @@ import { RegisterOwnerComponent } from './components/admin/registerOwner/registe
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [{ 
+    provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi:true
+  },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -14,8 +14,8 @@ export class AuthGuardService implements CanActivate {
       return true;
     }
 
-    // Redirect to a "permission denied" page if the user is not authorized
-    this.router.navigate(['/permission-denied']);
+    // Redirect to a "home page" page if the user is not authorized
+    this.router.navigate(['']);
     return false;
   }
 }
