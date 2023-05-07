@@ -2,6 +2,7 @@ import bcrypt from 'bcrypt';
 import UsersCRUD from '../../models/UsersCRUD.js';
 import UsersValidations from './UsersValidations.js';
 import Utils from '../Utils.js';
+import Mail from '../MailResetPass.js';
 
 const LOGIN_FAILED_ERROR = "Authentication failed";
 const VALIDATION_ERROR = "Validation error";
@@ -76,7 +77,7 @@ class User {
   // כפתור שכחתי סיסמה בלוגאין
   static async forgotPassword(request, response) {
     try {
-      let user = await UsersFunctions.findByEmail(request.body.email);
+      let user = await UsersCRUD.findByEmail(request.body.email);
       if (!user[0][0]?.email.length > 0) {
         return response.status(401).json("האימייל לא רשום במערכת");
       }
@@ -84,7 +85,7 @@ class User {
       const newToken = await Utils.genToken(user[0][0]?.id, user[0][0]?.email, user[0][0]?.role,"1h");
 
       Mail.sendEmail(request.body.email, user[0][0]?.id, newToken);
-      response.status(200).json(user);
+      response.status(200).json("mail reset passord sent");
     } catch (error) {
       response.status(400).json(error);
       console.log(error);
@@ -102,8 +103,8 @@ class User {
 
       try {
         req.body.newPassword = await bcrypt.hash(req.body.newPassword.toString(), 10);
-        const [users2, _] = await UsersFunctions.resetPassword(req.email, req.body.newPassword);
-        response.status(200).json(users2);
+        const [users2, _] = await UsersCRUD.resetPassword(req.email, req.body.newPassword);
+        response.status(200).json("passwoerd reseted successfully");
       } catch (error) {
         response.status(400).json(error);
         console.log(error);
