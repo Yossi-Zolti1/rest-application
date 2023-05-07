@@ -84,7 +84,7 @@ class User {
       const newToken = await Utils.genToken(user[0][0]?.id, user[0][0]?.email, user[0][0]?.role,"1h");
 
       Mail.sendEmail(request.body.email, user[0][0]?.id, newToken);
-      response.status(200).json(user);
+      response.status(200).json("mail reset passord sent");
     } catch (error) {
       response.status(400).json(error);
       console.log(error);

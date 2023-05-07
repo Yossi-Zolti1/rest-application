@@ -8,4 +8,4 @@ PORT="3000"
 
 EMAIL_PASSWORD="cuusjxeyodwqlhiz"
 
-CLIENT_HOST="localhost:8080"
+CLIENT_HOST="http//localhost:8080"
