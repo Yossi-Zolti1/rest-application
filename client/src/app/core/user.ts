@@ -8,3 +8,6 @@ export interface UserLogin{
    email: string,
    password: string
 }
+export interface Email{
+   email:string
+}

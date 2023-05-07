@@ -10,6 +10,7 @@ import { HeaderComponent } from './components/header/header/header.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { RegisterOwnerComponent } from './components/admin/registerOwner/register-owner/register-owner.component';
 import { Interceptor } from './services/http.interceptor';
+import { ResetPasswordComponent } from './pages/resetPassword/reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { Interceptor } from './services/http.interceptor';
     LoginComponent,
     RegisterComponent,
     HeaderComponent,
-    RegisterOwnerComponent
+    RegisterOwnerComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 @Component({
@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
     this.auth.login(this.loginForm.value).subscribe(res => {res;
       if(res === 400){
         this.loginForm.reset();
+        debugger;
         alert('אין משתמש כזה במערכת')
       }
       else{
@@ -26,6 +27,14 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['admin']);
       }
       })
+  }
+  forgotPassword(){
+    const email = {
+      email: this.loginForm.controls['email'].value
+    }
+    this.auth.forgotPassword(email).subscribe(res => {
+debugger;
+    })
   }
   ngOnInit(): void {
   }

@@ -2,7 +2,7 @@ import bcrypt from 'bcrypt';
 import UsersCRUD from '../../models/UsersCRUD.js';
 import UsersValidations from './UsersValidations.js';
 import Utils from '../Utils.js';
-
+import Mail from '../MailResetPass.js';
 const LOGIN_FAILED_ERROR = "Authentication failed";
 const VALIDATION_ERROR = "Validation error";
 const SAVE_ERROR = "Failed to save user";
@@ -76,7 +76,7 @@ class User {
   // כפתור שכחתי סיסמה בלוגאין
   static async forgotPassword(request, response) {
     try {
-      let user = await UsersFunctions.findByEmail(request.body.email);
+      let user = await UsersCRUD.findByEmail(request.body.email);
       if (!user[0][0]?.email.length > 0) {
         return response.status(401).json("האימייל לא רשום במערכת");
       }
@@ -102,7 +102,7 @@ class User {
 
       try {
         req.body.newPassword = await bcrypt.hash(req.body.newPassword.toString(), 10);
-        const [users2, _] = await UsersFunctions.resetPassword(req.email, req.body.newPassword);
+        const [users2, _] = await UsersCRUD.resetPassword(req.email, req.body.newPassword);
         response.status(200).json(users2);
       } catch (error) {
         response.status(400).json(error);

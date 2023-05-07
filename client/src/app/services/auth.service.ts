@@ -1,7 +1,7 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, map, of, throwError } from 'rxjs';
-import { User, UserLogin } from '../core/user';
+import { Email, User, UserLogin } from '../core/user';
 import { environment } from 'src/environments/environment';
 import jwt_decode from 'jwt-decode';
 @Injectable({
@@ -30,6 +30,13 @@ export class AuthService {
   login(user: UserLogin){
     return this.http.post(environment.baseUrl + '/user/login', user).pipe(catchError(error => {
       const statusCode = error.status;
+      return of(statusCode);
+     }))
+  }
+  forgotPassword(email: Email){
+    debugger;
+    return this.http.post(environment.baseUrl + '/user/forgotPassword', email).pipe(catchError(error => {
+      const statusCode = error;
       return of(statusCode);
      }))
   }

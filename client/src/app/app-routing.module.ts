@@ -6,12 +6,14 @@ import { LoginComponent } from './pages/login/login/login.component';
 import { RegisterComponent } from './pages/register/register/register.component';
 import { RegisterOwnerComponent } from './components/admin/registerOwner/register-owner/register-owner.component';
 import { AuthGuardService } from './services/auth-guard.service';
+import { ResetPasswordComponent } from './pages/resetPassword/reset-password/reset-password.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'admin', component: RegisterOwnerComponent, canActivate: [AuthGuardService] },
+  {path: 'resetPassword/:id/:token', component: ResetPasswordComponent}
 ];
 
 @NgModule({
