@@ -64,7 +64,7 @@ class User {
         response.status(200).json(users.insertId);
       } catch (error) {
         console.log(error);
-        response.status(400).json({ message: SAVE_ERROR });
+        response.status(400).json({ message: error});
       }
     } catch (error) {
       console.log(error);

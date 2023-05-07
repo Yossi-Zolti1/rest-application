@@ -13,11 +13,11 @@ class UsersFunctions {
     } catch (error) {
       throw new Error('Error hashing password');
     }
-    
+    let sql = `INSERT INTO users (name, phone, email,password,role) VALUES (?,?,?,?,?)`;
     try {
       return await db.query(sql, [newData.name, newData.phone, newData.email, newData.password, 'manager']);
     } catch (error) {
-      throw new Error('Error saving user data');
+      throw new Error(error);
     }
   }
   
