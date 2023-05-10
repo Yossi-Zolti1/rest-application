@@ -11,8 +11,8 @@ class OwnersCRUD {
   }
 
   static async addRest(rest, userId) {
-    let sql = `INSERT INTO restaurants (name, street, city, kashrut, type, logo, ownerID) VALUES (?,?,?,?,?,?,?)`;
-    return await db.query(sql, [rest.name, rest.street, rest.city, rest.kashrut, rest.type, rest.logo, userId]);
+    let sql = `INSERT INTO restaurants (name, street, city, phone, kashrut, type, logo, ownerID) VALUES (?,?,?,?,?,?,?,?)`;
+    return await db.query(sql, [rest.name, rest.street, rest.city, rest.phone, rest.kashrut, rest.type, rest.logo, userId]);
   }
   
 }

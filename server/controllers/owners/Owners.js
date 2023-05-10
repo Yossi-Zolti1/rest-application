@@ -3,7 +3,7 @@ import OwnersValidations from './OwnersValidations.js';
 import Mail from '../MailSender.js';
 
 const VALIDATION_ERROR = "Validation error";
-const SAVE_ERROR = "Failed to save user";
+const SAVE_ERROR = "Failed to save rest";
 const SEND_MAIL_ERROR = "Failed to sent email";
 
 class Owners {
@@ -30,17 +30,26 @@ class Owners {
     }
   };
 
-    
+  // handle add new restaurants
   static async addRest(request, response) {
-    const { userId, email, role} = request;
+
+    // check that the details inserted its correct
+    const validation = OwnersValidations.validAddRest(request.body);
+    if (validation.error) {
+      console.log(validation.error.details);
+      return response.status(400).json({ message: VALIDATION_ERROR, details: validation.error.details });
+    }
+    
+    const { userId, role} = request;
     if (role !== 'owner') {
       return response.status(403).json({ message: "You don't have permission to perform this action." });
     }
+    // call function to save new rest in SQL
     try {
       const [users, _] = await OwnersCRUD.addRest(request.body, userId);
       response.status(200).json(users);
     } catch (error) {
-      response.status(400).json(error);
+      response.status(400).json({ message: SAVE_ERROR, details: error });
       console.log(error);
     }
   };

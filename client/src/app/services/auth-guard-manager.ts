@@ -10,7 +10,7 @@ export class AuthGuardManager implements CanActivate {
   canActivate(): boolean {
     const role = this.authService.getRole();
 
-    if (role === 'manager') {
+    if (role === 'owner') {
       return true;
     }
 
