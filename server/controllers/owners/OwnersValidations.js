@@ -7,10 +7,10 @@ class OwnersValidations {
   static validAddRest(body) {
     let userSchema = joi.object({
       name: joi.string().trim().required(),
-      phone: joi.string().trim().min(9).pattern(/^[0-9]+$/),
+      phone: joi.string().trim().allow('', null),
       street: joi.string().trim().required(),
       city: joi.string().trim().required(),
-      kashrut: joi.string().trim(),
+      kashrut: joi.string().trim().allow('', null),
       type: joi.string().trim().required(),
       logo: joi.string().trim().required(),
     });
