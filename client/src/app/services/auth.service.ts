@@ -34,7 +34,6 @@ export class AuthService {
      }))
   }
   forgotPassword(email: Email){
-    debugger;
     return this.http.post(environment.baseUrl + '/user/forgotPassword', email).pipe(catchError(error => {
       const statusCode = error;
       return of(statusCode);
@@ -42,12 +41,5 @@ export class AuthService {
   }
   getRole(): string {
     return this.decodedToken['_role'];
-  }
-  getRoleByResponse(token: string): string | null{
-    if(token){
-      this.decodedToken = jwt_decode(token); 
-      return this.decodedToken['_role'];
-    }
-    return null;
   }
 }

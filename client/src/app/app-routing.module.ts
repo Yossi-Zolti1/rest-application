@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
-import { HomePageComponent } from './pages/home-page/home-page/home-page.component';
-import { LoginComponent } from './pages/login/login/login.component';
-import { RegisterComponent } from './pages/register/register/register.component';
-import { RegisterOwnerComponent } from './components/admin/registerOwner/register-owner/register-owner.component';
+import { HomePageComponent } from './pages/home-page/home-page.component';
+import { LoginComponent } from './pages/login/login.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { RegisterOwnerComponent } from './components/admin/registerOwner/register-owner.component';
 import { AuthGuardService } from './services/auth-guard.service';
-import { ResetPasswordComponent } from './pages/resetPassword/reset-password/reset-password.component';
+import { ResetPasswordComponent } from './pages/resetPassword/reset-password.component';
 import { ManagerPageComponent } from './pages/manager/managerPage/manager-page.component';
 import { AuthGuardManager } from './services/auth-guard-manager';
 
