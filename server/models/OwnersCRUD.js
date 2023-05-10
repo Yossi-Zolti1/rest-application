@@ -6,7 +6,7 @@ class OwnersCRUD {
   constructor() { }
 
   static async getRestDetails(userId) {
-    let sql = `SELECT * FROM restaurants WHERE userID = ?`;
+    let sql = `SELECT * FROM restaurants WHERE ownerID = ?`;
     return await db.execute(sql, [userId]);
   }
   
