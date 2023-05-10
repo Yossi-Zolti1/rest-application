@@ -1,7 +1,7 @@
 import db from "../database/db.js";
 import bcrypt from 'bcrypt';
 
-class UsersFunctions {
+class UsersCRUD {
   constructor() { }
 
     // handle create user
@@ -27,4 +27,4 @@ class UsersFunctions {
   }
 
 }
-export default UsersFunctions;
+export default UsersCRUD;

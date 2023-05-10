@@ -2,12 +2,8 @@ import bcrypt from 'bcrypt';
 import UsersCRUD from '../../models/UsersCRUD.js';
 import UsersValidations from './UsersValidations.js';
 import Utils from '../Utils.js';
-<<<<<<< HEAD
 import Mail from '../MailSender.js';
 
-=======
-import Mail from '../MailResetPass.js';
->>>>>>> 6558c7edcb228838a3a5f2d818301d1e6f972651
 const LOGIN_FAILED_ERROR = "Authentication failed";
 const VALIDATION_ERROR = "Validation error";
 const SAVE_ERROR = "Failed to save user";
@@ -118,15 +114,9 @@ class User {
       }
 
       try {
-<<<<<<< HEAD
         const hashedPassword = await bcrypt.hash(newPassword.toString(), 10);
         const [users2, _] = await UsersCRUD.resetPassword(email, hashedPassword);
         response.status(200).json("passwoerd reseted successfully");
-=======
-        req.body.newPassword = await bcrypt.hash(req.body.newPassword.toString(), 10);
-        const [users2, _] = await UsersCRUD.resetPassword(req.email, req.body.newPassword);
-        response.status(200).json(users2);
->>>>>>> 6558c7edcb228838a3a5f2d818301d1e6f972651
       } catch (error) {
         response.status(400).json(error);
         console.log(error);

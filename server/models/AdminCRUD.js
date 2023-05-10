@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import bcrypt from 'bcrypt';
 dotenv.config();
 
-class UsersFunctions {
+class AdminCRUD {
   constructor() { }
 
   static async save(newData) {
@@ -22,4 +22,4 @@ class UsersFunctions {
   }
   
 }
-export default UsersFunctions;
+export default AdminCRUD;

@@ -39,6 +39,7 @@ export default function server() {
    });
 
    app.use('/user', user);
+   app.use('/owners', user);
    app.use('/admin', admin);
    app.use('*', notFound);
 
