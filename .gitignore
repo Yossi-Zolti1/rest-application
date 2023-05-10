@@ -4,6 +4,7 @@
 /client/dist
 /server/.env
 /client/.env
+backup
 
 # local env files
 .env.local
