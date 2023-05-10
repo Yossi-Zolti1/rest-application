@@ -11,6 +11,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { RegisterOwnerComponent } from './components/admin/registerOwner/register-owner/register-owner.component';
 import { Interceptor } from './services/http.interceptor';
 import { ResetPasswordComponent } from './pages/resetPassword/reset-password/reset-password.component';
+import { ManagerPageComponent } from './pages/manager/managerPage/manager-page.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ResetPasswordComponent } from './pages/resetPassword/reset-password/res
     RegisterComponent,
     HeaderComponent,
     RegisterOwnerComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    ManagerPageComponent
   ],
   imports: [
     BrowserModule,
