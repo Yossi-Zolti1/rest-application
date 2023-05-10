@@ -2,7 +2,7 @@ import bcrypt from 'bcrypt';
 import UsersCRUD from '../../models/UsersCRUD.js';
 import UsersValidations from './UsersValidations.js';
 import Utils from '../Utils.js';
-import Mail from '../MailResetPass.js';
+import Mail from '../MailSender.js';
 
 const LOGIN_FAILED_ERROR = "Authentication failed";
 const VALIDATION_ERROR = "Validation error";
@@ -12,7 +12,7 @@ class User {
   constructor() {
   }
 
-  
+
   // code 2 part 1
   static async Login(request, response) {
 
@@ -23,23 +23,23 @@ class User {
         console.log(validation.error.details);
         return response.status(400).json({ message: VALIDATION_ERROR, details: validation.error.details });
       }
-  
+
       const [users] = await UsersCRUD.findByEmail(email);
       const user = users[0];
       if (!user?.email) {
         return response.status(400).json({ message: LOGIN_FAILED_ERROR });
       }
-  
+
       const savedPassword = user.password;
       const comparePass = await bcrypt.compare(password, savedPassword);
-  
+
       if (!comparePass) {
         return response.status(401).json({ message: LOGIN_FAILED_ERROR });
       }
-  
+
       const { id, email: userEmail, role } = user;
-      const newToken = await Utils.genToken(id, userEmail, role,"1d");
-  
+      const newToken = await Utils.genToken(id, userEmail, role, "1d");
+
       return response.status(200).json({ token: newToken });
     } catch (error) {
       console.log(error);
@@ -51,20 +51,20 @@ class User {
   static async createUser(request, response) {
     const { email, phone, name, password } = request.body;
     const userData = { email, phone, name, password };
-  
+
     try {
       const validation = UsersValidations.validAddUser(userData);
       if (validation.error) {
         console.log(validation.error.details);
         return response.status(400).json({ message: VALIDATION_ERROR, details: validation.error.details });
       }
-  
+
       try {
         const [users, _] = await UsersCRUD.save(userData);
         response.status(200).json(users.insertId);
       } catch (error) {
         console.log(error);
-        response.status(400).json({ message: error});
+        response.status(400).json({ message: error });
       }
     } catch (error) {
       console.log(error);
@@ -76,34 +76,46 @@ class User {
   // code 2 part 4
   // כפתור שכחתי סיסמה בלוגאין
   static async forgotPassword(request, response) {
+
+    const { email } = request.body;
     try {
-      let user = await UsersCRUD.findByEmail(request.body.email);
+      const validation = UsersValidations.validAEmailRessetPass({email});
+      if (validation.error) {
+        console.log(validation.error.details);
+        return response.status(400).json({ message: VALIDATION_ERROR, details: validation.error.details });
+      }
+
+
+      let user = await UsersCRUD.findByEmail(email);
       if (!user[0][0]?.email.length > 0) {
         return response.status(401).json("האימייל לא רשום במערכת");
       }
+      const userRecord = user[0][0];
 
-      const newToken = await Utils.genToken(user[0][0]?.id, user[0][0]?.email, user[0][0]?.role,"1h");
-
-      Mail.sendEmail(request.body.email, user[0][0]?.id, newToken);
-      response.status(200).json("mail reset passord sent");
+      const token = await Utils.genToken(userRecord.id, userRecord.email, userRecord.role, "1h");
+      await Mail.sendEmail(email, userRecord.id, token, "ressetPass", "passwordNull");
+      response.status(200).json({ mailSent: true });
     } catch (error) {
-      response.status(400).json(error);
-      console.log(error);
+      console.error(error);
+      response.status(500).json("Internal server error");
     }
+
   };
   // שינוי סיסמה
-  static async resetPassword(req, response) {
+  static async resetPassword(request, response) {
 
+    const { newPassword } = request.body;
+    const email = request.email;
     try {
-      let validUser = UsersValidations.validResetPassword(req.body.password);
+      let validUser = UsersValidations.validResetPassword({newPassword});
       if (validUser.error) {
         console.log(validUser.error.details);
         return response.status(400).json(validUser.error.details);
       }
 
       try {
-        req.body.newPassword = await bcrypt.hash(req.body.newPassword.toString(), 10);
-        const [users2, _] = await UsersCRUD.resetPassword(req.email, req.body.newPassword);
+        const hashedPassword = await bcrypt.hash(newPassword.toString(), 10);
+        const [users2, _] = await UsersCRUD.resetPassword(email, hashedPassword);
         response.status(200).json("passwoerd reseted successfully");
       } catch (error) {
         response.status(400).json(error);

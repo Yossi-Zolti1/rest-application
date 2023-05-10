@@ -30,6 +30,13 @@ class UsersValidations {
     return userSchema.validate(body)
   }
   
+  static validAEmailRessetPass(body) {
+    let userSchema = joi.object({
+      email: joi.string().required().email().messages({ 'string.email': 'Email error', }),
+    });
+    return userSchema.validate(body)
+  }
+
   static validResetPassword(body) {
     let userSchema = joi.object({
       password: joi.string().trim().min(9)

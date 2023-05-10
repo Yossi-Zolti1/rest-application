@@ -9,6 +9,7 @@ const auth =async (req, res, next) => {
     // let token = req.header("x-api-key");
     if (!token) {
          res.status(401).json("auth failed");
+         return;
     }
     try {
         let decodeToken = jwt.verify(token, process.env.SECRET_WORD);

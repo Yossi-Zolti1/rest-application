@@ -15,7 +15,7 @@ class UsersFunctions {
     }
     let sql = `INSERT INTO users (name, phone, email,password,role) VALUES (?,?,?,?,?)`;
     try {
-      return await db.query(sql, [newData.name, newData.phone, newData.email, newData.password, 'manager']);
+      return await db.query(sql, [newData.name, newData.phone, newData.email, newData.password, 'owner']);
     } catch (error) {
       throw new Error(error);
     }
