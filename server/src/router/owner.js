@@ -5,6 +5,7 @@ import authToken from '../../middleware/authToken.js';
 
 
 // בקשות API
- router.get('/rest-details',authToken, OwnersClass.getRestDetails);
+ router.get('/rest_details',authToken, OwnersClass.getRestDetails);
+ router.get('/add_rest',authToken, OwnersClass.addRest);
 
 export default router;

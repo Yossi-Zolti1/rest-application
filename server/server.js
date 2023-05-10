@@ -4,6 +4,7 @@ import * as url from 'url';
 import cors from 'cors';
 import { notFound } from './middleware/pageNotFound.js';
 import user from './src/router/user.js';
+import owner from './src/router/owner.js';
 import admin from './src/router/admin.js';
 import dotenv from 'dotenv';
 dotenv.config();
@@ -39,7 +40,7 @@ export default function server() {
    });
 
    app.use('/user', user);
-   app.use('/owners', user);
+   app.use('/owner', owner);
    app.use('/admin', admin);
    app.use('*', notFound);
 

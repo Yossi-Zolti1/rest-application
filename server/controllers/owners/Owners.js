@@ -12,13 +12,14 @@ class Owners {
 
   // get retaurant details
   static async getRestDetails(request, response) {
+    const { userId, role} = request;
 
     if (role !== 'owner') {
       return response.status(403).json({ message: "You don't have permission to perform this action." });
     }
 
     try {
-      const [user, _] = await OwnersCRUD.getRestDetails(request.userId);
+      const [user, _] = await OwnersCRUD.getRestDetails(userId);
       if (!Array.isArray(user[0]) || user[0].length === 0) {
         return response.status(400).json("no rest found");
       }
@@ -30,7 +31,19 @@ class Owners {
   };
 
     
-
+  static async addRest(request, response) {
+    const { userId, email, role} = request;
+    if (role !== 'owner') {
+      return response.status(403).json({ message: "You don't have permission to perform this action." });
+    }
+    try {
+      const [users, _] = await OwnersCRUD.addRest(request.body, userId);
+      response.status(200).json(users);
+    } catch (error) {
+      response.status(400).json(error);
+      console.log(error);
+    }
+  };
 
 
 
