@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt';
 import UsersCRUD from '../../models/UsersCRUD.js';
 import UsersValidations from './UsersValidations.js';
-import Utils from '../Utils.js';
+import Token from '../Token.js';
 import Mail from '../MailSender.js';
 
 const LOGIN_FAILED_ERROR = "Authentication failed";
@@ -38,7 +38,7 @@ class User {
       }
 
       const { id, email: userEmail, role } = user;
-      const newToken = await Utils.genToken(id, userEmail, role, "1d");
+      const newToken = await Token.genToken(id, userEmail, role, "1d");
 
       return response.status(200).json({ token: newToken });
     } catch (error) {
@@ -92,7 +92,7 @@ class User {
       }
       const userRecord = user[0][0];
 
-      const token = await Utils.genToken(userRecord.id, userRecord.email, userRecord.role, "1h");
+      const token = await Token.genToken(userRecord.id, userRecord.email, userRecord.role, "1h");
       await Mail.sendEmail(email, userRecord.id, token, "ressetPass", "passwordNull");
       response.status(200).json({ mailSent: true });
     } catch (error) {

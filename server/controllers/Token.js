@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 dotenv.config();
 
-class Utils {
+class Token {
   constructor() {
   }
 
@@ -13,4 +13,4 @@ class Utils {
 
 }
 
-export default Utils;
+export default Token;

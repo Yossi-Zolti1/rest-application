@@ -2,6 +2,7 @@ import express from 'express';
 import path from 'path';
 import * as url from 'url';
 import cors from 'cors';
+import fileUpload from "express-fileupload";
 import { notFound } from './middleware/pageNotFound.js';
 import user from './src/router/user.js';
 import owner from './src/router/owner.js';
@@ -20,6 +21,9 @@ export default function server() {
    app.use(express.json());
    //  app.use(logger);
    
+   app.use(fileUpload({
+      limits: { fileSize: 1024 * 1024 * 5 }
+   }))
 
    app.use(express.urlencoded({ extended: false }));
    app.use(express.static(path.join(__dirname, 'public')));
