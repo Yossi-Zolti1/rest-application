@@ -9,6 +9,7 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { ResetPasswordComponent } from './pages/resetPassword/reset-password.component';
 import { ManagerPageComponent } from './pages/manager/managerPage/manager-page.component';
 import { AuthGuardManager } from './services/auth-guard-manager';
+import { RestaurantDetailsComponent } from './pages/manager/restaurant-details/restaurant-details.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'admin', component: RegisterOwnerComponent, canActivate: [AuthGuardService] },
   { path: 'resetPassword/:id/:token', component: ResetPasswordComponent},
   { path: 'manager-page', component: ManagerPageComponent, canActivate: [AuthGuardManager] },
+  { path: 'restaurant-details', component: RestaurantDetailsComponent },
 ];
 
 @NgModule({

@@ -12,6 +12,7 @@ import { RegisterOwnerComponent } from './components/admin/registerOwner/registe
 import { Interceptor } from './services/http.interceptor';
 import { ResetPasswordComponent } from './pages/resetPassword/reset-password.component';
 import { ManagerPageComponent } from './pages/manager/managerPage/manager-page.component';
+import { RestaurantDetailsComponent } from './pages/manager/restaurant-details/restaurant-details.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ManagerPageComponent } from './pages/manager/managerPage/manager-page.c
     HeaderComponent,
     RegisterOwnerComponent,
     ResetPasswordComponent,
-    ManagerPageComponent
+    ManagerPageComponent,
+    RestaurantDetailsComponent
   ],
   imports: [
     BrowserModule,
