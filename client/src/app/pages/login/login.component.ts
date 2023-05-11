@@ -19,7 +19,6 @@ export class LoginComponent implements OnInit {
     this.auth.login(this.loginForm.value).subscribe(res => {res;
       if(res === 400){
         this.loginForm.reset();
-        debugger;
         alert('אין משתמש כזה במערכת')
       }
       else{
@@ -33,7 +32,6 @@ export class LoginComponent implements OnInit {
       email: this.loginForm.controls['email'].value
     }
     this.auth.forgotPassword(email).subscribe(res => {
-debugger;
     })
   }
   ngOnInit(): void {

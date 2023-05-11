@@ -11,7 +11,7 @@ export class AuthService {
   private token = localStorage.getItem('token');
   private decodedToken: { [key: string]: string } = {};
   constructor(private http: HttpClient) {
-    if (this.token) {
+    if (this.token && this.token != 'undefined') {
       this.decodedToken = jwt_decode(this.token);
     }
    }
