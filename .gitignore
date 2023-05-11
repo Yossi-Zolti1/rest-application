@@ -5,7 +5,7 @@
 /server/.env
 /client/.env
 backup
-/public/
+/public/users
 # local env files
 .env.local
 .env.*.local

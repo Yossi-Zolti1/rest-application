@@ -40,7 +40,7 @@ class UploadFiles {
         const localTime = new Date(now.getTime() - (timezoneOffset * 60000));
         // replace all chars do not support in file name
         const formattedDate = localTime.toISOString().slice(0, 19).replace('T', '_').replace(' ', '_').replace(/:/g, '-');
-        const fileName = `${formattedDate}_${paddedNumber}_id${owner_id}.png`;
+        const fileName = `${formattedDate}_${paddedNumber}_id${owner_id}${extensionFile}`;
 
         // Move file to directory
         try {
