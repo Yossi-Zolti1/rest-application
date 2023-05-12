@@ -1,12 +1,10 @@
-import OwnersCRUD from '../../models/OwnersCRUD.js';
-import OwnersValidations from './OwnersValidations.js';
-import Mail from '../MailSender.js';
+import OwnersModel from '../../models/owners/OwnersModel.js';
+import OwnersValidations from '../../util/owners/OwnersValidations.js';
 
 const VALIDATION_ERROR = "Validation error";
 const SAVE_ERROR = "Failed to save rest";
-const SEND_MAIL_ERROR = "Failed to sent email";
 
-class Owners {
+class OwnersController {
   constructor() {
   }
 
@@ -19,7 +17,7 @@ class Owners {
     }
     
     try {
-      const [user, _] = await OwnersCRUD.getRestDetails(userId);
+      const [user, _] = await OwnersModel.getRestDetails(userId);
       console.log(user);
       if (user[0].length === 0) {
         return response.status(400).json("no rest found");
@@ -47,7 +45,7 @@ class Owners {
     }
     // call function to save new rest in SQL
     try {
-      const [users, _] = await OwnersCRUD.addRest(request.body, userId);
+      const [users, _] = await OwnersModel.addRest(request.body, userId);
       response.status(200).json(users);
     } catch (error) {
       response.status(400).json({ message: SAVE_ERROR, details: error });
@@ -60,5 +58,5 @@ class Owners {
 
 }
 
-export default Owners;
+export default OwnersController;
 

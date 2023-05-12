@@ -1,6 +1,6 @@
 import joi from "joi";
 
-class UsersValidations {
+class AuthValidations {
   constructor() {
   }
 
@@ -50,5 +50,5 @@ class UsersValidations {
 
 }
 
-export default UsersValidations;
+export default AuthValidations;
 

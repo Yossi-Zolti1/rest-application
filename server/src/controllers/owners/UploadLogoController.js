@@ -1,7 +1,7 @@
 import path from 'path'
 import fs from 'fs'
 
-class UploadFiles {
+class UploadLogoController {
     constructor() {
     }
 
@@ -23,7 +23,7 @@ class UploadFiles {
         }
 
         // let dir = `public/users/logo/`
-        let dir = `public/users/logo/`
+        let dir = `public/logo/`
 
         // Create directory if it doesn't exist
         if (!fs.existsSync(dir)) {
@@ -58,5 +58,5 @@ class UploadFiles {
 }
 
 
-export default UploadFiles;
+export default UploadLogoController;
 

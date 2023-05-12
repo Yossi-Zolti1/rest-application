@@ -1,7 +1,7 @@
-import db from "../database/db.js";
+import db from "../../../config/database/db.js";
 import bcrypt from 'bcrypt';
 
-class UsersCRUD {
+class CustomersModel {
   constructor() { }
 
     // handle create user
@@ -11,13 +11,8 @@ class UsersCRUD {
 
     let sql = `INSERT INTO users (name, phone, email,password,role) VALUES (?,?,?,?,?)`;
 
+    console.log(77777777);
     return await db.query(sql, [newData.name, newData.phone, newData.email, newData.password, "user"]);
-  }
-
-    // handle login
-  static async findByEmail(email) {
-    let sql = `SELECT id,password,email,role FROM users WHERE email = ?`;
-    return await db.execute(sql, [email]);
   }
 
   // handle reset password
@@ -27,4 +22,4 @@ class UsersCRUD {
   }
 
 }
-export default UsersCRUD;
+export default CustomersModel;

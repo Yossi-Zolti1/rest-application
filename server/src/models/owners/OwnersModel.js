@@ -1,8 +1,8 @@
-import db from "../database/db.js";
+import db from "../../../config/database/db.js";
 import dotenv from 'dotenv';
 dotenv.config();
 
-class OwnersCRUD {
+class OwnersModel {
   constructor() { }
 
   static async getRestDetails(userId) {
@@ -16,4 +16,4 @@ class OwnersCRUD {
   }
   
 }
-export default OwnersCRUD;
+export default OwnersModel;

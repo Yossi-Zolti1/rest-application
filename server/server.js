@@ -3,10 +3,12 @@ import path from 'path';
 import * as url from 'url';
 import cors from 'cors';
 import fileUpload from "express-fileupload";
-import { notFound } from './middleware/pageNotFound.js';
-import user from './src/router/user.js';
-import owner from './src/router/owner.js';
-import admin from './src/router/admin.js';
+import { notFound } from './src/middleware/pageNotFound.js';
+import customersRoutes from './src/router/customersRoutes.js';
+import ownerRoutes from './src/router/ownerRoutes.js';
+import adminRoutes from './src/router/adminRoutes.js';
+import AuthController from './src/controllers/AuthController.js';
+import authToken from './src/middleware/authToken.js';
 import dotenv from 'dotenv';
 dotenv.config();
 // import logger from'./middleware/logger.js';
@@ -20,7 +22,7 @@ export default function server() {
    const app = express();
    app.use(express.json());
    //  app.use(logger);
-   
+
    app.use(fileUpload({
       limits: { fileSize: 1024 * 1024 * 5 }
    }))
@@ -42,10 +44,13 @@ export default function server() {
    app.get('/', (req, res) => {
       res.send("home");
    });
+   app.post('/login', AuthController.Login);
+   app.post('/forgotPassword', AuthController.forgotPassword);
+   app.put('/resetPassword', authToken, AuthController.resetPassword);
 
-   app.use('/user', user);
-   app.use('/owner', owner);
-   app.use('/admin', admin);
+   app.use('/customer', customersRoutes);
+   app.use('/owner', ownerRoutes);
+   app.use('/admin', adminRoutes);
    app.use('*', notFound);
 
 }

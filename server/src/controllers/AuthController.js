@@ -1,14 +1,14 @@
 import bcrypt from 'bcrypt';
-import UsersCRUD from '../../models/UsersCRUD.js';
-import UsersValidations from './UsersValidations.js';
-import Token from '../Token.js';
-import Mail from '../MailSender.js';
+import AuthModel from '../models/AuthModel.js';
+import CommonModel from '../models/CommonModel.js';
+import AuthValidations from '../util/AuthValidations.js';
+import Token from '../util/Token.js';
+import Mail from '../util/MailSender.js';
 
 const LOGIN_FAILED_ERROR = "Authentication failed";
 const VALIDATION_ERROR = "Validation error";
-const SAVE_ERROR = "Failed to save user";
 
-class User {
+class AuthController {
   constructor() {
   }
 
@@ -18,13 +18,13 @@ class User {
 
     const { email, password } = request.body;
     try {
-      const validation = UsersValidations.validLogin({ email, password });
+      const validation = AuthValidations.validLogin({ email, password });
       if (validation.error) {
         console.log(validation.error.details);
         return response.status(400).json({ message: VALIDATION_ERROR, details: validation.error.details });
       }
 
-      const [users] = await UsersCRUD.findByEmail(email);
+      const [users] = await CommonModel.findByEmail(email);
       const user = users[0];
       if (!user?.email) {
         return response.status(400).json({ message: LOGIN_FAILED_ERROR });
@@ -47,46 +47,21 @@ class User {
     }
   };
 
-  // code 1 part 1
-  static async createUser(request, response) {
-    const { email, phone, name, password } = request.body;
-    const userData = { email, phone, name, password };
-
-    try {
-      const validation = UsersValidations.validAddUser(userData);
-      if (validation.error) {
-        console.log(validation.error.details);
-        return response.status(400).json({ message: VALIDATION_ERROR, details: validation.error.details });
-      }
-
-      try {
-        const [users, _] = await UsersCRUD.save(userData);
-        response.status(200).json(users.insertId);
-      } catch (error) {
-        console.log(error);
-        response.status(400).json({ message: error });
-      }
-    } catch (error) {
-      console.log(error);
-      response.status(400).json(error);
-    }
-  }
-
-
+  
   // code 2 part 4
   // כפתור שכחתי סיסמה בלוגאין
   static async forgotPassword(request, response) {
 
     const { email } = request.body;
     try {
-      const validation = UsersValidations.validAEmailRessetPass({email});
+      const validation = AuthValidations.validAEmailRessetPass({email});
       if (validation.error) {
         console.log(validation.error.details);
         return response.status(400).json({ message: VALIDATION_ERROR, details: validation.error.details });
       }
 
 
-      let user = await UsersCRUD.findByEmail(email);
+      let user = await CommonModel.findByEmail(email);
       if (!user[0][0]?.email.length > 0) {
         return response.status(401).json("האימייל לא רשום במערכת");
       }
@@ -107,7 +82,7 @@ class User {
     const { newPassword } = request.body;
     const email = request.email;
     try {
-      let validUser = UsersValidations.validResetPassword({newPassword});
+      let validUser = AuthValidations.validResetPassword({newPassword});
       if (validUser.error) {
         console.log(validUser.error.details);
         return response.status(400).json(validUser.error.details);
@@ -115,7 +90,7 @@ class User {
 
       try {
         const hashedPassword = await bcrypt.hash(newPassword.toString(), 10);
-        const [users2, _] = await UsersCRUD.resetPassword(email, hashedPassword);
+        const [users2, _] = await AuthModel.resetPassword(email, hashedPassword);
         response.status(200).json("passwoerd reseted successfully");
       } catch (error) {
         response.status(400).json(error);
@@ -130,5 +105,5 @@ class User {
 
 }
 
-export default User;
+export default AuthController;
 
