@@ -1,11 +1,17 @@
 import path from 'path'
 import fs from 'fs'
+import OwnersModel from '../../models/owners/OwnersModel.js';
 
 class UploadLogoController {
     constructor() {
     }
 
     static async uploadLogo(req, res) {
+
+        // check that file exist
+        if (!req.files?.my) {
+            return res.status(406).json({ msg: 'File is not exist' });
+        }
 
         let myFile = req.files.my;
         let owner_id = req.userId;
@@ -46,10 +52,23 @@ class UploadLogoController {
         try {
             await myFile.mv(path.join(dir + fileName));
             const imageLink = dir.replace(/^public\//, '/') + fileName;
-            res.json({ msg: 'Upload successful', link1: imageLink });
+            if (req.body?.name) {
+                // If name exists, it's part of adding rest, return response with return statement
+                return { msg: 'Upload successful', link1: imageLink };
+            }
+            // If name does not exist, it's only updating the logo, then update the SQL
+            const update = await OwnersModel.updateLogo(imageLink, owner_id);
+            res.status(200).json({ msg: 'Upload successful', link1: imageLink });
         } catch (error) {
-            return res.status(400).json({ msg: `Error: ${error.message}` });
+            if (req.body?.name) {
+                // If name exists, return response with return statement
+                return { msg: `Error: ${error.message}` };
+            }
+            // If name does not exist, send response with res
+            res.status(400).json({ msg: `Error: ${error.message}` });
         }
+
+
 
     };
 

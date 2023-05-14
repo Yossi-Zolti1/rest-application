@@ -8,6 +8,7 @@ import authToken from '../middleware/authToken.js';
 // בקשות API
  router.get('/rest_details',authToken, OwnersClass.getRestDetails);
  router.post('/add_rest',authToken, OwnersClass.addRest);
- router.post('/upload_logo',authToken, UploadClass.uploadLogo);
+ router.put('/update_rest',authToken, OwnersClass.updateRest);
+ router.post('/update_logo',authToken, UploadClass.uploadLogo);
 
 export default router;
