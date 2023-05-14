@@ -12,6 +12,7 @@ export class RestaurantDetailsComponent implements OnInit {
 
   constructor(private restDetailsService: RestaurantDetailsService, public fb: FormBuilder) { }
   restaurant!: Restaurant;
+  logoUrl!: string;
   restForm = this.fb.group({
     name: [''],
     street: [''],
@@ -20,11 +21,24 @@ export class RestaurantDetailsComponent implements OnInit {
     kashrut:[''],
     type:[''],
     logo:[''],
-  }); 
+  });
+  get logo(){
+    return this.restForm.get('logo')
+  } 
   ngOnInit(): void {
     this.restDetailsService.getRestaurantDetails().subscribe(res => {
       if(res != 400){
         this.restaurant = res;
+        this.restForm.patchValue({
+          name: res.name,
+          street: res.street,
+          city: res.city,
+          phone: res.phone,
+          kashrut: res.kashrut,
+          type: res.type,
+          logo: res.logo
+        });
+        this.logoUrl = res.logo;
       }
     })
   }
@@ -32,5 +46,4 @@ export class RestaurantDetailsComponent implements OnInit {
     this.restDetailsService.addRestaurant(this.restForm.value).subscribe(res => {
     })
   }
-
 }
