@@ -21,4 +21,10 @@ export class RestaurantDetailsService {
       return of(err);
      }))
   }
+  updateRestaurant(restaurant: Restaurant){
+    return this.http.post(environment.baseUrl + '/owner/update_rest', restaurant).pipe(catchError(error => {
+      const err = error;
+      return of(err);
+     }))
+  }
 }

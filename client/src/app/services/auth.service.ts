@@ -10,6 +10,7 @@ import jwt_decode from 'jwt-decode';
 export class AuthService {
   private token = localStorage.getItem('token');
   private decodedToken: { [key: string]: string } = {};
+  
   constructor(private http: HttpClient) {
     if (this.token && this.token != 'undefined') {
       this.decodedToken = jwt_decode(this.token);
@@ -28,7 +29,7 @@ export class AuthService {
      }))
   }
   login(user: UserLogin){
-    return this.http.post(environment.baseUrl + '/user/login', user).pipe(catchError(error => {
+    return this.http.post(environment.baseUrl + '/login', user).pipe(catchError(error => {
       const statusCode = error.status;
       return of(statusCode);
      }))
