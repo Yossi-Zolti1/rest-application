@@ -7,8 +7,7 @@ import { notFound } from './src/middleware/pageNotFound.js';
 import customersRoutes from './src/router/customersRoutes.js';
 import ownerRoutes from './src/router/ownerRoutes.js';
 import adminRoutes from './src/router/adminRoutes.js';
-import AuthController from './src/controllers/AuthController.js';
-import authToken from './src/middleware/authToken.js';
+import authRoutes from './src/router/authRoutes.js';
 import dotenv from 'dotenv';
 dotenv.config();
 // import logger from'./middleware/logger.js';
@@ -44,10 +43,8 @@ export default function server() {
    app.get('/', (req, res) => {
       res.send("home");
    });
-   app.post('/login', AuthController.Login);
-   app.post('/forgotPassword', AuthController.forgotPassword);
-   app.put('/resetPassword', authToken, AuthController.resetPassword);
 
+   app.use('/auth', authRoutes);
    app.use('/customer', customersRoutes);
    app.use('/owner', ownerRoutes);
    app.use('/admin', adminRoutes);

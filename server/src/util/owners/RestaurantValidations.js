@@ -1,6 +1,6 @@
 import joi from "joi";
 
-class OwnersValidations {
+class RestaurantValidations {
   constructor() {
   }
 
@@ -26,10 +26,11 @@ class OwnersValidations {
       city: joi.string().trim().required(),
       kashrut: joi.string().trim().allow('', null),
       type: joi.string().trim().required(),
+      logo: joi.string().trim().allow('', null),
     });
     return userSchema.validate(body)
   }
 
 }
 
-export default OwnersValidations;
+export default RestaurantValidations;

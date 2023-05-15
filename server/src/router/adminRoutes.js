@@ -5,6 +5,6 @@ import authToken from '../middleware/authToken.js';
 
 
 // בקשות API
-router.post('/create_rest_manager',authToken, AdminClass.createRestManager);
+router.post('/create_rest_owner',authToken, AdminClass.createRestManager);
 
 export default router;
