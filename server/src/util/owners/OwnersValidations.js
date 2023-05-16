@@ -25,6 +25,7 @@ class OwnersValidations {
       street: joi.string().trim().required(),
       city: joi.string().trim().required(),
       kashrut: joi.string().trim().allow('', null),
+      logo: joi.string().trim().allow('', null),
       type: joi.string().trim().required(),
     });
     return userSchema.validate(body)

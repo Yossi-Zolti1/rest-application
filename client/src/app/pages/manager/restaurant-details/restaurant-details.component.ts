@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { Restaurant } from 'src/app/core/restaurant';
+import { Restaurant } from 'src/app/core/entities/restaurant';
 import { RestaurantDetailsService } from 'src/app/services/restaurant-details.service';
 import { UploadFileService } from 'src/app/services/upload-file.service';
 import { environment } from 'src/environments/environment';

@@ -1,21 +1,16 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, map, of, throwError } from 'rxjs';
-import { Email, User, UserLogin } from '../core/user';
+import { BehaviorSubject, Observable, catchError, map, of, tap, throwError } from 'rxjs';
+import { Email, User, UserLogin } from '../core/entities/user';
 import { environment } from 'src/environments/environment';
-import jwt_decode from 'jwt-decode';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private token = localStorage.getItem('token');
-  private decodedToken: { [key: string]: string } = {};
   
-  constructor(private http: HttpClient) {
-    if (this.token && this.token != 'undefined') {
-      this.decodedToken = jwt_decode(this.token);
-    }
-   }
+  token$ = new BehaviorSubject<string | null>(null);
+  isLoggedIn$ = new BehaviorSubject<boolean>(false);
+  constructor(private http: HttpClient) {}
   registerUser(user: User){
     return this.http.post(environment.baseUrl + '/user/createUser', user).pipe(catchError(error => {
       const err = error;
@@ -40,7 +35,10 @@ export class AuthService {
       return of(statusCode);
      }))
   }
-  getRole(): string {
-    return this.decodedToken['_role'];
+  getToken(): string | null{
+    return this.token$?.value;
+  }
+  getIsLoggedIn(): boolean{
+    return this.isLoggedIn$?.getValue();
   }
 }
