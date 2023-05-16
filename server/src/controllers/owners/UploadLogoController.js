@@ -1,6 +1,6 @@
 import path from 'path'
 import fs from 'fs'
-import OwnersModel from '../../models/owners/OwnersModel.js';
+import RestaurantModel from '../../models/owners/RestaurantModel.js';
 
 class UploadLogoController {
     constructor() {
@@ -15,6 +15,7 @@ class UploadLogoController {
 
         let myFile = req.files.my;
         let owner_id = req.userId;
+        let role = req.role;
         let extensionsArry = [".png", ".jpg", ".jpeg", ".svg"];
         let extensionFile = path.extname(myFile.name);
 
@@ -57,7 +58,10 @@ class UploadLogoController {
                 return { msg: 'Upload successful', link1: imageLink };
             }
             // If name does not exist, it's only updating the logo, then update the SQL
-            const update = await OwnersModel.updateLogo(imageLink, owner_id);
+            if (role !== 'owner') {
+                return response.status(403).json({ message: "You don't have permission to perform this action." });
+              }
+            const update = await RestaurantModel.updateLogo(imageLink, owner_id);
             res.status(200).json({ msg: 'Upload successful', link1: imageLink });
         } catch (error) {
             if (req.body?.name) {

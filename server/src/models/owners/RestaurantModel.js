@@ -2,7 +2,7 @@ import db from "../../../config/database/db.js";
 import dotenv from 'dotenv';
 dotenv.config();
 
-class OwnersModel {
+class RestaurantModel {
   constructor() { }
 
   static async getRestDetails(userId) {
@@ -26,4 +26,4 @@ class OwnersModel {
   }
   
 }
-export default OwnersModel;
+export default RestaurantModel;

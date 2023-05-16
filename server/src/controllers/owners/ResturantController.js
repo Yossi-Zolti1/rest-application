@@ -1,11 +1,11 @@
-import OwnersModel from '../../models/owners/OwnersModel.js';
-import OwnersValidations from '../../util/owners/OwnersValidations.js';
+import RestaurantModel from '../../models/owners/RestaurantModel.js';
+import RestaurantValidations from '../../util/owners/RestaurantValidations.js';
 import UploadLogoController from './UploadLogoController.js';
 
 const VALIDATION_ERROR = "Validation error";
 const SAVE_ERROR = "Failed to save rest";
 
-class OwnersController {
+class ResturantController {
   constructor() {
   }
 
@@ -18,7 +18,7 @@ class OwnersController {
     }
     
     try {
-      const [user, _] = await OwnersModel.getRestDetails(userId);
+      const [user, _] = await RestaurantModel.getRestDetails(userId);
       console.log(user);
       if (user[0].length === 0) {
         return response.status(400).json("no rest found");
@@ -43,7 +43,7 @@ class OwnersController {
    }
    
     // check that the details inserted its correct
-    const validation = OwnersValidations.validAddRest(request.body);
+    const validation = RestaurantValidations.validAddRest(request.body);
     if (validation.error) {
       console.log(validation.error.details);
       return response.status(400).json({ message: VALIDATION_ERROR, details: validation.error.details });
@@ -55,7 +55,7 @@ class OwnersController {
     }
     // call function to save new rest in SQL
     try {
-      const [users, _] = await OwnersModel.addRest(request.body, userId);
+      const [users, _] = await RestaurantModel.addRest(request.body, userId);
       response.status(200).json(users);
     } catch (error) {
       response.status(400).json({ message: SAVE_ERROR, details: error });
@@ -68,7 +68,7 @@ class OwnersController {
    static async updateRest(request, response) {
 
     // check that the details inserted its correct
-    const validation = OwnersValidations.validUpdateRest(request.body);
+    const validation = RestaurantValidations.validUpdateRest(request.body);
     if (validation.error) {
       console.log(validation.error.details);
       return response.status(400).json({ message: VALIDATION_ERROR, details: validation.error.details });
@@ -80,7 +80,7 @@ class OwnersController {
     }
     // call function to save new rest in SQL
     try {
-      const [users, _] = await OwnersModel.updateRest(request.body, userId);
+      const [users, _] = await RestaurantModel.updateRest(request.body, userId);
       response.status(200).json(users);
     } catch (error) {
       response.status(400).json({ message: SAVE_ERROR, details: error });
@@ -91,5 +91,5 @@ class OwnersController {
 
 }
 
-export default OwnersController;
+export default ResturantController;
 
