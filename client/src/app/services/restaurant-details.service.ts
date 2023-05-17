@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, of } from 'rxjs';
-import { Restaurant } from '../core/restaurant';
+import { Restaurant } from '../core/entities/restaurant';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -22,7 +22,7 @@ export class RestaurantDetailsService {
      }))
   }
   updateRestaurant(restaurant: Restaurant){
-    return this.http.post(environment.baseUrl + '/owner/update_rest', restaurant).pipe(catchError(error => {
+    return this.http.put(environment.baseUrl + '/owner/update_rest', restaurant).pipe(catchError(error => {
       const err = error;
       return of(err);
      }))

@@ -17,7 +17,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'admin', component: RegisterOwnerComponent, canActivate: [AuthGuardService] },
   { path: 'resetPassword/:id/:token', component: ResetPasswordComponent},
-  { path: 'manager-page', component: ManagerPageComponent, canActivate: [AuthGuardManager] },
+  { path: 'owner', component: ManagerPageComponent, canActivate: [AuthGuardManager] },
   { path: 'restaurant-details', component: RestaurantDetailsComponent },
 ];
 
