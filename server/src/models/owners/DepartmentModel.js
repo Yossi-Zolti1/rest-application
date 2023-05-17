@@ -12,15 +12,17 @@ class DepartmentModel {
     return await db.query(sql, [department.name, department.image, department.menuId]);
   }
 
-//   static async getRestDetails(userId) {
-//     let sql = `SELECT * FROM restaurants WHERE ownerID = ?`;
-//     return await db.execute(sql, [userId]);
-//   }
+    static async updateDepartment(department) {
+    let sql = `UPDATE departments SET name= ?,image= ? WHERE id = ?`
+     return await db.query(sql, [department.name, department.image, department.departmentId])
+  }
 
-//   static async updateRest(rest, userId) {
-//     let sql = `UPDATE restaurants SET name= ?,street= ?,city= ?,phone= ?,kashrut= ?,type= ? WHERE ownerID = ?`
-//      return await db.query(sql, [rest.name, rest.street, rest.city, rest.phone, rest.kashrut, rest.type, userId])
-//   }
+  static async getDepartmentsDetails(menuId) {
+    let sql = `SELECT * FROM departments WHERE menu_id = ?`;
+    return await db.execute(sql, [menuId]);
+  }
+
+
 
 //   static async updateLogo(logoLink, userId) {
 //     let sql = `UPDATE restaurants SET logo= ? WHERE ownerID = ?`
