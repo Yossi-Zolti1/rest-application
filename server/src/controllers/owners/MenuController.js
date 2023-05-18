@@ -52,7 +52,7 @@ class MenuController {
     
     try {
       const menus = await MenuModel.getMenusDetails(restId);
-      if (!menus) {
+      if (!menus[0]) {
         return response.status(400).json("no menu found");
       }
       response.status(200).json(menus);

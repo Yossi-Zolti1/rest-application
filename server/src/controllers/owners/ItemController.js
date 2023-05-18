@@ -52,7 +52,7 @@ class ItemController {
     
     try {
       const items = await ItemModel.getItemsDetails(departmentId);
-      if (!items) {
+      if (!items[0]) {
         return response.status(400).json("no items found");
       }
       response.status(200).json(items);

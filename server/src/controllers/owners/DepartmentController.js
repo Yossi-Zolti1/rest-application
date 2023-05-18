@@ -51,7 +51,7 @@ class DepartmentController {
     
     try {
       const departments = await DepartmentModel.getDepartmentsDetails(menuId);
-      if (!departments) {
+      if (!departments[0]) {
         return response.status(400).json("no departments found");
       }
       response.status(200).json(departments);

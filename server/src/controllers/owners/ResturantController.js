@@ -16,7 +16,7 @@ class ResturantController {
 
     try {
       const restaurant = await RestaurantModel.getRestDetails(userId);
-      if (!restaurant) {
+      if (!restaurant[0]) {
         return response.status(400).json("no rest found");
       }
       response.status(200).json(restaurant);
