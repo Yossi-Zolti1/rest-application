@@ -24,8 +24,8 @@ class ItemController {
     }
     // call function to save new department in SQL
     try {
-      const [users, _] = await ItemModel.addItem(request.body);
-      response.status(200).json(users);
+      const item = await ItemModel.addItem(request.body);
+      response.status(200).json(item);
     } catch (error) {
       response.status(400).json({ message: SAVE_ERROR, details: error });
       console.log(error);

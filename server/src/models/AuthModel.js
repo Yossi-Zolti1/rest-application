@@ -1,14 +1,19 @@
-import db from "../../config/database/db.js";
 import dotenv from 'dotenv';
+import UsersDB from "../../config/models/users.js";
 dotenv.config();
 
 class AuthModel {
   constructor() { }
 
-  // check if email exsit
-  static async findByEmail(email) {
-    let sql = `SELECT id,password,email,role FROM users WHERE email = ?`;
-    return await db.execute(sql, [email]);
+   // handle reset password
+   static async resetPassword(amutaEmail, newPassword) {
+    
+    const updatedPass = await UsersDB.update(
+      { password: newPassword },
+      { where: { email: amutaEmail } }
+    );
+
+    return updatedPass;
   }
   
 }

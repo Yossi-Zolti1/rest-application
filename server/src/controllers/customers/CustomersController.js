@@ -1,7 +1,6 @@
 import CustomersModel from '../../models/customers/CustomersModel.js';
 import AuthValidations from '../../util/AuthValidations.js';
 
-const LOGIN_FAILED_ERROR = "Authentication failed";
 const VALIDATION_ERROR = "Validation error";
 const SAVE_ERROR = "Failed to save user";
 
@@ -22,11 +21,11 @@ class CustomersController {
       }
 
       try {
-        const [users, _] = await CustomersModel.save(userData);
-        response.status(200).json(users.insertId);
+        const user = await CustomersModel.save(userData);
+        response.status(200).json(user.id);
       } catch (error) {
         console.log(error);
-        response.status(400).json({ message: error });
+        response.status(400).json({ message: SAVE_ERROR, details: error });
       }
     } catch (error) {
       console.log(error);

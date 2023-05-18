@@ -25,16 +25,15 @@ class AdminsController {
         console.log(validation.error.details);
         return response.status(400).json({ message: VALIDATION_ERROR, details: validation.error.details });
       }
-
       try {
         // Save the manager data
-        const [users, _] = await AdminsModel.save(managerData);
+        const owner = await AdminsModel.save(managerData);
 
         try {
           // Send the welcome email to the new manager
           await Mail.sendEmail(email, 'IDNull', 'tokenNull', 'createOwner', password);
 
-          response.status(200).json({ message: 'Manager created successfully.', id: users.insertId });
+          response.status(200).json({ message: 'Manager created successfully.', id: owner.id });
         } catch (error) {
           console.error(error);
           response.status(400).json({ message: SEND_MAIL_ERROR });

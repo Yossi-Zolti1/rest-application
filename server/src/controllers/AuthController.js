@@ -24,8 +24,8 @@ class AuthController {
         return response.status(400).json({ message: VALIDATION_ERROR, details: validation.error.details });
       }
 
-      const [users] = await CommonModel.findByEmail(email);
-      const user = users[0];
+      const users  = await CommonModel.findByEmail(email);
+      const user = users;
       if (!user?.email) {
         return response.status(400).json({ message: LOGIN_FAILED_ERROR });
       }
@@ -61,11 +61,11 @@ class AuthController {
       }
 
 
-      let user = await CommonModel.findByEmail(email);
-      if (!user[0][0]?.email.length > 0) {
+      const user = await CommonModel.findByEmail(email);
+      if (!user?.email) {
         return response.status(401).json("האימייל לא רשום במערכת");
       }
-      const userRecord = user[0][0];
+      const userRecord = user;
 
       const token = await Token.genToken(userRecord.id, userRecord.email, userRecord.role, "1h");
       await Mail.sendEmail(email, userRecord.id, token, "ressetPass", "passwordNull");
@@ -90,7 +90,7 @@ class AuthController {
 
       try {
         const hashedPassword = await bcrypt.hash(newPassword.toString(), 10);
-        const [users2, _] = await AuthModel.resetPassword(email, hashedPassword);
+        const user = await AuthModel.resetPassword(email, hashedPassword);
         response.status(200).json("passwoerd reseted successfully");
       } catch (error) {
         response.status(400).json(error);

@@ -1,5 +1,5 @@
-import db from "../../../config/database/db.js";
 import dotenv from 'dotenv';
+import ItemDB from "../../../config/models/items.js";
 dotenv.config();
 
 class ItemModel {
@@ -8,8 +8,16 @@ class ItemModel {
 
 
   static async addItem(item) {
-    let sql = `INSERT INTO items (name, description, price, image, comment, department_id) VALUES (?,?,?,?,?,?)`;
-    return await db.query(sql, [item.name, item.description, item.price, item.image, item.comment, item.departmentId]);
+
+    const newItem = await ItemDB.create({
+      name: item.name,
+      description: item.description,
+      price: item.price,
+      image: item.image,
+      comment: item.comment,
+      department_id: item.departmentId
+    });
+    return newItem;
   }
 
 //   static async getRestDetails(userId) {

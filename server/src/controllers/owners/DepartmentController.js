@@ -24,8 +24,8 @@ class DepartmentController {
     }
     // call function to save new department in SQL
     try {
-      const [users, _] = await DepartmentModel.addDepartment(request.body);
-      response.status(200).json(users);
+      const department = await DepartmentModel.addDepartment(request.body);
+      response.status(200).json(department);
     } catch (error) {
       response.status(400).json({ message: SAVE_ERROR, details: error });
       console.log(error);
@@ -48,8 +48,8 @@ class DepartmentController {
     }
     // call function to save new menu in SQL
     try {
-      const [users, _] = await DepartmentModel.updateDepartment(request.body);
-      response.status(200).json(users);
+      const department = await DepartmentModel.updateDepartment(request.body);
+      response.status(200).json(department);
     } catch (error) {
       response.status(400).json({ message: SAVE_ERROR, details: error });
       console.log(error);
@@ -66,11 +66,11 @@ class DepartmentController {
     }
     
     try {
-      const [user, _] = await DepartmentModel.getDepartmentsDetails(menuId);
-      if (user[0].length === 0) {
-        return response.status(400).json("no menu found");
+      const departments = await DepartmentModel.getDepartmentsDetails(menuId);
+      if (!departments) {
+        return response.status(400).json("no departments found");
       }
-      response.status(200).json(user);
+      response.status(200).json(departments);
     } catch (error) {
       response.status(400).json(error);
       console.log(error);

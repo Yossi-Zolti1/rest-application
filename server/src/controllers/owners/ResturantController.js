@@ -17,11 +17,11 @@ class ResturantController {
     }
 
     try {
-      const [user, _] = await RestaurantModel.getRestDetails(userId);
-      if (user[0].length === 0) {
+      const restaurant = await RestaurantModel.getRestDetails(userId);
+      if (!restaurant) {
         return response.status(400).json("no rest found");
       }
-      response.status(200).json(user[0]);
+      response.status(200).json(restaurant);
     } catch (error) {
       response.status(400).json(error);
       console.log(error);
@@ -53,8 +53,8 @@ class ResturantController {
     }
     // call function to save new rest in SQL
     try {
-      const [users, _] = await RestaurantModel.addRest(request.body, userId);
-      response.status(200).json(users);
+      const restaurant = await RestaurantModel.addRest(request.body, userId);
+      response.status(200).json(restaurant);
     } catch (error) {
       response.status(400).json({ message: SAVE_ERROR, details: error });
       console.log(error);
@@ -78,8 +78,8 @@ class ResturantController {
     }
     // call function to save new rest in SQL
     try {
-      const [users, _] = await RestaurantModel.updateRest(request.body, userId);
-      response.status(200).json(users);
+      const restaurant = await RestaurantModel.updateRest(request.body, userId);
+      response.status(200).json(restaurant);
     } catch (error) {
       response.status(400).json({ message: SAVE_ERROR, details: error });
       console.log(error);

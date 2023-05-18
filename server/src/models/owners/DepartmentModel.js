@@ -1,5 +1,5 @@
-import db from "../../../config/database/db.js";
 import dotenv from 'dotenv';
+import DepartmentDB from "../../../config/models/departments.js";
 dotenv.config();
 
 class DepartmentModel {
@@ -8,18 +8,30 @@ class DepartmentModel {
 
 
   static async addDepartment(department) {
-    let sql = `INSERT INTO departments (name,image, menu_id) VALUES (?,?,?)`;
-    return await db.query(sql, [department.name, department.image, department.menuId]);
+
+    const newDepartment = await DepartmentDB.create({
+      name: department.name,
+      image: department.image,
+      menu_id: department.menuId
+    });
+    return newDepartment;
   }
 
     static async updateDepartment(department) {
-    let sql = `UPDATE departments SET name= ?,image= ? WHERE id = ?`
-     return await db.query(sql, [department.name, department.image, department.departmentId])
+
+      const updatedDepartment = await DepartmentDB.update(
+        { name: department.name, image: department.image },
+        { where: { id: department.departmentId } }
+      );
+      return updatedDepartment;
   }
 
   static async getDepartmentsDetails(menuId) {
-    let sql = `SELECT * FROM departments WHERE menu_id = ?`;
-    return await db.execute(sql, [menuId]);
+
+    const departments = await DepartmentDB.findAll({
+      where: { menu_id: menuId }
+    });
+    return departments;
   }
 
 

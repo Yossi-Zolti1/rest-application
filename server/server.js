@@ -3,12 +3,19 @@ import path from 'path';
 import * as url from 'url';
 import cors from 'cors';
 import fileUpload from "express-fileupload";
+import sequelize from './config/database/db.js';
 import { notFound } from './src/middleware/pageNotFound.js';
 import customersRoutes from './src/router/customersRoutes.js';
 import ownerRoutes from './src/router/ownerRoutes.js';
 import adminRoutes from './src/router/adminRoutes.js';
 import authRoutes from './src/router/authRoutes.js';
 import dotenv from 'dotenv';
+//import UserDB from './config/models/users.js';
+//import RestDB from './config/models/restaurants.js';
+//import MenuDB from './config/models/menus.js';
+//import DepartmentDB from './config/models/departments.js';
+//import ItemDB from './config/models/items.js';
+
 dotenv.config();
 // import logger from'./middleware/logger.js';
 
@@ -36,6 +43,22 @@ export default function server() {
       })
    );
 
+   sequelize.sync().then(async (results) => {
+      // try {
+      //    for (const userData of usersData) {
+      //      await UserDB.create(userData);
+      //    }
+      //    console.log('Users inserted successfully.');
+      //  } catch (error) {
+      //    console.error('Error inserting users:', error);
+      //  }
+      //   await RestDB.create(restaurantsData);
+      //  await MenuDB.create(menusData);
+      //   await DepartmentDB.create(departmentsData);
+      //   await ItemDB.create(itemsData);
+   });
+
+
    app.listen(process.env.PORT, () => {
       console.log(`Server is running on port ${process.env.PORT}`);
    });
@@ -52,3 +75,65 @@ export default function server() {
 
 }
 
+
+
+// const usersData = [
+//    {
+//      name: 'yosefAdmin',
+//      email: 'yberman8@gmail.com',
+//      phone: '0542608100',
+//      password: '$2b$10$WBkj0GbpSdpe7eTzF2Z9mewpUIXHw.zIcDbfGeDSjVnVbXhlMTTsy',
+//      role: 'admin'
+//    },
+//    {
+//      name: 'yosefowner',
+//      email: 'yberman88@gmail.com',
+//      phone: '0542608100',
+//      password: '$2b$10$u8wunyQVaqoWm6D4Ho/94uhyceu9xZW.rxz3M3YBEam0FL3Wfqbdm',
+//      role: 'owner'
+//    },
+//    {
+//      name: 'yosefuser',
+//      email: 'yberman888@gmail.com',
+//      phone: '0542608100',
+//      password: '$2b$10$oLhE6PUUUZkNy6S/yHyyT.NT.L.po1PqM6wwh88eTSDpubs.uu7J2',
+//      role: 'user'
+//    },
+//  ];
+
+//  const restaurantsData = 
+//    {
+//       name: '5הסטקייה',
+//       street: 'rashba',
+//       city: 'modiin illit',
+//       phone: '083750720',
+//       kashrut: 'העדה החרדית',
+//       type: 'בשרי',
+//       logo: '/logo/2023-05-14_03-30-51_17962_id6.jpg',
+//       owner_id: 2,
+//    };
+
+//    const menusData = 
+//    {
+//       name: 'תפריט ראשי',
+//       restaurant_id: 1,
+//    };
+
+   // const departmentsData = 
+   // {
+   //    name: 'קינוחים',
+   //    image: "",
+   //    menu_id: 1,
+
+   // };
+
+   // const itemsData = 
+   // {
+   //    name: 'סלט חלומי',
+   //    description: "סלט בתוספת חלומי ובטטה",
+   //    price: 60,
+   //    image: "",
+   //    comment: "מומלץ ביותר!",
+   //    department_id: 1,
+
+   // };

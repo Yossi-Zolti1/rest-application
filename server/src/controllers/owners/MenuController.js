@@ -24,8 +24,8 @@ class MenuController {
     }
     // call function to save new menu in SQL
     try {
-      const [users, _] = await MenuModel.addMenu(request.body);
-      response.status(200).json(users);
+      const menu = await MenuModel.addMenu(request.body);
+      response.status(200).json(menu);
     } catch (error) {
       response.status(400).json({ message: SAVE_ERROR, details: error });
       console.log(error);
@@ -48,8 +48,8 @@ class MenuController {
     }
     // call function to save new menu in SQL
     try {
-      const [users, _] = await MenuModel.updateMenu(request.body);
-      response.status(200).json(users);
+      const menu = await MenuModel.updateMenu(request.body);
+      response.status(200).json(menu);
     } catch (error) {
       response.status(400).json({ message: SAVE_ERROR, details: error });
       console.log(error);
@@ -67,11 +67,11 @@ class MenuController {
     }
     
     try {
-      const [user, _] = await MenuModel.getMenusDetails(restId);
-      if (user[0].length === 0) {
+      const menus = await MenuModel.getMenusDetails(restId);
+      if (!menus) {
         return response.status(400).json("no menu found");
       }
-      response.status(200).json(user);
+      response.status(200).json(menus);
     } catch (error) {
       response.status(400).json(error);
       console.log(error);

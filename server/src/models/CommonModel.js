@@ -1,4 +1,4 @@
-import db from "../../config/database/db.js";
+import UsersDB from "../../config/models/users.js";
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -7,8 +7,15 @@ class CommonModel {
 
   // check if email exsit
   static async findByEmail(email) {
-    let sql = `SELECT id,password,email,role FROM users WHERE email = ?`;
-    return await db.execute(sql, [email]);
+   
+      const user = await UsersDB.findOne({
+        attributes: ['id', 'password', 'email', 'role'],
+        where: {
+          email: email
+        }
+      }); 
+      return user;
+   
   }
   
 }

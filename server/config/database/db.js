@@ -1,12 +1,17 @@
-import mysql from "mysql2";
 import dotenv from "dotenv";
+import Sequelize from "sequelize";
 dotenv.config();
 
-const pool = mysql.createPool({
+const sequelize = new Sequelize(
+  process.env.DATABASE,
+  process.env.USER,
+  null,
+  {
+    dialect: "mysql",
+    timezone: '+03:00', // Set your local timezone offset here
     host: process.env.HOST,
-    user: process.env.USER,
-    password: process.env.PASSWORD,
-    database: process.env.DATABASE
-});
+  });
 
-export default pool.promise();
+export default sequelize;
+
+

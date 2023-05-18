@@ -1,24 +1,35 @@
-import db from "../../../config/database/db.js";
 import dotenv from 'dotenv';
+import MenuDB from "../../../config/models/menus.js";
 dotenv.config();
 
 class MenuModel {
   constructor() { }
 
   static async addMenu(menu) {
-    let sql = `INSERT INTO menus (name, restaurant_id) VALUES (?,?)`;
-    return await db.query(sql, [menu.name, menu.restId]);
+
+    const newMenu = await MenuDB.create({
+      name: menu.name,
+      restaurant_id: menu.restId
+    });
+    return newMenu;
   }
 
   static async updateMenu(menu) {
-    let sql = `UPDATE menus SET name= ? WHERE id = ?`
-    return await db.query(sql, [menu.name, menu.menuId])
+
+    const updatedMenu = await MenuDB.update(
+      { name: menu.name },
+      { where: { id: menu.menuId } }
+    );
+    return updatedMenu;
   }
 
   // get details of all menus
     static async getMenusDetails(restId) {
-      let sql = `SELECT * FROM menus WHERE restaurant_id = ?`;
-      return await db.execute(sql, [restId]);
+
+      const menus = await MenuDB.findAll({
+        where: { restaurant_id: restId }
+      });
+      return menus;
     }
 
 
