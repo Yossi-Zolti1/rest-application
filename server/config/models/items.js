@@ -12,15 +12,30 @@ const Item = sequelize.define(
     },
     name: {
       type: DataTypes.STRING(200),
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notEmpty: {
+          msg: 'Name is required'
+        }
+      }
     },
     description: {
       type: DataTypes.STRING(1000),
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notEmpty: {
+          msg: 'Description is required'
+        }
+      }
     },
     price: {
       type: DataTypes.STRING(10),
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notEmpty: {
+          msg: 'Price is required'
+        }
+      }
     },
     image: {
       type: DataTypes.STRING(500),
@@ -33,6 +48,11 @@ const Item = sequelize.define(
     department_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      validate: {
+        notEmpty: {
+          msg: 'foreign key is required'
+        }
+      },
       references: {
         model: "departments",
         key: 'id'

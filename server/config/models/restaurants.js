@@ -10,15 +10,30 @@ const Restaurant = sequelize.define('Restaurant', {
     },
     name: {
         type: DataTypes.STRING(100),
-        allowNull: false
+        allowNull: false,
+        validate: {
+            notEmpty: {
+              msg: 'Name is required'
+            }
+          }
     },
     street: {
         type: DataTypes.STRING(100),
-        allowNull: false
+        allowNull: false,
+        validate: {
+            notEmpty: {
+              msg: 'Street is required'
+            }
+          }
     },
     city: {
         type: DataTypes.STRING(100),
-        allowNull: false
+        allowNull: false,
+        validate: {
+            notEmpty: {
+              msg: 'City is required'
+            }
+          }
     },
     phone: {
         type: DataTypes.STRING(15),
@@ -30,7 +45,12 @@ const Restaurant = sequelize.define('Restaurant', {
     },
     type: {
         type: DataTypes.STRING(50),
-        allowNull: false
+        allowNull: false,
+        validate: {
+            notEmpty: {
+              msg: 'Type is required'
+            }
+          }
     },
     logo: {
         type: DataTypes.STRING(500),

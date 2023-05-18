@@ -20,15 +20,22 @@ class ItemModel {
     return newItem;
   }
 
-//   static async getRestDetails(userId) {
-//     let sql = `SELECT * FROM restaurants WHERE ownerID = ?`;
-//     return await db.execute(sql, [userId]);
-//   }
+  static async updateItem(item) {
 
-//   static async updateRest(rest, userId) {
-//     let sql = `UPDATE restaurants SET name= ?,street= ?,city= ?,phone= ?,kashrut= ?,type= ? WHERE ownerID = ?`
-//      return await db.query(sql, [rest.name, rest.street, rest.city, rest.phone, rest.kashrut, rest.type, userId])
-//   }
+    const updatedItem = await ItemDB.update(
+      { name: item.name, image: item.image },
+      { where: { id: item.itemId } }
+    );
+    return updatedItem;
+}
+
+static async getItemsDetails(departmentId) {
+
+  const items = await ItemDB.findAll({
+    where: { department_id: departmentId }
+  });
+  return items;
+}
 
 //   static async updateLogo(logoLink, userId) {
 //     let sql = `UPDATE restaurants SET logo= ? WHERE ownerID = ?`

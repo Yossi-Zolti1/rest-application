@@ -1,7 +1,5 @@
 import MenuModel from '../../models/owners/MenuModel.js';
-import MenuValidations from '../../util/owners/MenuValidations.js';
 
-const VALIDATION_ERROR = "Validation error";
 const SAVE_ERROR = "Failed to save menu";
 
 class MenuController {
@@ -10,13 +8,6 @@ class MenuController {
 
   // handle add new menu
   static async addMenu(request, response) {
-    
-    // check that the details inserted its correct
-    const validation = MenuValidations.validAddMenu(request.body);
-    if (validation.error) {
-      console.log(validation.error.details);
-      return response.status(400).json({ message: VALIDATION_ERROR, details: validation.error.details });
-    }
     
     const { role} = request;
     if (role !== 'owner') {
@@ -35,13 +26,6 @@ class MenuController {
   // handle update menu details
   static async updateMenu(request, response) {
 
-    // check that the details inserted its correct
-    const validation = MenuValidations.validUpdateMenu(request.body);
-    if (validation.error) {
-      console.log(validation.error.details);
-      return response.status(400).json({ message: VALIDATION_ERROR, details: validation.error.details });
-    }
-    
     const {role} = request;
     if (role !== 'owner') {
       return response.status(403).json({ message: "You don't have permission to perform this action." });

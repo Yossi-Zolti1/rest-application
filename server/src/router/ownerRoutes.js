@@ -26,9 +26,9 @@ router.get('/departments_details', authToken, DepartmentClass.getDepartmentsDeta
 
 
 router.post('/add_item', authToken, ItemClass.addItem);
+router.put('/update_item',authToken, ItemClass.updateItem);
+router.get('/items_details', authToken, ItemClass.getItemsDetails);
 
-
-// router.put('/update_item',authToken, MenuClass.uploadLogo);
 
 
 

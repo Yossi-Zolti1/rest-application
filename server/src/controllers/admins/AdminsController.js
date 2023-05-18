@@ -18,13 +18,7 @@ class AdminsController {
     if (role !== 'admin') {
       return response.status(403).json({ message: "You don't have permission to perform this action." });
     }
-    try {
-      // validate the details inserted to create rest owner
-      const validation = AuthValidations.validAddUser(managerData);
-      if (validation.error) {
-        console.log(validation.error.details);
-        return response.status(400).json({ message: VALIDATION_ERROR, details: validation.error.details });
-      }
+    
       try {
         // Save the manager data
         const owner = await AdminsModel.save(managerData);
@@ -42,10 +36,6 @@ class AdminsController {
         console.log(error);
         response.status(400).json({ message: SAVE_ERROR });
       }
-    } catch (error) {
-      console.log(error);
-      response.status(400).json(error);
-    }
   }
 
 

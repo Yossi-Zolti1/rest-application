@@ -12,7 +12,12 @@ const Department = sequelize.define(
     },
     name: {
       type: DataTypes.STRING(100),
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notEmpty: {
+          msg: 'Name is required'
+        }
+      }
     },
     image: {
       type: DataTypes.STRING(300),
@@ -21,6 +26,11 @@ const Department = sequelize.define(
     menu_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      validate: {
+        notEmpty: {
+          msg: 'foreign key is required'
+        }
+      },
       references: {
         model: "menus",
         key: 'id'

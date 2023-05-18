@@ -1,7 +1,5 @@
 import ItemModel from '../../models/owners/ItemModel.js';
-import ItemValidations from '../../util/owners/ItemValidations.js';
 
-const VALIDATION_ERROR = "Validation error";
 const SAVE_ERROR = "Failed to save item";
 
 class ItemController {
@@ -10,13 +8,6 @@ class ItemController {
 
   // handle add new menu
   static async addItem(request, response) {
-    
-    // check that the details inserted its correct
-    const validation = ItemValidations.validAddItem(request.body);
-    if (validation.error) {
-      console.log(validation.error.details);
-      return response.status(400).json({ message: VALIDATION_ERROR, details: validation.error.details });
-    }
     
     const { role} = request;
     if (role !== 'owner') {
@@ -28,6 +19,45 @@ class ItemController {
       response.status(200).json(item);
     } catch (error) {
       response.status(400).json({ message: SAVE_ERROR, details: error });
+      console.log(error);
+    }
+  };
+
+  // handle update item details
+  static async updateItem(request, response) {
+
+    const {role} = request;
+    if (role !== 'owner') {
+      return response.status(403).json({ message: "You don't have permission to perform this action." });
+    }
+
+    // call function to save new menu in SQL
+    try {
+      const item = await ItemModel.updateItem(request.body);
+      response.status(200).json(item);
+    } catch (error) {
+      response.status(400).json({ message: SAVE_ERROR, details: error });
+      console.log(error);
+    }
+  };
+
+   // get all items details
+   static async getItemsDetails(request, response) {
+    const {role} = request;
+    const departmentId = request.query.departmentId;
+
+    if (role !== 'owner') {
+      return response.status(403).json({ message: "You don't have permission to perform this action." });
+    }
+    
+    try {
+      const items = await ItemModel.getItemsDetails(departmentId);
+      if (!items) {
+        return response.status(400).json("no items found");
+      }
+      response.status(200).json(items);
+    } catch (error) {
+      response.status(400).json(error);
       console.log(error);
     }
   };

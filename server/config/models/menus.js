@@ -12,11 +12,21 @@ const Menu = sequelize.define(
     },
     name: {
       type: DataTypes.STRING(100),
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notEmpty: {
+          msg: 'Name is required'
+        }
+      }
     },
     restaurant_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      validate: {
+        notEmpty: {
+          msg: 'foreign key is required'
+        }
+      },
       references: {
         model: "restaurants",
         key: 'id'

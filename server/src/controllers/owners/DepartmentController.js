@@ -1,7 +1,5 @@
 import DepartmentModel from '../../models/owners/DepartmentModel.js';
-import DepartmentValidations from '../../util/owners/DepartmentValidations.js';
 
-const VALIDATION_ERROR = "Validation error";
 const SAVE_ERROR = "Failed to save department";
 
 class DepartmentController {
@@ -10,13 +8,6 @@ class DepartmentController {
 
   // handle add new menu
   static async addDepartment(request, response) {
-    
-    // check that the details inserted its correct
-    const validation = DepartmentValidations.validAddDepartment(request.body);
-    if (validation.error) {
-      console.log(validation.error.details);
-      return response.status(400).json({ message: VALIDATION_ERROR, details: validation.error.details });
-    }
     
     const { role} = request;
     if (role !== 'owner') {
@@ -35,13 +26,6 @@ class DepartmentController {
    // handle update department details
    static async updateDepartment(request, response) {
 
-    // check that the details inserted its correct
-    const validation = DepartmentValidations.validUpdateDepartment(request.body);
-    if (validation.error) {
-      console.log(validation.error.details);
-      return response.status(400).json({ message: VALIDATION_ERROR, details: validation.error.details });
-    }
-    
     const {role} = request;
     if (role !== 'owner') {
       return response.status(403).json({ message: "You don't have permission to perform this action." });

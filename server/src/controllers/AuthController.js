@@ -12,18 +12,11 @@ class AuthController {
   constructor() {
   }
 
-
   // code 2 part 1
   static async Login(request, response) {
 
     const { email, password } = request.body;
     try {
-      const validation = AuthValidations.validLogin({ email, password });
-      if (validation.error) {
-        console.log(validation.error.details);
-        return response.status(400).json({ message: VALIDATION_ERROR, details: validation.error.details });
-      }
-
       const users  = await CommonModel.findByEmail(email);
       const user = users;
       if (!user?.email) {
@@ -54,13 +47,7 @@ class AuthController {
 
     const { email } = request.body;
     try {
-      const validation = AuthValidations.validAEmailRessetPass({email});
-      if (validation.error) {
-        console.log(validation.error.details);
-        return response.status(400).json({ message: VALIDATION_ERROR, details: validation.error.details });
-      }
-
-
+      
       const user = await CommonModel.findByEmail(email);
       if (!user?.email) {
         return response.status(401).json("האימייל לא רשום במערכת");

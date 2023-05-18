@@ -1,8 +1,6 @@
 import RestaurantModel from '../../models/owners/RestaurantModel.js';
-import RestaurantValidations from '../../util/owners/RestaurantValidations.js';
 import UploadLogoController from './UploadLogoController.js';
 
-const VALIDATION_ERROR = "Validation error";
 const SAVE_ERROR = "Failed to save rest";
 
 class ResturantController {
@@ -40,13 +38,6 @@ class ResturantController {
       request.body.logo = link.link1;
     }
 
-    // check that the details inserted its correct
-    const validation = RestaurantValidations.validAddRest(request.body);
-    if (validation.error) {
-      console.log(validation.error.details);
-      return response.status(400).json({ message: VALIDATION_ERROR, details: validation.error.details });
-    }
-
     const { userId, role } = request;
     if (role !== 'owner') {
       return response.status(403).json({ message: "You don't have permission to perform this action." });
@@ -64,13 +55,6 @@ class ResturantController {
 
   // handle update restaurants details
   static async updateRest(request, response) {
-
-    // check that the details inserted its correct
-    const validation = RestaurantValidations.validUpdateRest(request.body);
-    if (validation.error) {
-      console.log(validation.error.details);
-      return response.status(400).json({ message: VALIDATION_ERROR, details: validation.error.details });
-    }
 
     const { userId, role } = request;
     if (role !== 'owner') {
