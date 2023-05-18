@@ -13,13 +13,13 @@ export class AuthService {
   isLoggedIn$ = new BehaviorSubject<boolean>(false);
   constructor(private http: HttpClient) {}
   registerUser(user: User){
-    return this.http.post(environment.baseUrl + '/user/createUser', user).pipe(catchError(error => {
+    return this.http.post(environment.baseUrl + '/customer/createUser', user).pipe(catchError(error => {
       const err = error;
       return of(err);
      }))
   }
   registerRestManager(user: User){
-    return this.http.post(environment.baseUrl + '/admin/create_rest_manager', user).pipe(catchError(error => {
+    return this.http.post(environment.baseUrl + '/admin/create_rest_owner', user).pipe(catchError(error => {
       const err = error;
       return of(err);
      }))
