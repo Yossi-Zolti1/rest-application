@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
-import { AuthTokenService } from 'src/app/services/auth-token.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuardService implements CanActivate {
+export class AuthOwnerGuardService implements CanActivate {
 
-  constructor(private authService: AuthTokenService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router) { }
   canActivate(): boolean {
     const role = this.authService.getRole();
-    if (role === 'admin') {
+
+    if (role === 'owner') {
       return true;
     }
 

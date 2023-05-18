@@ -3,11 +3,12 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, catchError, map, of, tap, throwError } from 'rxjs';
 import { Email, User, UserLogin } from '../core/entities/user';
 import { environment } from 'src/environments/environment';
+import jwt_decode from 'jwt-decode';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  
+  private decodedToken: { [key: string]: string } = {};
   token$ = new BehaviorSubject<string | null>(null);
   isLoggedIn$ = new BehaviorSubject<boolean>(false);
   constructor(private http: HttpClient) {}
@@ -24,7 +25,7 @@ export class AuthService {
      }))
   }
   login(user: UserLogin){
-    return this.http.post(environment.baseUrl + '/login', user).pipe(catchError(error => {
+    return this.http.post(environment.baseUrl + '/auth/login', user).pipe(catchError(error => {
       const statusCode = error.status;
       return of(statusCode);
      }))
@@ -40,5 +41,16 @@ export class AuthService {
   }
   getIsLoggedIn(): boolean{
     return this.isLoggedIn$?.getValue();
+  }
+  getRole(): string {
+    const tokenFromStorage = localStorage.getItem('token');
+    if(this.getIsLoggedIn()){
+      const tokenFromSubject = this.getToken();
+      this.decodedToken = jwt_decode(tokenFromSubject!);
+    }
+    else if (tokenFromStorage && tokenFromStorage != 'undefined') {
+      this.decodedToken = jwt_decode(tokenFromStorage);
+    }
+    return this.decodedToken['_role'];
   }
 }

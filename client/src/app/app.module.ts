@@ -3,16 +3,17 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomePageComponent } from './pages/home-page/home-page.component';
-import { LoginComponent } from './pages/login/login.component';
-import { RegisterComponent } from './pages/register/register.component';
-import { HeaderComponent } from './components/header/header.component';
+import { HomePageComponent } from './pages/shared/home-page/home-page.component';
+import { LoginComponent } from './pages/shared/login/login.component';
+import { RegisterComponent } from './pages/shared/register/register.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { RegisterOwnerComponent } from './components/admin/registerOwner/register-owner.component';
+import { RegisterOwnerComponent } from './pages/admin/registerOwner/register-owner.component';
 import { Interceptor } from './services/http.interceptor';
-import { ResetPasswordComponent } from './pages/resetPassword/reset-password.component';
-import { ManagerPageComponent } from './pages/manager/managerPage/manager-page.component';
-import { RestaurantDetailsComponent } from './pages/manager/restaurant-details/restaurant-details.component';
+import { ResetPasswordComponent } from './pages/shared/resetPassword/reset-password.component';
+import { ManagerPageComponent } from './pages/owner/ownerPage/manager-page.component';
+import { RestaurantDetailsComponent } from './pages/owner/restaurant-details/restaurant-details.component';
+import { HeaderComponent } from './components/owner/create-menu/header/header.component';
+import { MenusPageComponent } from './pages/owner/menu-details/menus/menus-page/menus-page.component';
 
 @NgModule({
   declarations: [
@@ -20,11 +21,12 @@ import { RestaurantDetailsComponent } from './pages/manager/restaurant-details/r
     HomePageComponent,
     LoginComponent,
     RegisterComponent,
-    HeaderComponent,
     RegisterOwnerComponent,
     ResetPasswordComponent,
     ManagerPageComponent,
-    RestaurantDetailsComponent
+    RestaurantDetailsComponent,
+    HeaderComponent,
+    MenusPageComponent
   ],
   imports: [
     BrowserModule,

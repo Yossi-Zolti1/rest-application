@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthTokenService } from 'src/app/services/auth-token.service';
 import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-login',
@@ -10,7 +9,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(public fb: FormBuilder,private auth: AuthService, private authToken: AuthTokenService, private router: Router) { }
+  constructor(public fb: FormBuilder,private auth: AuthService,  private router: Router) { }
   loginForm = this.fb.group({
     email: [''],
     password: ['']
@@ -26,7 +25,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('token', res.token);
         this.auth.token$.next(res.token);
         this.auth.isLoggedIn$.next(true);
-        this.router.navigate([this.authToken.getRole()]);
+        this.router.navigate([this.auth.getRole()]);
       }
       })
   }
