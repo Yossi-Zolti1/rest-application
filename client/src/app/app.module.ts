@@ -12,6 +12,8 @@ import { Interceptor } from './services/http.interceptor';
 import { ResetPasswordComponent } from './pages/shared/resetPassword/reset-password.component';
 import { ManagerPageComponent } from './pages/owner/ownerPage/manager-page.component';
 import { RestaurantDetailsComponent } from './pages/owner/restaurant-details/restaurant-details.component';
+import { HeaderComponent } from './components/owner/create-menu/header/header.component';
+import { MenusPageComponent } from './pages/owner/menu-details/menus/menus-page/menus-page.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { RestaurantDetailsComponent } from './pages/owner/restaurant-details/res
     RegisterOwnerComponent,
     ResetPasswordComponent,
     ManagerPageComponent,
-    RestaurantDetailsComponent
+    RestaurantDetailsComponent,
+    HeaderComponent,
+    MenusPageComponent
   ],
   imports: [
     BrowserModule,
