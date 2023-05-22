@@ -1,0 +1,25 @@
+<div class="page-holder align-items-center py-4 bg-gray-100 vh-100">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6 px-lg-4">
+          <div>
+            <div class="card-body p-lg-5">
+              <h1>צור מחלקה</h1>
+              <form [formGroup]="departmentForm" (ngSubmit)="addDepartment()">
+                <div class="form-floating mb-3">
+                  <input class="form-control" id="floatingInput" type="text" formControlName="name" required>
+                  <label for="floatingInput">שם מחלקה</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input class="form-control" id="floatingInput" type="text" formControlName="image" required>
+                    <label for="floatingInput">תמונה</label>
+                  </div>
+                <button class="btn btn-primary" type="submit">שלח</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 import { MenuDetailsService } from 'src/app/services/menu-details.service';
 
 
@@ -11,7 +12,8 @@ import { MenuDetailsService } from 'src/app/services/menu-details.service';
 })
 export class CreateMenuComponent implements OnInit {
 
-  constructor(public fb: FormBuilder, private menuService: MenuDetailsService, private route: Router) { }
+  constructor(public fb: FormBuilder, private menuService: MenuDetailsService, private route: Router
+    ,private auth: AuthService) { }
   menuForm = this.fb.group({
     name: ['']
   })
@@ -19,8 +21,8 @@ export class CreateMenuComponent implements OnInit {
   }
   createMenu(){
     const menu = {
-      id: 1,
-      name: this.menuForm.value
+      name: this.menuForm.controls['name'].value,
+      restId: +this.auth.getRestId()
     }
     this.menuService.addMenu(menu).subscribe(res => {
       if(res === 400 || res === 403){

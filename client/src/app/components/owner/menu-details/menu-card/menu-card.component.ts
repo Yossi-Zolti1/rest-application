@@ -10,6 +10,7 @@ export class MenuCardComponent implements OnInit {
 
   constructor() { }
   @Input() menu!: Menu;
+  @Input() menuId!: number;
   ngOnInit(): void {
   }
 

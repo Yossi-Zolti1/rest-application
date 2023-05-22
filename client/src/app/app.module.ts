@@ -18,6 +18,9 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatDialogModule} from '@angular/material/dialog';
 import { CreateMenuComponent } from './pages/owner/menu-details/menus/create-menu/create-menu.component';
 import { MenuCardComponent } from './components/owner/menu-details/menu-card/menu-card.component';
+import { DepartmentsPageComponent } from './pages/owner/menu-details/departments/dpartments-page/departments-page.component';
+import { CreateDepartmentComponent } from './pages/owner/menu-details/departments/create-department/create-department.component';
+
 
 @NgModule({
   declarations: [
@@ -32,7 +35,9 @@ import { MenuCardComponent } from './components/owner/menu-details/menu-card/men
     HeaderComponent,
     MenusPageComponent,
     CreateMenuComponent,
-    MenuCardComponent
+    MenuCardComponent,
+    DepartmentsPageComponent,
+    CreateDepartmentComponent
   ],
   imports: [
     BrowserModule,

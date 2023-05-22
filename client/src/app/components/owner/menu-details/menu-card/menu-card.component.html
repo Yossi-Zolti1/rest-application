@@ -1,7 +1,7 @@
 <a *ngIf="menu" class="card">
-    <h1 class="title">{{menu.name}}</h1>
+    <h1 class="title text-dark">{{menu.name}}</h1>
   <div class="options" >
-    <button>הוסף מחלקות</button>
-    <button>ערוך פרטים</button>
+    <a [routerLink]="['/departments-page', menuId]" class="btn btn-dark">הוסף מחלקות</a>
+    <a class="btn btn-dark">ערוך פרטים</a>
   </div>
 </a>

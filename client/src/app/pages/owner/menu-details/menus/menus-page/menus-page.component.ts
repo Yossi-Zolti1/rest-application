@@ -10,7 +10,7 @@ import { MenuDetailsService } from 'src/app/services/menu-details.service';
 export class MenusPageComponent implements OnInit {
   title: string = 'צור את התפריט שלך'
   buttonText: string = 'הוסף תפריט'
-  route: string = 'create-menu'
+  route: string = '/create-menu'
   constructor(private menuService: MenuDetailsService) { }
   public menus$ = this.menuService.getMenus();
   ngOnInit(): void {
