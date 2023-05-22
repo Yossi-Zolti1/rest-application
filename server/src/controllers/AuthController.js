@@ -2,6 +2,7 @@ import bcrypt from 'bcrypt';
 import AuthModel from '../models/AuthModel.js';
 import CommonModel from '../models/CommonModel.js';
 import AuthValidations from '../util/AuthValidations.js';
+import RestaurantModel from '../models/owners/RestaurantModel.js';
 import Token from '../util/Token.js';
 import Mail from '../util/MailSender.js';
 
@@ -29,9 +30,22 @@ class AuthController {
       if (!comparePass) {
         return response.status(401).json({ message: LOGIN_FAILED_ERROR });
       }
+      const { id, name, role } = user;
+      let restId = "";
 
-      const { id, email: userEmail, role } = user;
-      const newToken = await Token.genToken(id, userEmail, role, "1d");
+       // get rest id for owner
+       if (role === 'owner') {
+        const restaurant = await RestaurantModel.getRestDetails(id);
+        if (restaurant[0]) {
+           restId = restaurant[0].id;
+           console.log(restId);
+        }
+        else {
+         restId = "";
+        }
+      }
+
+      const newToken = await Token.genToken(id, email, name, role, restId, "1d");
 
       return response.status(200).json({ token: newToken });
     } catch (error) {
@@ -54,7 +68,7 @@ class AuthController {
       }
       const userRecord = user;
 
-      const token = await Token.genToken(userRecord.id, userRecord.email, userRecord.role, "1h");
+      const token = await Token.genToken(userRecord.id, userRecord.email, userRecord.name, userRecord.role,"", "1h");
       await Mail.sendEmail(email, userRecord.id, token, "ressetPass", "passwordNull");
       response.status(200).json({ mailSent: true });
     } catch (error) {

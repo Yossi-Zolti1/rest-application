@@ -9,7 +9,7 @@ class CommonModel {
   static async findByEmail(email) {
    
       const user = await UsersDB.findOne({
-        attributes: ['id', 'password', 'email', 'role'],
+        attributes: ['id', 'password', 'email', 'name', 'role'],
         where: {
           email: email
         }

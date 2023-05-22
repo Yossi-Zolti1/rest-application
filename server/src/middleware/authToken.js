@@ -13,10 +13,13 @@ const auth =async (req, res, next) => {
     }
     try {
         let decodeToken = jwt.verify(token, process.env.SECRET_WORD);
-         req.userId = decodeToken._id
-         req.email = decodeToken._email
-         req.role = decodeToken._role
+         req.userId = decodeToken._id;
+         req.email = decodeToken._email;
+         req.role = decodeToken._role;
+         req.name = decodeToken._name;
+
         next();
+
     } catch (error) {
          res.status(401).json("token invalid or expaired");
     }
