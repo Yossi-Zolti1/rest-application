@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MenuDetailsService } from 'src/app/services/menu-details.service';
 
 
 @Component({
@@ -9,11 +10,10 @@ import { Component, OnInit } from '@angular/core';
 export class MenusPageComponent implements OnInit {
   title: string = 'צור את התפריט שלך'
   buttonText: string = 'הוסף תפריט'
-  constructor() { }
-
+  route: string = 'create-menu'
+  constructor(private menuService: MenuDetailsService) { }
+  public menus$ = this.menuService.getMenus();
   ngOnInit(): void {
   }
-  createMenu(isOpen: boolean){
-    if(isOpen)console.log('hi')
-  }
+  
 }

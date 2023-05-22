@@ -1,1 +1,5 @@
-<app-header [text]="title" [buttonText]="buttonText" (newItemEvent)="createMenu($event)"></app-header>
+<app-header [text]="title" [buttonText]="buttonText" [route]="route"></app-header>
+<h1>רשימת התפריטים שלך</h1>
+<div *ngFor="let menu of menus$ | async" class="menuList">
+      <app-menu-card [menu]="menu"></app-menu-card>
+</div>

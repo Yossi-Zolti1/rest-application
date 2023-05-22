@@ -12,8 +12,12 @@ import { Interceptor } from './services/http.interceptor';
 import { ResetPasswordComponent } from './pages/shared/resetPassword/reset-password.component';
 import { ManagerPageComponent } from './pages/owner/ownerPage/manager-page.component';
 import { RestaurantDetailsComponent } from './pages/owner/restaurant-details/restaurant-details.component';
-import { HeaderComponent } from './components/owner/create-menu/header/header.component';
+import { HeaderComponent } from './components/owner/menu-details/header/header.component';
 import { MenusPageComponent } from './pages/owner/menu-details/menus/menus-page/menus-page.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatDialogModule} from '@angular/material/dialog';
+import { CreateMenuComponent } from './pages/owner/menu-details/menus/create-menu/create-menu.component';
+import { MenuCardComponent } from './components/owner/menu-details/menu-card/menu-card.component';
 
 @NgModule({
   declarations: [
@@ -26,13 +30,18 @@ import { MenusPageComponent } from './pages/owner/menu-details/menus/menus-page/
     ManagerPageComponent,
     RestaurantDetailsComponent,
     HeaderComponent,
-    MenusPageComponent
+    MenusPageComponent,
+    CreateMenuComponent,
+    MenuCardComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatDialogModule
+
   ],
   providers: [{ 
     provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi:true

@@ -1,0 +1,17 @@
+.card{
+    display: flex;
+    flex-direction: column;
+    background-color:darkgray;
+    height: 7rem;
+    border-radius: 1rem;
+    overflow: hidden;
+
+}
+.title{
+    margin-top: 1rem;
+}
+.options{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
