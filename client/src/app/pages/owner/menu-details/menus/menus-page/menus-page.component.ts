@@ -9,11 +9,10 @@ import { Component, OnInit } from '@angular/core';
 export class MenusPageComponent implements OnInit {
   title: string = 'צור את התפריט שלך'
   buttonText: string = 'הוסף תפריט'
+  route: string = 'create-menu'
   constructor() { }
 
   ngOnInit(): void {
   }
-  createMenu(isOpen: boolean){
-    if(isOpen)console.log('hi')
-  }
+  
 }

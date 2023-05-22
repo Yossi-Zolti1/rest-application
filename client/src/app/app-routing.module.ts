@@ -11,6 +11,8 @@ import { ManagerPageComponent } from './pages/owner/ownerPage/manager-page.compo
 import { AuthOwnerGuardService } from './services/guards/auth-owner-guard.service';
 import { RestaurantDetailsComponent } from './pages/owner/restaurant-details/restaurant-details.component';
 import { MenusPageComponent } from './pages/owner/menu-details/menus/menus-page/menus-page.component';
+import { CreateMenuComponent } from './pages/owner/menu-details/menus/create-menu/create-menu.component';
+
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -20,6 +22,8 @@ const routes: Routes = [
   { path: 'resetPassword/:id/:token', component: ResetPasswordComponent},
   { path: 'owner', component: ManagerPageComponent, canActivate: [AuthOwnerGuardService] },
   { path: 'restaurant-details', component: RestaurantDetailsComponent },
+  { path: 'menus-page', component: MenusPageComponent, canActivate: [AuthOwnerGuardService] },
+  { path: 'create-menu', component: CreateMenuComponent, canActivate: [AuthOwnerGuardService] },
   { path: 'menus-page', component: MenusPageComponent, canActivate: [AuthOwnerGuardService] },
 ];
 
