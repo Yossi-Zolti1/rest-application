@@ -37,17 +37,9 @@ class RestaurantModel {
         city: rest.city,
         phone: rest.phone,
         kashrut: rest.kashrut,
+        logo: rest.logo,
         type: rest.type
       },
-      { where: { owner_id: userId } }
-    );
-    return updatedRestaurant;
-  }
-
-  static async updateLogo(logoLink, userId) {
-
-    const updatedRestaurant = await RestDB.update(
-      { logo: logoLink },
       { where: { owner_id: userId } }
     );
     return updatedRestaurant;

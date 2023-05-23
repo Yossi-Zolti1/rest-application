@@ -27,8 +27,12 @@ class UploadImageController {
             return res.status(400).json({ msg: `File too big, max 5MB` });
         }
         
-        
-        let dir = `public/images/${category}/`
+        let dir;
+        if (category === 'logo') {
+            dir = `public/logo/`
+        }else{
+            dir = `public/images/${category}/`
+        }
 
         // Create directory if it doesn't exist
         if (!fs.existsSync(dir)) {
