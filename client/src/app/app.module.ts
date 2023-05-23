@@ -23,6 +23,9 @@ import { CreateDepartmentComponent } from './pages/owner/menu-details/department
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import {MatButtonModule} from '@angular/material/button';
 import {MatGridListModule} from '@angular/material/grid-list';
+import {MatCardModule} from '@angular/material/card';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -50,8 +53,10 @@ import {MatGridListModule} from '@angular/material/grid-list';
     MatDialogModule,
     MatSlideToggleModule,
     MatButtonModule,
-    MatGridListModule
-
+    MatGridListModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [{ 
     provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi:true

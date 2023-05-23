@@ -1,56 +1,50 @@
-<div class="page-holder align-items-center py-4 bg-gray-100 vh-100">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-6 px-lg-4">
 
-                <div class="card-body p-lg-5">
-                    <h1>הרשמה</h1>
-                    <form [formGroup]="registerForm" (ngSubmit)="register()">
-                        <div class="form-floating mb-3">
-                            <input class="form-control" id="floatingInput" type="email" formControlName="email"
-                                placeholder="name@example.com" required>
-                            <label for="floatingInput">כתובת מייל</label>
-                            <div class="field-message" *ngIf="email?.touched">
-                                {{email?.errors?.['mail']}}
-                             </div>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <input class="form-control" id="floatingPhone" type="text" formControlName="phone"
-                                placeholder="phone" required>
-                            <label for="floatingPhone">טלפון</label>
-                            <div class="field-message" *ngIf="phone?.touched">
-                                {{phone?.errors?.['phone']}}
-                             </div>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <input class="form-control" id="username" type="text" formControlName="name"
-                                placeholder="Username" required>
-                            <label for="username">שם</label>
-                            <div class="field-message" *ngIf="name?.touched">
-                               {{name?.errors?.['name']}}
-                            </div>
-                        </div>
-                        
-                        <div class="form-floating mb-3">
-                            <input class="form-control" id="floatingPassword" type="password" formControlName="password"
-                                placeholder="Password" required>
-                            <label for="floatingPassword">סיסמא</label>
-                            <div class="field-message" *ngIf="password?.touched">
-                                {{password?.errors?.['password']}}
-                             </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <button class="btn btn-primary" id="regidter" type="submit"
-                            [disabled]="!registerForm.valid"   name="registerSubmit">שלח</button>
-                        </div>
-                    </form>
-                </div>
-                <div class="card-footer px-lg-5 py-lg-4">
-                    <div class="text-sm text-muted"> <a [routerLink]="['../login']" class="btn btn-link">היכנס</a>יש לך
-                        כבר חשבון </div>
-                </div>
-            </div>
+<div class="register-container">
+    <mat-card class="register-card">
+      <mat-card-title class="text-center">הרשמה</mat-card-title>
+      <br>
+      <br>
+      <mat-card-content>
+        <form [formGroup]="registerForm" (ngSubmit)="register()">
+          <div class="form-group">
+            <mat-form-field appearance="outline" class="input-field">
+              <mat-label>כתובת מייל</mat-label>
+              <input matInput type="email" formControlName="email" placeholder="name@example.com" required>
+              <mat-error *ngIf="email?.touched">{{email?.errors?.['required'] ? 'שדה זה נדרש' : 'כתובת מייל לא תקינה'}}</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field appearance="outline" class="input-field">
+              <mat-label>טלפון</mat-label>
+              <input matInput type="text" formControlName="phone" placeholder="phone" required>
+              <mat-error *ngIf="phone?.touched">{{phone?.errors?.['required'] ? 'שדה זה נדרש' : 'מספר טלפון לא תקין'}}</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field appearance="outline" class="input-field">
+              <mat-label>שם</mat-label>
+              <input matInput type="text" formControlName="name" placeholder="Username" required>
+              <mat-error *ngIf="name?.touched">{{name?.errors?.['required'] ? 'שדה זה נדרש' : 'שם לא תקין'}}</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field appearance="outline" class="input-field">
+              <mat-label>סיסמא</mat-label>
+              <input matInput type="password" formControlName="password" placeholder="Password" required>
+              <mat-error *ngIf="password?.touched">{{password?.errors?.['required'] ? 'שדה זה נדרש' : 'סיסמא לא תקינה'}}</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="register-button">
+            <button mat-raised-button color="primary" type="submit" [disabled]="registerForm.invalid">שלח</button>
+          </div>
+        </form>
+      </mat-card-content>
+      <mat-card-actions>
+        <div class="login-link">
+          ?יש לך כבר חשבון
+          <a [routerLink]="['../login']" mat-button class="btn btn-link">היכנס</a>
         </div>
-    </div>
-</div>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  
