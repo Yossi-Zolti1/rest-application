@@ -1,4 +1,4 @@
-.card{
+/* .card{
     display: flex;
     flex-direction: column;
     background-color:darkgray;
@@ -14,4 +14,20 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-}
+} */
+
+mat-card {
+    width: 300px;
+    margin: 10px;
+  }
+  
+  .title {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .options {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  }

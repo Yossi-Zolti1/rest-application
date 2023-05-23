@@ -1,7 +1,17 @@
-<a *ngIf="menu" class="card">
+<!-- <a *ngIf="menu" class="card">
     <h1 class="title text-dark">{{menu.name}}</h1>
   <div class="options" >
     <a [routerLink]="['/departments-page', menuId]" class="btn btn-dark">הוסף מחלקות</a>
     <a class="btn btn-dark">ערוך פרטים</a>
   </div>
-</a>
+</a> -->
+
+<mat-card *ngIf="menu" class="card">
+  <mat-card-content>
+    <h1 class="title">{{ menu.name }}</h1>
+    <div class="options">
+      <a [routerLink]="['/departments-page', menuId]" mat-button color="primary">הוסף מחלקות</a>
+      <button mat-button color="primary">ערוך פרטים</button>
+    </div>
+  </mat-card-content>
+</mat-card>
