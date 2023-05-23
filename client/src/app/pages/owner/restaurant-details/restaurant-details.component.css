@@ -1,6 +1,21 @@
-.submit{
-    margin-top: 1rem;
-}
-.logo{
-    margin-top: 0.5rem;
-}
+
+
+.restaurant-details-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .restaurant-details-card {
+    max-width: 500px;
+    width: 100%;
+  }
+
+  .add-button {
+    text-align: center;
+  }
+
+  .input-field {
+    width: 100%;
+  }

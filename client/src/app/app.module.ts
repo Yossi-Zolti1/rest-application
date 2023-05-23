@@ -20,12 +20,14 @@ import { CreateMenuComponent } from './pages/owner/menu-details/menus/create-men
 import { MenuCardComponent } from './components/owner/menu-details/menu-card/menu-card.component';
 import { DepartmentsPageComponent } from './pages/owner/menu-details/departments/dpartments-page/departments-page.component';
 import { CreateDepartmentComponent } from './pages/owner/menu-details/departments/create-department/create-department.component';
+
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import {MatButtonModule} from '@angular/material/button';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatCardModule} from '@angular/material/card';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -56,7 +58,9 @@ import {MatInputModule} from '@angular/material/input';
     MatGridListModule,
     MatCardModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatIconModule,
+    
   ],
   providers: [{ 
     provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi:true

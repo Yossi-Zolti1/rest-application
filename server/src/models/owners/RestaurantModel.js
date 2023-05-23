@@ -5,10 +5,10 @@ dotenv.config();
 class RestaurantModel {
   constructor() { }
 
-  static async getRestDetails(restId) {
+  static async getRestDetails(userId) {
 
     const restaurants = await RestDB.findAll({
-      where: { id: restId }
+      where: { owner_id: userId }
     });
     return restaurants;
   }

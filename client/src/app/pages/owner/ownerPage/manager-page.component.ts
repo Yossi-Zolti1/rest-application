@@ -12,7 +12,8 @@ export class ManagerPageComponent implements OnInit {
   constructor(private auth: AuthService, private router: Router) { }
 
   ngOnInit(): void {
-    this.restId = +this.auth.getRestId()
+     this.restId = +this.auth.getRestId();    
+    
   }
 
   logout(): void {
