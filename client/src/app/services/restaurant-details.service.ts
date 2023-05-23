@@ -21,7 +21,7 @@ export class RestaurantDetailsService {
       return of(err);
      }))
   }
-  updateRestaurant(restaurant: Restaurant){
+  updateRestaurant(restaurant: FormData){
     return this.http.put(environment.baseUrl + '/owner/update_rest', restaurant).pipe(catchError(error => {
       const err = error;
       return of(err);

@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   //Buttons clicks functionalities 
   login() {
     this.auth.login(this.loginForm.value).subscribe(res => {
+      debugger;
       if(res === 400){
         this.loginForm.reset();
         alert('אין משתמש כזה במערכת')

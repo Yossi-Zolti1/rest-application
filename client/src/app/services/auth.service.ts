@@ -26,6 +26,7 @@ export class AuthService {
   }
   login(user: UserLogin){
     return this.http.post(environment.baseUrl + '/auth/login', user).pipe(catchError(error => {
+      debugger;
       const statusCode = error.status;
       return of(statusCode);
      }))

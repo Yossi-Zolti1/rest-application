@@ -16,8 +16,8 @@ export class RestaurantDetailsComponent implements OnInit {
     , private updateFileService: UploadFileService) { }
   restaurant!: Restaurant;
   logoUrl!: string;
-  isLoading: boolean = false;
   isRestaurantExixst: boolean = false;
+  formData: FormData = new FormData();
   restForm = this.fb.group({
     name: [''],
     street: [''],
@@ -26,6 +26,7 @@ export class RestaurantDetailsComponent implements OnInit {
     kashrut: [''],
     type: [''],
     logo: [''],
+    my: FormData
   });
   get logo() {
     return this.restForm.get('logo')
@@ -36,33 +37,41 @@ export class RestaurantDetailsComponent implements OnInit {
         this.restaurant = res;
         this.isRestaurantExixst = true;
         this.restForm.patchValue({
-          name: res.name,
-          street: res.street,
-          city: res.city,
-          phone: res.phone,
-          kashrut: res.kashrut,
-          type: res.type,
-          logo: res.logo
+          name: res[0].name,
+          street: res[0].street,
+          city: res[0].city,
+          phone: res[0].phone,
+          kashrut: res[0].kashrut,
+          type: res[0].type,
+          logo: res[0].logo
         });
-        this.logoUrl = environment.baseUrl + res.logo;
+        this.logoUrl = environment.baseUrl + res[0].logo;
       }
     })
   }
   addRest() {
+    this.formData.append('name', this.restForm.controls['name'].value)
+    this.formData.append('street', this.restForm.controls['street'].value)
+    this.formData.append('city', this.restForm.controls['city'].value)
+    this.formData.append('phone', this.restForm.controls['phone'].value)
+    this.formData.append('kashrut', this.restForm.controls['kashrut'].value)
+    this.formData.append('type', this.restForm.controls['type'].value)
+    this.formData.append('logo', this.restForm.controls['logo'].value)
     this.restDetailsService.addRestaurant(this.restForm.value).subscribe(res => {
     })
   }
   updateRest(){
-    this.restDetailsService.updateRestaurant(this.restForm.value).subscribe(res => {
+    this.formData.append('name', this.restForm.controls['name'].value)
+    this.formData.append('street', this.restForm.controls['street'].value)
+    this.formData.append('city', this.restForm.controls['city'].value)
+    this.formData.append('phone', this.restForm.controls['phone'].value)
+    this.formData.append('kashrut', this.restForm.controls['kashrut'].value)
+    this.formData.append('type', this.restForm.controls['type'].value)
+    this.formData.append('logo', this.restForm.controls['logo'].value)
+    this.restDetailsService.updateRestaurant(this.formData).subscribe(res => {
     });
   }
   onFileSelected(e: any) {
-    this.isLoading = true;
-    let formData:FormData = new FormData();
-    formData.append('my', e.target.files[0])
-    this.updateFileService.updateLogo(formData).subscribe(res => {
-      this.isLoading = false;
-      this.logoUrl = environment.baseUrl + res.link1
-    })
+    this.formData.append('my', e.target.files[0])
   }
 }

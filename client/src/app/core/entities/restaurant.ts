@@ -5,5 +5,6 @@ export interface Restaurant{
     phone: string,
     kashrut: string | null,
     type: string,
-    logo: string
+    logo: string,
+    my?: FormData
 }
