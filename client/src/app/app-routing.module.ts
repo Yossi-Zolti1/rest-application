@@ -12,6 +12,8 @@ import { AuthOwnerGuardService } from './services/guards/auth-owner-guard.servic
 import { RestaurantDetailsComponent } from './pages/owner/restaurant-details/restaurant-details.component';
 import { MenusPageComponent } from './pages/owner/menu-details/menus/menus-page/menus-page.component';
 import { CreateMenuComponent } from './pages/owner/menu-details/menus/create-menu/create-menu.component';
+import { DepartmentsPageComponent } from './pages/owner/menu-details/departments/dpartments-page/departments-page.component';
+import { CreateDepartmentComponent } from './pages/owner/menu-details/departments/create-department/create-department.component';
 
 
 const routes: Routes = [
@@ -25,6 +27,8 @@ const routes: Routes = [
   { path: 'menus-page', component: MenusPageComponent, canActivate: [AuthOwnerGuardService] },
   { path: 'create-menu', component: CreateMenuComponent, canActivate: [AuthOwnerGuardService] },
   { path: 'menus-page', component: MenusPageComponent, canActivate: [AuthOwnerGuardService] },
+  { path: 'departments-page/:menuId', component: DepartmentsPageComponent, canActivate: [AuthOwnerGuardService] },
+  { path: 'add-department', component: CreateDepartmentComponent, canActivate: [AuthOwnerGuardService] },
 ];
 
 @NgModule({
