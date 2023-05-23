@@ -1,4 +1,5 @@
 import ItemModel from '../../models/owners/ItemModel.js';
+import UploadImageController from '../owners/UploadImageController.js';
 
 const SAVE_ERROR = "Failed to save item";
 
@@ -13,6 +14,16 @@ class ItemController {
     if (role !== 'owner') {
       return response.status(403).json({ message: "You don't have permission to perform this action." });
     }
+
+    if (request.files) {
+      // If file is present in the request, direct to upload controller
+      const link = await UploadImageController.uploadImage(request, response, "items");
+      if (!link.link1) {
+        return response.status(405).json({ msg: `Error: Upload file failed` });
+      }
+      request.body.image = link.link1;
+    }
+
     // call function to save new department in SQL
     try {
       const item = await ItemModel.addItem(request.body);
@@ -29,6 +40,15 @@ class ItemController {
     const {role} = request;
     if (role !== 'owner') {
       return response.status(403).json({ message: "You don't have permission to perform this action." });
+    }
+
+    if (request.files) {
+      // If file is present in the request, direct to upload controller
+      const link = await UploadImageController.uploadImage(request, response, "items");
+      if (!link.link1) {
+        return response.status(405).json({ msg: `Error: Upload file failed` });
+      }
+      request.body.image = link.link1;
     }
 
     // call function to save new menu in SQL

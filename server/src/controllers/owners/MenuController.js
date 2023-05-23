@@ -1,4 +1,5 @@
 import MenuModel from '../../models/owners/MenuModel.js';
+import UploadImageController from '../owners/UploadImageController.js';
 
 const SAVE_ERROR = "Failed to save menu";
 
@@ -13,6 +14,16 @@ class MenuController {
     if (role !== 'owner') {
       return response.status(403).json({ message: "You don't have permission to perform this action." });
     }
+
+    if (request.files) {
+      // If file is present in the request, direct to upload controller
+      const link = await UploadImageController.uploadImage(request, response, "menus");
+      if (!link.link1) {
+        return response.status(405).json({ msg: `Error: Upload file failed` });
+      }
+      request.body.image = link.link1;
+    }
+
     // call function to save new menu in SQL
     try {
       const menu = await MenuModel.addMenu(request.body);
@@ -30,6 +41,16 @@ class MenuController {
     if (role !== 'owner') {
       return response.status(403).json({ message: "You don't have permission to perform this action." });
     }
+
+    if (request.files) {
+      // If file is present in the request, direct to upload controller
+      const link = await UploadImageController.uploadImage(request, response, "menus");
+      if (!link.link1) {
+        return response.status(405).json({ msg: `Error: Upload file failed` });
+      }
+      request.body.image = link.link1;
+    }
+    
     // call function to save new menu in SQL
     try {
       const menu = await MenuModel.updateMenu(request.body);

@@ -38,7 +38,6 @@ class AuthController {
         const restaurant = await RestaurantModel.getRestDetails(id);
         if (restaurant[0]) {
            restId = restaurant[0].id;
-           console.log(restId);
         }
         else {
          restId = "";
@@ -85,8 +84,7 @@ class AuthController {
     try {
       let validUser = AuthValidations.validResetPassword({newPassword});
       if (validUser.error) {
-        console.log(validUser.error.details);
-        return response.status(400).json(validUser.error.details);
+        return response.status(400).json({message: VALIDATION_ERROR, details: validUser.error.details});
       }
 
       try {

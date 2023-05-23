@@ -19,6 +19,10 @@ const Menu = sequelize.define(
         }
       }
     },
+    image: {
+      type: DataTypes.STRING(500),
+      allowNull: true
+    },
     restaurant_id: {
       type: DataTypes.INTEGER,
       allowNull: false,

@@ -9,28 +9,29 @@ class MenuModel {
 
     const newMenu = await MenuDB.create({
       name: menu.name,
+      image: menu.image,
       restaurant_id: menu.restId
     });
     return newMenu;
   }
 
   static async updateMenu(menu) {
-
-    const updatedMenu = await MenuDB.update(
-      { name: menu.name },
-      { where: { id: menu.menuId } }
-    );
-    return updatedMenu;
+    
+      const updatedMenu = await MenuDB.update(
+        { name: menu.name, image: menu.image },
+        { where: { id: menu.menuId } }
+      );
+      return updatedMenu;
   }
 
   // get details of all menus
-    static async getMenusDetails(restId) {
+  static async getMenusDetails(restId) {
 
-      const menus = await MenuDB.findAll({
-        where: { restaurant_id: restId }
-      });
-      return menus;
-    }
+    const menus = await MenuDB.findAll({
+      where: { restaurant_id: restId }
+    });
+    return menus;
+  }
 
 
 }
