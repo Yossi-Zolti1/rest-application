@@ -20,7 +20,9 @@ import { CreateMenuComponent } from './pages/owner/menu-details/menus/create-men
 import { MenuCardComponent } from './components/owner/menu-details/menu-card/menu-card.component';
 import { DepartmentsPageComponent } from './pages/owner/menu-details/departments/dpartments-page/departments-page.component';
 import { CreateDepartmentComponent } from './pages/owner/menu-details/departments/create-department/create-department.component';
-
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import {MatButtonModule} from '@angular/material/button';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,10 @@ import { CreateDepartmentComponent } from './pages/owner/menu-details/department
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSlideToggleModule,
+    MatButtonModule,
+    MatGridListModule
 
   ],
   providers: [{ 

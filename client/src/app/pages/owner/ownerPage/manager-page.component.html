@@ -1,12 +1,35 @@
-<div class="grid-container">
-    <a href="restaurant-details"><span>פרטי מסעדה</span></a>
-    <a href="menus-page"><span>הקמת תפריט</span></a>
-    <a><span>ניהול משתמשים</span></a>
-    <a><span>אתר המסעדה</span></a>
-    <a><span>הזמנות</span></a>
-    <a><span>צייר את המסעדה שלך</span></a>
-    <a><span>סטטיסטיקות</span></a>
-    <a><span>תשלומים</span></a>
-    <a><span>ניהול ספקים</span></a>
-    <a><span>יציאה</span></a>
+<div>
+  <button mat-raised-button color="primary" (click)="logout()" style="margin: 30px;">יציאה</button>
 </div>
+<mat-grid-list cols="3" rowHeight="fit" gutterSize="15px" style="height: 400px; width: 300;">
+  <a href="restaurant-details">
+    <mat-grid-tile class="custom-tile">הוסף מסעדה</mat-grid-tile>
+  </a>
+  <a *ngIf="restId; else elseBlock" href="menus-page">
+    <mat-grid-tile class="custom-tile">תפריטים</mat-grid-tile>
+  </a>
+  <ng-template #elseBlock>
+    <a> <mat-grid-tile class="custom-tile">תפריטים</mat-grid-tile></a>
+  </ng-template>
+  <a href="your-link-3">
+    <mat-grid-tile class="custom-tile">ניהול משתמשים</mat-grid-tile>
+  </a>
+  <a href="your-link-4">
+    <mat-grid-tile class="custom-tile">אתר המסעדה</mat-grid-tile>
+  </a>
+  <a href="your-link-4">
+    <mat-grid-tile class="custom-tile">הזמנות </mat-grid-tile>
+  </a>
+  <a href="your-link-4">
+    <mat-grid-tile class="custom-tile">צייר את המסעדה שלך</mat-grid-tile>
+  </a>
+  <a href="your-link-4">
+    <mat-grid-tile class="custom-tile">סטטיסטיקות </mat-grid-tile>
+  </a>
+  <a href="your-link-4">
+    <mat-grid-tile class="custom-tile">תשלומים </mat-grid-tile>
+  </a>
+  <a href="your-link-4">
+    <mat-grid-tile class="custom-tile">ניהול ספקים </mat-grid-tile>
+  </a>
+</mat-grid-list>

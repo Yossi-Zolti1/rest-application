@@ -9,7 +9,7 @@ import authToken from '../middleware/authToken.js';
 
 // API restaurants request handlers
 router.post('/add_rest', authToken, RestaurantClass.addRest);
-// router.get('/rest_details', authToken, RestaurantClass.getRestDetails);
+ router.get('/rest_details', authToken, RestaurantClass.getRestDetails);
 router.put('/update_rest', authToken, RestaurantClass.updateRest);
 
 // API menu request handlers

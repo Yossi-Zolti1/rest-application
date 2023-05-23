@@ -62,23 +62,23 @@ class ResturantController {
   };
 
   // get retaurant details
-  // static async getRestDetails(request, response) {
-  //   const { userId, role } = request;
-  //   if (role !== 'owner') {
-  //     return response.status(403).json({ message: "You don't have permission to perform this action." });
-  //   }
-
-  //   try {
-  //     const restaurant = await RestaurantModel.getRestDetails(userId);
-  //     if (!restaurant[0]) {
-  //       return response.status(400).json("no rest found");
-  //     }
-  //      response.status(200).json(restaurant);
-  //   } catch (error) {
-  //     response.status(400).json(error);
-  //     console.log(error);
-  //   }
-  // };
+  static async getRestDetails(request, response) {
+    const { userId, role } = request;
+    if (role !== 'owner') {
+      return response.status(403).json({ message: "You don't have permission to perform this action." });
+    }
+    const restId = request.query.restId;
+    try {
+      const restaurant = await RestaurantModel.getRestDetails(restId);
+      if (!restaurant[0]) {
+        return response.status(400).json("no rest found");
+      }
+       response.status(200).json(restaurant);
+    } catch (error) {
+      response.status(400).json(error);
+      console.log(error);
+    }
+  };
 
 
 }

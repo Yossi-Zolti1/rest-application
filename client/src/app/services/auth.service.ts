@@ -54,7 +54,7 @@ export class AuthService {
     return this.decodedToken['_role'];
   }
   getRestId(): string {
-    debugger;
+  //  debugger;
     const tokenFromStorage = localStorage.getItem('token');
     if(this.getIsLoggedIn()){
       const tokenFromSubject = this.getToken();
@@ -64,5 +64,9 @@ export class AuthService {
       this.decodedToken = jwt_decode(tokenFromStorage);
     }
     return this.decodedToken['_restId'];
+  }
+  logOut() {
+    localStorage.removeItem('token');
+    return;
   }
 }

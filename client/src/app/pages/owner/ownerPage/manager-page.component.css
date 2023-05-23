@@ -1,21 +1,30 @@
-a {
- display: block;
- height:6rem;
- width: 6rem;
- border-radius: 20px;
- background-color: cadetblue;
- display: flex;
- align-items: center;
- justify-content: center;
-}
-.grid-container{
-    display: grid;
-    grid-template-columns: auto auto auto;
-    gap: 1rem;
-    margin-top: 2rem;
-    margin-left: 1rem;
-    margin-right: 1rem;
-}
-span{
-    color:#233251;
-}
+
+mat-grid-tile {
+    background: lightblue;
+    border-radius: 10px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.3);
+    font-size: 30px;
+    color: rgb(71, 78, 85);
+  }
+
+  mat-grid-list {
+    margin: 100px;
+  }
+
+  @media (max-width: 768px) {
+    mat-grid-tile {
+      font-size: 20px;
+    }
+    mat-grid-list {
+        margin: 30px;
+      }
+  }
+
+  @media (max-width: 480px) {
+    mat-grid-tile {
+      font-size: 16px;
+    }
+    mat-grid-list {
+        margin: 10px;
+      }
+  }
