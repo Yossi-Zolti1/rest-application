@@ -10,8 +10,8 @@ import { environment } from 'src/environments/environment';
 export class RestaurantDetailsService {
 
   constructor(private http: HttpClient) { }
-  getRestaurantDetails():Observable<Restaurant | any>{
-    return this.http.get<Restaurant | any>(environment.baseUrl + `/owner/rest_details?userId=${"2"}`).pipe(catchError(error => {
+  getRestaurantDetails(userId: number):Observable<Restaurant | any>{
+    return this.http.get<Restaurant | any>(environment.baseUrl + `/owner/rest_details?userId=${userId}`).pipe(catchError(error => {
       const statusCode = error.status;
       return of(statusCode);
   }))}

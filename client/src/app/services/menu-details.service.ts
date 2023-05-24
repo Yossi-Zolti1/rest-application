@@ -16,10 +16,10 @@ export class MenuDetailsService {
       return of(err);
      }))
   }
-  getMenus() :Observable<Menu[]>{
+  getMenus(restId: number) :Observable<Menu[]>{
     return this.http.get<Menu[]>(environment.baseUrl + '/owner/menus_details', {
       params: {
-        restId: '1',
+        restId: restId,
       }})
   }
 }

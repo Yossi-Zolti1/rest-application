@@ -1,4 +1,38 @@
-.dialog{
-    height: 100%;
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to right, #83a4d4, #b6fbff);
+  }
+  
+  .login-card {
+    max-width: 500px;
     width: 100%;
-}
+  }
+  
+  .input-field {
+    width: 100%;
+  }
+  
+  .login-button {
+    text-align: center;
+  }
+  
+  .forgot-password-link {
+    cursor: pointer;
+  }
+  
+  .register-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .register-link span {
+    margin-left: 10px;
+  }
+
+
+  
+  

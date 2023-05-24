@@ -55,7 +55,6 @@ export class AuthService {
     return this.decodedToken['_role'];
   }
   getRestId(): string {
-  //  debugger;
     const tokenFromStorage = localStorage.getItem('token');
     if(this.getIsLoggedIn()){
       const tokenFromSubject = this.getToken();
@@ -65,6 +64,17 @@ export class AuthService {
       this.decodedToken = jwt_decode(tokenFromStorage);
     }
     return this.decodedToken['_restId'];
+  }
+  getUserId(): string {
+    const tokenFromStorage = localStorage.getItem('token');
+    if(this.getIsLoggedIn()){
+      const tokenFromSubject = this.getToken();
+      this.decodedToken = jwt_decode(tokenFromSubject!);
+    }
+    else if (tokenFromStorage && tokenFromStorage != 'undefined') {
+      this.decodedToken = jwt_decode(tokenFromStorage);
+    }
+    return this.decodedToken['_id'];
   }
   logOut() {
     localStorage.removeItem('token');

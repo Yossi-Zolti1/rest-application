@@ -33,6 +33,9 @@ export class CreateMenuComponent implements OnInit {
       }
     })
   }
+  onFileSelected(e: any) {
+   
+  }
   close(){
     
   }

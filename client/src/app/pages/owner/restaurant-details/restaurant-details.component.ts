@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Restaurant } from 'src/app/core/entities/restaurant';
+import { AuthService } from 'src/app/services/auth.service';
 import { RestaurantDetailsService } from 'src/app/services/restaurant-details.service';
 import { UploadFileService } from 'src/app/services/upload-file.service';
 import { environment } from 'src/environments/environment';
@@ -13,7 +14,7 @@ import { environment } from 'src/environments/environment';
 export class RestaurantDetailsComponent implements OnInit {
 
   constructor(private restDetailsService: RestaurantDetailsService, public fb: FormBuilder
-    , private updateFileService: UploadFileService) { }
+    , private updateFileService: UploadFileService, private auth: AuthService) { }
   restaurant!: Restaurant;
   logoUrl!: string;
   isRestaurantExixst: boolean = false;
@@ -32,7 +33,7 @@ export class RestaurantDetailsComponent implements OnInit {
     return this.restForm.get('logo')
   }
   ngOnInit(): void {
-    this.restDetailsService.getRestaurantDetails().subscribe(res => {
+    this.restDetailsService.getRestaurantDetails(+this.auth.getUserId()).subscribe(res => {
       if (res != 400) {
         this.restaurant = res;
         this.isRestaurantExixst = true;
