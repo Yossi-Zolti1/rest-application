@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   //Buttons clicks functionalities 
   login() {
     this.auth.login(this.loginForm.value).subscribe(res => {
-      debugger;
+     // debugger;
       if(res === 400){
         this.loginForm.reset();
         alert('אין משתמש כזה במערכת')
@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('token', res.token);
         this.auth.token$.next(res.token);
         this.auth.isLoggedIn$.next(true);
-        this.router.navigate([this.auth.getRole()]);
+        this.router.navigate(["/"]);
       }
       })
   }

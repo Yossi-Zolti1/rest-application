@@ -30,6 +30,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import { ToolbarComponent } from './components/shared/toolbar/toolbar.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     CreateMenuComponent,
     MenuCardComponent,
     DepartmentsPageComponent,
-    CreateDepartmentComponent
+    CreateDepartmentComponent,
+    ToolbarComponent
   ],
   imports: [
     BrowserModule,
