@@ -22,4 +22,5 @@ export class MenuDetailsService {
         restId: restId,
       }})
   }
+  
 }

@@ -23,7 +23,7 @@ export class RestaurantDetailsService {
   }
   updateRestaurant(restaurant: FormData){
     return this.http.put(environment.baseUrl + '/owner/update_rest', restaurant).pipe(catchError(error => {
-      const err = error;
+      const err = error.status;
       return of(err);
      }))
   }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Restaurant } from 'src/app/core/entities/restaurant';
 import { AuthService } from 'src/app/services/auth.service';
 import { RestaurantDetailsService } from 'src/app/services/restaurant-details.service';
@@ -14,7 +15,7 @@ import { environment } from 'src/environments/environment';
 export class RestaurantDetailsComponent implements OnInit {
 
   constructor(private restDetailsService: RestaurantDetailsService, public fb: FormBuilder
-    , private updateFileService: UploadFileService, private auth: AuthService) { }
+    , private route: Router, private auth: AuthService) { }
   restaurant!: Restaurant;
   logoUrl!: string;
   isRestaurantExixst: boolean = false;
@@ -70,6 +71,7 @@ export class RestaurantDetailsComponent implements OnInit {
     this.formData.append('type', this.restForm.controls['type'].value)
     this.formData.append('logo', this.restForm.controls['logo'].value)
     this.restDetailsService.updateRestaurant(this.formData).subscribe(res => {
+      if(res!=405 && res!=400)this.route.navigate(['owner'])
     });
   }
   onFileSelected(e: any) {

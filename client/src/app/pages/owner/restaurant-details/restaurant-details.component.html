@@ -45,6 +45,21 @@
           <div class="form-group">
             <label for="logo">באפשרותך להעלות/לשנות קובץ תמונה (לוגו של המסעדה)</label>
             <input type="file" class="form-control-file" id="logo" (change)="onFileSelected($event)">
+            <!-- <mat-form-field style="width: 100%;">
+              <mat-label>באפשרותך להעלות/לשנות תמונת לוגו</mat-label>
+              <button mat-icon-button matPrefix (click)="f_input.click()">
+                <mat-icon>attach_file</mat-icon>
+              </button>
+              <input type="text" readonly matInput formControlName="logo"/>
+              <input
+                type="file"
+                multiple
+                hidden
+                #f_input
+                (change)="onFileSelected($event)"
+              />
+              <mat-error>this field is required</mat-error>
+            </mat-form-field> -->
           </div>
           
           <div *ngIf="logoUrl" class="logo">

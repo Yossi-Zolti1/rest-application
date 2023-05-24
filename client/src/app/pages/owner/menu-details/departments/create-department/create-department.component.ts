@@ -12,12 +12,15 @@ export class CreateDepartmentComponent implements OnInit {
 
   constructor(public fb: FormBuilder, private menuService: MenuDetailsService, private route: Router) { }
   departmentForm = this.fb.group({
-    name:[''],
-    image:['']
+    name:['']
   })
+  formData: FormData = new FormData();
   ngOnInit(): void {
   }
   addDepartment(){
     
+  }
+  onFileSelected(e: any) {
+    this.formData.append('my', e.target.files[0])
   }
 }
