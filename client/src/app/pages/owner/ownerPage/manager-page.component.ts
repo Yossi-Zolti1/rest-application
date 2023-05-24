@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 
@@ -9,16 +9,32 @@ import { Router } from '@angular/router';
 })
 export class ManagerPageComponent implements OnInit {
   restId!: any;
+  isAuth = false;
+  tokenExpireDate: any;
+  userName: string = "";
   constructor(private auth: AuthService, private router: Router) { }
 
   ngOnInit(): void {
      this.restId = +this.auth.getRestId();    
-    
+     this.showToolbarDetails();
   }
 
-  logout(): void {
-    this.auth.logOut();
-    this.router.navigate(['/login']);
+  showToolbarDetails(): void {
+    let auth = this.auth.checkAuth();
+    if (auth) {
+      this.isAuth = true;
+      this.userName = this.auth.getUserName();
+    }else{
+      this.isAuth = false;
+      this.router.navigate(["/"]);
+    }
   }
+
+  // ngOnChanges(changes: SimpleChanges): void {
+  //   if (changes.myVariable && !changes.myVariable.firstChange) {
+  //     // Handle variable changes
+  //     console.log('myVariable changed:', this.myVariable);
+  //   }
+  // }
 
 }

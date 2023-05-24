@@ -66,6 +66,52 @@ export class AuthService {
     }
     return this.decodedToken['_restId'];
   }
+  checkTokenDate(): string {
+    //  debugger;
+      const tokenFromStorage = localStorage.getItem('token');
+      if(this.getIsLoggedIn()){
+        const tokenFromSubject = this.getToken();
+        this.decodedToken = jwt_decode(tokenFromSubject!);
+      }
+      else if (tokenFromStorage && tokenFromStorage != 'undefined') {
+        this.decodedToken = jwt_decode(tokenFromStorage);
+      }
+      return this.decodedToken['_expiresIn'];
+    }
+    checkAuth(): boolean {
+      let currentDateTime = new Date();
+      const israelCurrentTime = currentDateTime.toLocaleString('en-US', { timeZone: 'Asia/Jerusalem' });
+      let tokenExpireDate = this.checkTokenDate();
+      if (!tokenExpireDate) {
+        return false;
+      }
+      // console.log(currentDateTime);
+      // console.log(this.tokenExpireDate);  
+      if (israelCurrentTime > tokenExpireDate) {
+        // Token has expired
+        return false;
+      } else {
+        // Token is still valid
+        if (localStorage.getItem('token')) {
+          return true;
+        }
+        return false;
+      }
+    }
+
+    getUserName(): string {
+      //  debugger;
+        const tokenFromStorage = localStorage.getItem('token');
+        if(this.getIsLoggedIn()){
+          const tokenFromSubject = this.getToken();
+          this.decodedToken = jwt_decode(tokenFromSubject!);
+        }
+        else if (tokenFromStorage && tokenFromStorage != 'undefined') {
+          this.decodedToken = jwt_decode(tokenFromStorage);
+        }
+        return this.decodedToken['_name'];
+      }
+
   logOut() {
     localStorage.removeItem('token');
     return;

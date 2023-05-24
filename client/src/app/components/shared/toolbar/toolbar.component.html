@@ -1,0 +1,37 @@
+<mat-toolbar color="primary" class="toolbar">
+    <mat-toolbar-row>
+        <span *ngIf="!isPhoneScreen; else desktopContent"></span>
+        <span class="spacer"></span>
+    
+        <a mat-button routerLink="/" *ngIf="!isPhoneScreen">
+            <mat-icon>home</mat-icon>
+        </a>
+        <div *ngIf="!isPhoneScreen">
+          <a mat-button routerLink="/owner" *ngIf="isAuth" >
+            <mat-icon>account_circle</mat-icon>
+        </a>
+        </div>
+       
+        
+        <span class="spacer"></span>
+        <div *ngIf="!isPhoneScreen">
+          <span *ngIf="isAuth; else desktopContent2" class="phone-content">
+            <span>{{ userName}}</span>
+            <button mat-icon-button (click)="logout()">
+              <mat-icon>exit_to_app</mat-icon>
+            </button>
+          </span>
+        </div>
+       
+      </mat-toolbar-row>
+    
+      <ng-template #desktopContent>
+        <button mat-button (click)="sendVith()">
+            <mat-icon>menu</mat-icon>
+        </button>
+      </ng-template>
+
+      <ng-template #desktopContent2>
+          <a href="/login" style="color: aliceblue; text-decoration: none;">היכנס</a>       
+      </ng-template>
+  </mat-toolbar>
