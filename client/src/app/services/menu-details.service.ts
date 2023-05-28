@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Menu } from '../core/entities/menu';
+import { Department, Menu } from '../core/entities/menu';
 import { environment } from 'src/environments/environment';
 import { Observable, catchError, of } from 'rxjs';
 
@@ -10,7 +10,7 @@ import { Observable, catchError, of } from 'rxjs';
 export class MenuDetailsService {
 
   constructor(private http: HttpClient) { }
-  addMenu(menu:Menu){
+  addMenu(menu:FormData){
     return this.http.post(environment.baseUrl + '/owner/add_menu', menu).pipe(catchError(error => {
       const err = error.statusCode;
       return of(err);
@@ -20,6 +20,18 @@ export class MenuDetailsService {
     return this.http.get<Menu[]>(environment.baseUrl + '/owner/menus_details', {
       params: {
         restId: restId,
+      }})
+  }
+  addDepartment(department: FormData){
+    return this.http.post(environment.baseUrl + '/owner/add_department', department).pipe(catchError(error => {
+      const err = error.statusCode;
+      return of(err);
+     }))
+  }
+  getDepartments(menuId: number) : Observable<Department[]>{
+    return this.http.get<Department[]>(environment.baseUrl + '/owner/departments_details', {
+      params: {
+        menuId: menuId,
       }})
   }
   

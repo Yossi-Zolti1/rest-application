@@ -1,0 +1,12 @@
+.departmentsList {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .departmentsList app-department-card {
+    margin-bottom: 20px;
+  }
+  

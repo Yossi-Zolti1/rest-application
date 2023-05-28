@@ -31,6 +31,9 @@ import {MatInputModule} from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { ToolbarComponent } from './components/shared/toolbar/toolbar.component';
+import { DepartmentCardComponent } from './components/owner/menu-details/department-card/department-card.component';
+import { CreateItemComponent } from './pages/owner/menu-details/items/create-item/create-item.component';
+import { ItemsPageComponent } from './pages/owner/menu-details/items/items-page/items-page.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +51,10 @@ import { ToolbarComponent } from './components/shared/toolbar/toolbar.component'
     MenuCardComponent,
     DepartmentsPageComponent,
     CreateDepartmentComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    DepartmentCardComponent,
+    CreateItemComponent,
+    ItemsPageComponent
   ],
   imports: [
     BrowserModule,
