@@ -10,7 +10,6 @@ import { Router } from '@angular/router';
 export class ManagerPageComponent implements OnInit {
   restId!: any;
   isAuth = false;
-  tokenExpireDate: any;
   userName: string = "";
   constructor(private auth: AuthService, private router: Router) { }
 

@@ -12,7 +12,6 @@ import { Interceptor } from './services/http.interceptor';
 import { ResetPasswordComponent } from './pages/shared/resetPassword/reset-password.component';
 import { ManagerPageComponent } from './pages/owner/ownerPage/manager-page.component';
 import { RestaurantDetailsComponent } from './pages/owner/restaurant-details/restaurant-details.component';
-import { HeaderComponent } from './components/owner/menu-details/header/header.component';
 import { MenusPageComponent } from './pages/owner/menu-details/menus/menus-page/menus-page.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatDialogModule} from '@angular/material/dialog';
@@ -31,9 +30,6 @@ import {MatInputModule} from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { ToolbarComponent } from './components/shared/toolbar/toolbar.component';
-import { DepartmentCardComponent } from './components/owner/menu-details/department-card/department-card.component';
-import { CreateItemComponent } from './pages/owner/menu-details/items/create-item/create-item.component';
-import { ItemsPageComponent } from './pages/owner/menu-details/items/items-page/items-page.component';
 
 @NgModule({
   declarations: [
@@ -45,16 +41,12 @@ import { ItemsPageComponent } from './pages/owner/menu-details/items/items-page/
     ResetPasswordComponent,
     ManagerPageComponent,
     RestaurantDetailsComponent,
-    HeaderComponent,
     MenusPageComponent,
     CreateMenuComponent,
     MenuCardComponent,
     DepartmentsPageComponent,
     CreateDepartmentComponent,
-    ToolbarComponent,
-    DepartmentCardComponent,
-    CreateItemComponent,
-    ItemsPageComponent
+    ToolbarComponent
   ],
   imports: [
     BrowserModule,

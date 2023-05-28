@@ -7,6 +7,7 @@ import { RestaurantDetailsService } from 'src/app/services/restaurant-details.se
 import { UploadFileService } from 'src/app/services/upload-file.service';
 import { environment } from 'src/environments/environment';
 
+
 @Component({
   selector: 'app-restaurant-details',
   templateUrl: './restaurant-details.component.html',
@@ -30,10 +31,16 @@ export class RestaurantDetailsComponent implements OnInit {
     logo: [''],
     my: FormData
   });
+  isAuth = false;
+  userName: string = "";
+
   get logo() {
     return this.restForm.get('logo')
   }
   ngOnInit(): void {
+    
+    this.showToolbarDetails();
+
     this.restDetailsService.getRestaurantDetails(+this.auth.getUserId()).subscribe(res => {
       if (res != 400) {
         this.restaurant = res;
@@ -50,6 +57,7 @@ export class RestaurantDetailsComponent implements OnInit {
         this.logoUrl = environment.baseUrl + res[0].logo;
       }
     })
+
   }
   addRest() {
     this.formData.append('name', this.restForm.controls['name'].value)
@@ -59,7 +67,7 @@ export class RestaurantDetailsComponent implements OnInit {
     this.formData.append('kashrut', this.restForm.controls['kashrut'].value)
     this.formData.append('type', this.restForm.controls['type'].value)
     this.formData.append('logo', this.restForm.controls['logo'].value)
-    this.restDetailsService.addRestaurant(this.formData).subscribe(res => {
+    this.restDetailsService.addRestaurant(this.restForm.value).subscribe(res => {
     })
   }
   updateRest(){
@@ -76,5 +84,16 @@ export class RestaurantDetailsComponent implements OnInit {
   }
   onFileSelected(e: any) {
     this.formData.append('my', e.target.files[0])
+  }
+
+  showToolbarDetails(): void {
+    let auth = this.auth.checkAuth();
+    if (auth) {
+      this.isAuth = true;
+      this.userName = this.auth.getUserName();
+    }else{
+      this.isAuth = false;
+      this.route.navigate(["/"]);
+    }
   }
 }
