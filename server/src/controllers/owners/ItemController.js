@@ -61,6 +61,25 @@ class ItemController {
     }
   };
 
+  // handle delete item 
+ static async deleteItem(request, response) {
+
+  const { role } = request;
+  if (role !== 'owner') {
+    return response.status(403).json({ message: "You don't have permission to perform this action." });
+  }
+
+  const itemId = request.query.itemId;
+
+  try {
+    const item = await ItemModel.deleteItem(itemId);
+    response.status(200).json(item);
+  } catch (error) {
+    response.status(400).json({ message: "error delete item", details: error });
+    console.log(error);
+  }
+};
+
    // get all items details
    static async getItemsDetails(request, response) {
     const {role} = request;

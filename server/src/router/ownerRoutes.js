@@ -16,16 +16,19 @@ router.put('/update_rest', authToken, RestaurantClass.updateRest);
 router.post('/add_menu', authToken, MenuClass.addMenu);
 router.put('/update_menu',authToken, MenuClass.updateMenu);
 router.get('/menus_details', authToken, MenuClass.getMenusDetails);
+router.delete('/delete_menu', authToken, MenuClass.deleteMenu);
 
 // API departments request handlers
 router.post('/add_department', authToken, DepartmentClass.addDepartment);
 router.put('/update_department',authToken, DepartmentClass.updateDepartment);
 router.get('/departments_details', authToken, DepartmentClass.getDepartmentsDetails);
+router.delete('/delete_department', authToken, DepartmentClass.deleteDepartment);
 
 
 router.post('/add_item', authToken, ItemClass.addItem);
 router.put('/update_item',authToken, ItemClass.updateItem);
 router.get('/items_details', authToken, ItemClass.getItemsDetails);
+router.delete('/delete_item', authToken, ItemClass.deleteItem);
 
 
 

@@ -29,6 +29,14 @@ class ItemModel {
     return updatedItem;
 }
 
+static async deleteItem(itemId) {
+    
+  const deletedItem = await ItemDB.destroy(
+    { where: { id: itemId } }
+  );
+  return deletedItem;
+}
+
 static async getItemsDetails(departmentId) {
 
   const items = await ItemDB.findAll({

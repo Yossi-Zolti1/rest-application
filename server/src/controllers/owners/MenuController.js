@@ -61,6 +61,23 @@ class MenuController {
     }
   };
 
+ // handle delete restaurants details
+ static async deleteMenu(request, response) {
+
+  const { role } = request;
+  if (role !== 'owner') {
+    return response.status(403).json({ message: "You don't have permission to perform this action." });
+  }
+  const menuId = request.query.menuId;
+
+  try {
+    const menu = await MenuModel.deleteMenu(menuId);
+    response.status(200).json(menu);
+  } catch (error) {
+    response.status(400).json({ message: "error delete menu", details: error });
+    console.log(error);
+  }
+};
 
    // get all menus details
    static async getMenusDetails(request, response) {

@@ -22,5 +22,12 @@ export class MenuDetailsService {
         restId: restId,
       }})
   }
+
+  deleteMenu(menuId: number) {
+    return this.http.delete(environment.baseUrl + '/owner/delete_menu?menuId=' + menuId).pipe(catchError(error => {
+      const err = error.statusCode;
+      return of(err);
+    }));
+  }
   
 }

@@ -61,6 +61,7 @@ class ResturantController {
     }
   };
 
+
   // get retaurant details
   static async getRestDetails(request, response) {
     const { userId, role } = request;

@@ -30,6 +30,7 @@ import {MatInputModule} from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { ToolbarComponent } from './components/shared/toolbar/toolbar.component';
+import { ConfirmationDialogComponent } from './components/shared/dialogs/confirmation-dialog/confirmation-dialog.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { ToolbarComponent } from './components/shared/toolbar/toolbar.component'
     MenuCardComponent,
     DepartmentsPageComponent,
     CreateDepartmentComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    ConfirmationDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -63,8 +65,7 @@ import { ToolbarComponent } from './components/shared/toolbar/toolbar.component'
     MatInputModule,
     MatIconModule,
     MatListModule,
-    MatToolbarModule
-    
+    MatToolbarModule,    
   ],
   providers: [{ 
     provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi:true

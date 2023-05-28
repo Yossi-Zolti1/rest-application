@@ -5,7 +5,7 @@
     <div class="options">
       <a [routerLink]="['/departments-page', menuId]" mat-button color="primary">הוסף מחלקות</a>
       <button mat-button color="primary">ערוך פרטים</button>
-      <button mat-button color="primary">מחק תפריט</button>
+      <button mat-button color="primary" (click)="openConfirmationDialog(menuId)">מחק תפריט</button>
     </div>
   </mat-card-content>
 </mat-card>

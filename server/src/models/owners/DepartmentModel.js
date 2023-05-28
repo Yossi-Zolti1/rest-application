@@ -26,6 +26,14 @@ class DepartmentModel {
       return updatedDepartment;
   }
 
+  static async deleteDepartment(departmentId) {
+    
+    const deletedDepartment = await DepartmentDB.destroy(
+      { where: { id: departmentId } }
+    );
+    return deletedDepartment;
+}
+
   static async getDepartmentsDetails(menuId) {
 
     const departments = await DepartmentDB.findAll({

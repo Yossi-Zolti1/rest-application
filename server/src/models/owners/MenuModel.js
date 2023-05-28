@@ -24,6 +24,14 @@ class MenuModel {
       return updatedMenu;
   }
 
+  static async deleteMenu(menuId) {
+    
+    const deletedMenu = await MenuDB.destroy(
+      { where: { id: menuId } }
+    );
+    return deletedMenu;
+}
+
   // get details of all menus
   static async getMenusDetails(restId) {
 

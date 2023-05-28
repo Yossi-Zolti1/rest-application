@@ -33,4 +33,8 @@ export class MenusPageComponent implements OnInit {
     }
   }
 
+  refreshList(){
+    this.menus$ = this.menuService.getMenus(+this.auth.getRestId());
+  }
+
 }

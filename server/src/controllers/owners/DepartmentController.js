@@ -62,6 +62,25 @@ class DepartmentController {
     }
   };
 
+  // handle delete departments details
+ static async deleteDepartment(request, response) {
+
+  const { role } = request;
+  if (role !== 'owner') {
+    return response.status(403).json({ message: "You don't have permission to perform this action." });
+  }
+
+  const departmentId = request.query.departmentId;
+
+  try {
+    const department = await DepartmentModel.deleteDepartment(departmentId);
+    response.status(200).json(department);
+  } catch (error) {
+    response.status(400).json({ message: "error delete department", details: error });
+    console.log(error);
+  }
+};
+
    // get all departments details
    static async getDepartmentsDetails(request, response) {
     const {role} = request;
