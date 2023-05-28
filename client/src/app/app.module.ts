@@ -19,6 +19,8 @@ import { CreateMenuComponent } from './pages/owner/menu-details/menus/create-men
 import { MenuCardComponent } from './components/owner/menu-details/menu-card/menu-card.component';
 import { DepartmentsPageComponent } from './pages/owner/menu-details/departments/dpartments-page/departments-page.component';
 import { CreateDepartmentComponent } from './pages/owner/menu-details/departments/create-department/create-department.component';
+import { ToolbarComponent } from './components/shared/toolbar/toolbar.component';
+import { ConfirmationDialogComponent } from './components/shared/dialogs/confirmation-dialog/confirmation-dialog.component';
 
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import {MatButtonModule} from '@angular/material/button';
@@ -29,8 +31,10 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
-import { ToolbarComponent } from './components/shared/toolbar/toolbar.component';
-import { ConfirmationDialogComponent } from './components/shared/dialogs/confirmation-dialog/confirmation-dialog.component';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import { TablesDetailsComponent } from './pages/owner/tablesPage/tables-details/tables-details.component';
+
+
 
 @NgModule({
   declarations: [
@@ -48,7 +52,8 @@ import { ConfirmationDialogComponent } from './components/shared/dialogs/confirm
     DepartmentsPageComponent,
     CreateDepartmentComponent,
     ToolbarComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    TablesDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +70,8 @@ import { ConfirmationDialogComponent } from './components/shared/dialogs/confirm
     MatInputModule,
     MatIconModule,
     MatListModule,
-    MatToolbarModule,    
+    MatToolbarModule,
+    DragDropModule,    
   ],
   providers: [{ 
     provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi:true

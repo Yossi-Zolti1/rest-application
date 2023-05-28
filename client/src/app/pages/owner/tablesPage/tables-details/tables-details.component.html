@@ -1,0 +1,17 @@
+<div class="container">
+    <button mat-raised-button (click)="createNewItem()">Create New Item</button>
+
+    <div class="example-boundary">
+        <div class="example-box" cdkDragBoundary=".example-boundary" cdkDrag *ngFor="let item of items" (cdkDragEnded)="updateItemPosition(item, $event)">
+            <div >
+                <mat-icon> table_chart</mat-icon>
+              </div>
+              <div >
+                {{ item.text }}
+              </div>
+        </div>
+      </div>
+</div>
+
+  
+  
