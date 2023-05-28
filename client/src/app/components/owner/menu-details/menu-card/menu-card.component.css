@@ -1,24 +1,7 @@
-/* .card{
-    display: flex;
-    flex-direction: column;
-    background-color:darkgray;
-    height: 7rem;
-    border-radius: 1rem;
-    overflow: hidden;
-
-}
-.title{
-    margin-top: 1rem;
-}
-.options{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-} */
 
 mat-card {
-    width: 300px;
-    margin: 10px;
+    width: 350px;
+    margin: 15px;
   }
   
   .title {

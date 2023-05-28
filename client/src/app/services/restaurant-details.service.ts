@@ -15,7 +15,7 @@ export class RestaurantDetailsService {
       const statusCode = error.status;
       return of(statusCode);
   }))}
-  addRestaurant(restaurant: FormData){
+  addRestaurant(restaurant: Restaurant){
     return this.http.post(environment.baseUrl + '/owner/add_rest', restaurant).pipe(catchError(error => {
       const err = error;
       return of(err);

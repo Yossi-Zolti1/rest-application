@@ -1,6 +1,19 @@
-<app-header [text]="title" [buttonText]="buttonText" [route]="route"></app-header>
-<h1 class="text-center">רשימת התפריטים שלך</h1>
-<div *ngFor="let menu of menus$ | async" class="menuList">
-      <app-menu-card [menu]="menu" [menuId]="menu.id!"></app-menu-card>
-</div>
+<div class="menus-container">
+  <app-toolbar [isAuth]="isAuth" [userName]="userName"></app-toolbar>
 
+  <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; margin-top: 30px;">
+    <h1 style="margin: 0; margin-left: 80px;">רשימת התפריטים שלך</h1>
+    <a [href]="route">
+      <button mat-raised-button type="submit" style="margin-left: 10px; background-color: rgb(241, 236, 236);">הוסף תפריט</button>
+    </a>
+  </div>
+  
+  
+  <div class="menuList">
+        <ng-container *ngFor="let menu of menus$ | async; let i = index">
+          <app-menu-card [menu]="menu" [menuId]="menu.id!" ></app-menu-card>
+          <!-- Add a line break after every second card -->
+          <div *ngIf="(i + 1) % 2 === 0" class="break"></div>
+        </ng-container>
+      </div>
+</div>

@@ -1,9 +1,0 @@
-<mat-card *ngIf="department" class="card">
-    <mat-card-content>
-      <h1 class="title">{{ department.name }}</h1>
-      <div class="options">
-        <a [routerLink]="['/items-page', departmentId]" mat-button color="primary">הוסף מנות</a>
-        <button mat-button color="primary">ערוך פרטים</button>
-      </div>
-    </mat-card-content>
-  </mat-card>

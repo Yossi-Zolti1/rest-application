@@ -1,6 +1,7 @@
 
 mat-grid-tile {
-    background: lightblue;
+    /* background: lightblue; */
+    background: white;
     border-radius: 10px;
     box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.3);
     font-size: 30px;
@@ -9,6 +10,11 @@ mat-grid-tile {
 
   mat-grid-list {
     margin: 100px;
+  }
+
+  .manager-container{
+    height: 100vh;
+    background: linear-gradient(to right, #83a4d4, #b6fbff);
   }
 
   @media (max-width: 768px) {

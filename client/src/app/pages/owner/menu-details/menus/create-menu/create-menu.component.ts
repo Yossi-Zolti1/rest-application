@@ -11,29 +11,32 @@ import { MenuDetailsService } from 'src/app/services/menu-details.service';
   styleUrls: ['./create-menu.component.css']
 })
 export class CreateMenuComponent implements OnInit {
-  formData: FormData = new FormData();
+
   constructor(public fb: FormBuilder, private menuService: MenuDetailsService, private route: Router
-    , private auth: AuthService) { }
+    ,private auth: AuthService) { }
   menuForm = this.fb.group({
     name: ['']
   })
   ngOnInit(): void {
   }
-  createMenu() {
-
-    this.formData.append('name', this.menuForm.controls['name'].value)
-    this.formData.append('reatId', this.auth.getRestId())
-
-    this.menuService.addMenu(this.formData).subscribe(res => {
-      if (res === 400 || res === 403) {
+  createMenu(){
+    const menu = {
+      name: this.menuForm.controls['name'].value,
+      restId: +this.auth.getRestId()
+    }
+    this.menuService.addMenu(menu).subscribe(res => {
+      if(res === 400 || res === 403){
         alert('ההוספה נכשלה')
       }
-      else {
+      else{
         this.route.navigate(['menus-page']);
       }
     })
   }
   onFileSelected(e: any) {
-    this.formData.append('my', e.target.files[0])
+   
+  }
+  close(){
+    
   }
 }

@@ -1,10 +1,15 @@
 
 
 .restaurant-details-container {
+     min-height: 100vh;
+    background: linear-gradient(to right, #83a4d4, #b6fbff);
+    padding-bottom: 30px;
+  }
+
+  .form-container {
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
+    margin-top: 50px;
   }
   
   .restaurant-details-card {
