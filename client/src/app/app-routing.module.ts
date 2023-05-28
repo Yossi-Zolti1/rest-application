@@ -15,6 +15,7 @@ import { MenusPageComponent } from './pages/owner/menu-details/menus/menus-page/
 import { CreateMenuComponent } from './pages/owner/menu-details/menus/create-menu/create-menu.component';
 import { DepartmentsPageComponent } from './pages/owner/menu-details/departments/dpartments-page/departments-page.component';
 import { CreateDepartmentComponent } from './pages/owner/menu-details/departments/create-department/create-department.component';
+import { ItemsPageComponent } from './pages/owner/menu-details/items/items-page/items-page.component';
 
 
 const routes: Routes = [
@@ -30,7 +31,8 @@ const routes: Routes = [
   { path: 'create-menu', component: CreateMenuComponent, canActivate: [AuthOwnerGuardService] },
   { path: 'menus-page', component: MenusPageComponent, canActivate: [AuthOwnerGuardService] },
   { path: 'departments-page/:menuId', component: DepartmentsPageComponent, canActivate: [AuthOwnerGuardService] },
-  { path: 'add-department', component: CreateDepartmentComponent, canActivate: [AuthOwnerGuardService] },
+  { path: 'add-department/:menuId', component: CreateDepartmentComponent, canActivate: [AuthOwnerGuardService] },
+  { path: 'items-page/:departmentId', component: ItemsPageComponent, canActivate: [AuthOwnerGuardService] },
 ];
 
 @NgModule({

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MenuDetailsService } from 'src/app/services/menu-details.service';
 
 @Component({
@@ -10,15 +10,21 @@ import { MenuDetailsService } from 'src/app/services/menu-details.service';
 })
 export class CreateDepartmentComponent implements OnInit {
 
-  constructor(public fb: FormBuilder, private menuService: MenuDetailsService, private route: Router) { }
+  menuId!: string
+  constructor(public fb: FormBuilder, private menuService: MenuDetailsService, private route: Router
+    ,private routes: ActivatedRoute) { }
   departmentForm = this.fb.group({
     name:['']
   })
   formData: FormData = new FormData();
   ngOnInit(): void {
+    this.menuId = this.routes.snapshot.paramMap.get('menuId')!;
   }
   addDepartment(){
-    
+    this.formData.append('name', this.departmentForm.controls['name'].value)
+    this.formData.append('menuId', this.menuId)
+    this.menuService.addDepartment(this.formData).subscribe(res => {
+    })
   }
   onFileSelected(e: any) {
     this.formData.append('my', e.target.files[0])

@@ -33,6 +33,8 @@ import { MatIconModule } from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { TablesDetailsComponent } from './pages/owner/tablesPage/tables-details/tables-details.component';
+import { ItemsPageComponent } from './pages/owner/menu-details/items/items-page/items-page.component';
+import { DepartmentCardComponent } from './components/owner/menu-details/department-card/department-card.component';
 
 
 
@@ -53,7 +55,9 @@ import { TablesDetailsComponent } from './pages/owner/tablesPage/tables-details/
     CreateDepartmentComponent,
     ToolbarComponent,
     ConfirmationDialogComponent,
-    TablesDetailsComponent
+    TablesDetailsComponent,
+    ItemsPageComponent,
+    DepartmentCardComponent
   ],
   imports: [
     BrowserModule,

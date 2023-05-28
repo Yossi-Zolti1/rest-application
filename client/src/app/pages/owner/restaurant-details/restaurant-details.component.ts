@@ -67,7 +67,7 @@ export class RestaurantDetailsComponent implements OnInit {
     this.formData.append('kashrut', this.restForm.controls['kashrut'].value)
     this.formData.append('type', this.restForm.controls['type'].value)
     this.formData.append('logo', this.restForm.controls['logo'].value)
-    this.restDetailsService.addRestaurant(this.restForm.value).subscribe(res => {
+    this.restDetailsService.addRestaurant(this.formData).subscribe(res => {
     })
   }
   updateRest(){

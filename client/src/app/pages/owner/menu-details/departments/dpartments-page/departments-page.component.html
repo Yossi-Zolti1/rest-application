@@ -1,1 +1,25 @@
 <!-- <app-header [text]="title" [buttonText]="buttonText" [route]="route"></app-header> -->
+<div class="departments-container">
+    <app-toolbar [isAuth]="isAuth" [userName]="userName"></app-toolbar>
+  
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; margin-top: 30px;">
+      <h1 style="margin: 0; margin-left: 80px;">רשימת המחלקות שלך</h1>
+      <a [href]="route">
+        <button mat-raised-button type="submit" style="margin-left: 10px; background-color: rgb(241, 236, 236);">הוסף מחלקה</button>
+      </a>
+    </div>
+    
+    
+    <div class="departmentsList">
+          <ng-container *ngFor="let department of departments$ | async">
+            <app-department-card [department]="department" [departmentId]="department.id!"></app-department-card>
+            <!-- Add a line break after every second card -->
+            
+          </ng-container>
+        </div>
+  </div>
+  
+<h1 class="text-center">רשימת המחלקות שלך</h1>
+<div *ngFor="let department of departments$ | async" class="departmentsList">
+      <app-department-card [department]="department" [departmentId]="department.id!"></app-department-card>
+</div>
