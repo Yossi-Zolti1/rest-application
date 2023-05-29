@@ -14,6 +14,7 @@ export class ItemsPageComponent implements OnInit {
   buttonText: string = 'הוסף מנה'
   route!: string
   departmentId!:string
+  departmentName!:string
   isAuth = false;
   userName: string = "";
   constructor(private routes: ActivatedRoute,private auth: AuthService, 
@@ -23,6 +24,7 @@ export class ItemsPageComponent implements OnInit {
     this.departmentId = this.routes.snapshot.paramMap.get('departmentId')!;
     this.route = `/add-item/${this.departmentId}`
     this.items$ = this.menuService.getItems(+this.departmentId)
+    this.departmentName = history.state.name;
     this.showToolbarDetails();
   }
   showToolbarDetails(): void {

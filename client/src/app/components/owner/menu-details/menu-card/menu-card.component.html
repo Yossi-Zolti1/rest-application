@@ -3,7 +3,7 @@
   <mat-card-content>
     <h1 class="title">{{ menu.name }}</h1>
     <div class="options">
-      <a [routerLink]="['/departments-page', menuId]" mat-button color="primary">הוסף מחלקות</a>
+      <button (click)="addDepartment()" [routerLink]="['/departments-page', menuId]" mat-button color="primary">הוסף מחלקות</button>
       <button mat-button color="primary">ערוך פרטים</button>
       <button mat-button color="primary" (click)="openConfirmationDialog(menuId)">מחק תפריט</button>
     </div>

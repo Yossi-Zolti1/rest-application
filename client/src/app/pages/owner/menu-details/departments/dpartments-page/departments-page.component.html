@@ -3,7 +3,7 @@
     <app-toolbar [isAuth]="isAuth" [userName]="userName"></app-toolbar>
   
     <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; margin-top: 30px;">
-      <h1 style="margin: 0; margin-left: 80px;">רשימת המחלקות שלך</h1>
+      <h1 style="margin: 0; margin-left: 80px;">רשימת המחלקות של {{menuName}}</h1>
       <a [href]="route">
         <button mat-raised-button type="submit" style="margin-left: 10px; background-color: rgb(241, 236, 236);">הוסף מחלקה</button>
       </a>

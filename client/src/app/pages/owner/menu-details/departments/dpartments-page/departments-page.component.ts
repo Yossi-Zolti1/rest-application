@@ -16,6 +16,7 @@ export class DepartmentsPageComponent implements OnInit {
   menuId!:string
   isAuth = false;
   userName: string = "";
+  menuName!:string
   public departments$!:Observable<Department[]>
   constructor(private routes: ActivatedRoute,private auth: AuthService, 
     private menuService: MenuDetailsService, private router: Router) { }
@@ -24,6 +25,7 @@ export class DepartmentsPageComponent implements OnInit {
     this.menuId = this.routes.snapshot.paramMap.get('menuId')!;
     this.route = `/add-department/${this.menuId}`
     this.departments$ = this.menuService.getDepartments(+this.menuId)
+    this.menuName = history.state.name;
     this.showToolbarDetails();
   }
   showToolbarDetails(): void {

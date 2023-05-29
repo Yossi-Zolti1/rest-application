@@ -46,7 +46,9 @@ export class MenuCardComponent implements OnInit {
       }
     })
   }
-
+  addDepartment(){
+    this.route.navigate([`/departments-page/${this.menuId}`], {state: {name: this.menu.name}})
+  }
 
   }
 

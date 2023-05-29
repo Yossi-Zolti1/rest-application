@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Department } from 'src/app/core/entities/menu';
 
 @Component({
@@ -9,9 +10,11 @@ import { Department } from 'src/app/core/entities/menu';
 export class DepartmentCardComponent implements OnInit {
   @Input() department!: Department;
   @Input() departmentId!: number;
-  constructor() { }
+  constructor(private route: Router) { }
 
   ngOnInit(): void {
   }
-
+  addItems(){
+    this.route.navigate([`/items-page/${this.departmentId}`], { state: {name: this.department.name} });
+  }
 }
