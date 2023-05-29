@@ -1,1 +1,19 @@
-<p>items-page works!</p>
+<div class="items-container">
+    <app-toolbar [isAuth]="isAuth" [userName]="userName"></app-toolbar>
+  
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; margin-top: 30px;">
+      <h1 style="margin: 0; margin-left: 80px;">רשימת המנות שלך</h1>
+      <a [href]="route">
+        <button mat-raised-button type="submit" style="margin-left: 10px; background-color: rgb(241, 236, 236);">הוסף מנה</button>
+      </a>
+    </div>
+    
+    
+    <div class="itemsList">
+          <ng-container *ngFor="let item of items$ | async">
+            <app-item-card [item]="item" [itemId]="item.id!"></app-item-card>
+            <!-- Add a line break after every second card -->
+            
+          </ng-container>
+        </div>
+  </div>

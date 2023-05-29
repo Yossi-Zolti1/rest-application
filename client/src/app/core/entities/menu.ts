@@ -10,3 +10,12 @@ export interface Department{
     image?:string
     menuId?:number
 }
+export interface Item{
+    id?:number
+    name:string
+    description: string
+    price: number
+    image?:string
+    comment?:string
+    departmentId?:number
+}

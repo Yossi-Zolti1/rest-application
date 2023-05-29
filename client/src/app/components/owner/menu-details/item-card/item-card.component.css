@@ -1,0 +1,22 @@
+mat-card {
+    width: 300px;
+    margin: 10px;
+  }
+
+  .title {
+    font-size: 24px;
+    margin-bottom: 1px;
+  }
+  .description{
+    font-size:medium;
+    margin-bottom: 1px;
+  }
+  .price{
+    font-size: small;
+    margin-bottom: 1px;
+  }
+  .options {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.2px
+  }

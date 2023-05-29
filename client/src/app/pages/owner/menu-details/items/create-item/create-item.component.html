@@ -1,0 +1,41 @@
+<div class="login-container">
+    <mat-card class="login-card">
+      <mat-card-title class="text-center">צור מנה</mat-card-title>
+      <br>
+      <br>
+      <mat-card-content>
+        <form [formGroup]="itemForm" (ngSubmit)="addItem()">
+          <mat-form-field appearance="outline" class="input-field">
+            <mat-label> שם מנה</mat-label>
+            <input matInput type="text" formControlName="name" required>
+          </mat-form-field>
+          <br>
+          <mat-form-field appearance="outline" class="input-field">
+            <mat-label>תיאור מנה</mat-label>
+            <textarea matInput formControlName="description"></textarea>
+          </mat-form-field>
+          <br>
+          <mat-form-field appearance="outline" class="input-field">
+            <mat-label>  מחיר</mat-label>
+            <input matInput type="number" formControlName="price" required>
+          </mat-form-field>
+          <br>
+          <mat-form-field appearance="outline" class="input-field">
+            <mat-label> הערות על המנה</mat-label>
+            <textarea matInput formControlName="comment"></textarea>
+          </mat-form-field>
+          <br>
+          <div class="form-group">
+            <label for="logo">באפשרותך להעלות/לשנות קובץ תמונה </label>
+            <input type="file" class="form-control-file" id="logo" (change)="onFileSelected($event)">
+          </div>
+          <br>
+          <div class="login-button">
+            <button mat-raised-button color="primary" type="submit">שלח</button>
+          </div>
+        </form>
+      </mat-card-content>
+      
+    </mat-card>
+  </div>
+  
