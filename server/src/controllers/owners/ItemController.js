@@ -101,6 +101,27 @@ class ItemController {
     }
   };
 
+    // get single item details
+    static async getSingleItemDetails(request, response) {
+      const { role} = request;
+      const itemId = request.query.itemId;
+  
+      if (role !== 'owner') {
+        return response.status(403).json({ message: "You don't have permission to perform this action." });
+      }
+      
+      try {
+        const item = await ItemModel.getSingleItemDetails(itemId);
+        if (!item[0]) {
+          return response.status(400).json("no item found");
+        }
+        response.status(200).json(item);
+      } catch (error) {
+        response.status(400).json(error);
+        console.log(error);
+      }
+    };
+
 }
 
 export default ItemController;

@@ -42,7 +42,14 @@ class DepartmentModel {
     return departments;
   }
 
+ // get details of single menu
+ static async getSingleDepartmentDetails(departmentId) {
 
+  const department = await DepartmentDB.findOne({
+    where: { id: departmentId }
+  });
+  return department;
+}
 
 //   static async updateLogo(logoLink, userId) {
 //     let sql = `UPDATE restaurants SET logo= ? WHERE ownerID = ?`

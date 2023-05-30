@@ -102,6 +102,26 @@ class DepartmentController {
     }
   };
 
+   // get single department details
+   static async getSingleDepartmentDetails(request, response) {
+    const { role} = request;
+    const departmentId = request.query.departmentId;
+
+    if (role !== 'owner') {
+      return response.status(403).json({ message: "You don't have permission to perform this action." });
+    }
+    
+    try {
+      const department = await DepartmentModel.getSingleDepartmentDetails(departmentId);
+      if (!department[0]) {
+        return response.status(400).json("no menu found");
+      }
+      response.status(200).json(department);
+    } catch (error) {
+      response.status(400).json(error);
+      console.log(error);
+    }
+  };
 
 }
 

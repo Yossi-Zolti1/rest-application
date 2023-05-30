@@ -45,10 +45,15 @@ static async getItemsDetails(departmentId) {
   return items;
 }
 
-//   static async updateLogo(logoLink, userId) {
-//     let sql = `UPDATE restaurants SET logo= ? WHERE ownerID = ?`
-//      return await db.query(sql, [logoLink, userId])
-//   }
+// get details of single menu
+static async getSingleItemDetails(itemId) {
+
+  const item = await ItemDB.findOne({
+    where: { id: itemId }
+  });
+  return item;
+}
+
   
 }
 export default ItemModel;

@@ -100,7 +100,27 @@ class MenuController {
     }
   };
 
-   
+   // get single menu details
+   static async getSingleMenuDetails(request, response) {
+    const { role} = request;
+    const menuId = request.query.menuId;
+
+    if (role !== 'owner') {
+      return response.status(403).json({ message: "You don't have permission to perform this action." });
+    }
+    
+    try {
+      const menu = await MenuModel.getSingleMenuDetails(menuId);
+      if (!menu[0]) {
+        return response.status(400).json("no menu found");
+      }
+      response.status(200).json(menu);
+    } catch (error) {
+      response.status(400).json(error);
+      console.log(error);
+    }
+  };
+
 
 
 }

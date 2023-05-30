@@ -41,6 +41,14 @@ class MenuModel {
     return menus;
   }
 
+   // get details of single menu
+   static async getMenusDetails(menuId) {
+
+    const menu = await MenuDB.findOne({
+      where: { id: menuId }
+    });
+    return menu;
+  }
 
 }
 export default MenuModel;
