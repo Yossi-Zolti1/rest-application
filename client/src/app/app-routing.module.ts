@@ -30,6 +30,7 @@ const routes: Routes = [
   { path: 'tables-details', component: TablesDetailsComponent },
   { path: 'menus-page', component: MenusPageComponent, canActivate: [AuthOwnerGuardService] },
   { path: 'create-menu', component: CreateMenuComponent, canActivate: [AuthOwnerGuardService] },
+  { path: 'create-menu/:menuId', component: CreateMenuComponent, canActivate: [AuthOwnerGuardService] },
   { path: 'menus-page', component: MenusPageComponent, canActivate: [AuthOwnerGuardService] },
   { path: 'departments-page/:menuId', component: DepartmentsPageComponent, canActivate: [AuthOwnerGuardService] },
   { path: 'add-department/:menuId', component: CreateDepartmentComponent, canActivate: [AuthOwnerGuardService] },

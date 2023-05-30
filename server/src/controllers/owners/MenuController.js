@@ -111,7 +111,7 @@ class MenuController {
     
     try {
       const menu = await MenuModel.getSingleMenuDetails(menuId);
-      if (!menu[0]) {
+      if (!menu) {
         return response.status(400).json("no menu found");
       }
       response.status(200).json(menu);

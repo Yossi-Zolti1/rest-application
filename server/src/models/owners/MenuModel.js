@@ -42,7 +42,7 @@ class MenuModel {
   }
 
    // get details of single menu
-   static async getMenusDetails(menuId) {
+   static async getSingleMenuDetails(menuId) {
 
     const menu = await MenuDB.findOne({
       where: { id: menuId }

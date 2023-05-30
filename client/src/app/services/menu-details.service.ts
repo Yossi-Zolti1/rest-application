@@ -52,4 +52,10 @@ export class MenuDetailsService {
         departmentId: departmentId,
       }})
   }
+  getSingleMenu(menuId: number): Observable<Menu>{
+    return this.http.get<Menu>(environment.baseUrl + '/owner/single_menu_details', {
+      params: {
+        menuId: menuId,
+      }})
+  }
 }
