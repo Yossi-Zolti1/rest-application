@@ -34,6 +34,7 @@ const routes: Routes = [
   { path: 'menus-page', component: MenusPageComponent, canActivate: [AuthOwnerGuardService] },
   { path: 'departments-page/:menuId', component: DepartmentsPageComponent, canActivate: [AuthOwnerGuardService] },
   { path: 'add-department/:menuId', component: CreateDepartmentComponent, canActivate: [AuthOwnerGuardService] },
+  { path: 'edit-department/:menuId/:departmentId', component: CreateDepartmentComponent, canActivate: [AuthOwnerGuardService] },
   { path: 'items-page/:departmentId', component: ItemsPageComponent, canActivate: [AuthOwnerGuardService] },
   { path: 'add-item/:departmentId', component: CreateItemComponent, canActivate: [AuthOwnerGuardService] },
 ];

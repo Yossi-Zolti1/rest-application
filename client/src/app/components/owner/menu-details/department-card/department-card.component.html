@@ -3,7 +3,7 @@
       <h1 class="title">{{ department.name }}</h1>
       <div class="options">
         <button (click)=addItems()  mat-button color="primary">הוסף מנות</button>
-        <button mat-button color="primary">ערוך פרטים</button>
+        <button (click)="editDetails()" mat-button color="primary">ערוך פרטים</button>
       </div>
     </mat-card-content>
   </mat-card>

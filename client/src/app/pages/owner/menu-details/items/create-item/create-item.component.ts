@@ -29,7 +29,6 @@ export class CreateItemComponent implements OnInit {
     this.formData.append('comment', this.itemForm.controls['comment'].value)
     this.formData.append('departmentId', this.departmentId)
     this.menuService.addItem(this.formData).subscribe(res => {
-      debugger;
     })
   }
   onFileSelected(e: any) {

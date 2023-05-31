@@ -113,8 +113,8 @@ class DepartmentController {
     
     try {
       const department = await DepartmentModel.getSingleDepartmentDetails(departmentId);
-      if (!department[0]) {
-        return response.status(400).json("no menu found");
+      if (!department) {
+        return response.status(400).json("no department found");
       }
       response.status(200).json(department);
     } catch (error) {
