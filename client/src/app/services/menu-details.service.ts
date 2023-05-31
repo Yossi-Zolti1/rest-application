@@ -28,6 +28,26 @@ export class MenuDetailsService {
       return of(err);
     }));
   }
+  deleteDepartment(departmentId: number) {
+    return this.http.delete(environment.baseUrl + '/owner/delete_department' , {
+      params: {
+        departmentId: departmentId
+      }
+    }).pipe(catchError(error => {
+      const err = error.statusCode;
+      return of(err);
+    }));
+  }
+  deleteItem(itemId: number) {
+    return this.http.delete(environment.baseUrl + '/owner/delete_item' , {
+      params: {
+        itemId: itemId
+      }
+    }).pipe(catchError(error => {
+      const err = error.statusCode;
+      return of(err);
+    }));
+  }
   addDepartment(department: FormData){
     return this.http.post(environment.baseUrl + '/owner/add_department', department).pipe(catchError(error => {
       const err = error.statusCode;
@@ -70,10 +90,25 @@ export class MenuDetailsService {
       return of(err);
      }))
   }
+  updateItem(item: FormData){
+    return this.http.put(environment.baseUrl + '/owner/update_item', item).pipe(catchError(error => {
+      const err = error.statusCode;
+      return of(err);
+     }))
+  }
   getSingleDepartment(departmentId: number): Observable<Department>{
     return this.http.get<Department>(environment.baseUrl + '/owner/single_department_details', {
       params: {
         departmentId: departmentId,
       }})
+  }
+  getSingleItem(itemId: number): Observable<Item>{
+    return this.http.get<Item>(environment.baseUrl + '/owner/single_item_details', {
+      params: {
+        itemId: itemId,
+      }}).pipe(catchError(error => {
+        const err = error.statusCode;
+        return of(err);
+       }))
   }
 }

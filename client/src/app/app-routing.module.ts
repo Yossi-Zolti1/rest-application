@@ -37,6 +37,7 @@ const routes: Routes = [
   { path: 'edit-department/:menuId/:departmentId', component: CreateDepartmentComponent, canActivate: [AuthOwnerGuardService] },
   { path: 'items-page/:departmentId', component: ItemsPageComponent, canActivate: [AuthOwnerGuardService] },
   { path: 'add-item/:departmentId', component: CreateItemComponent, canActivate: [AuthOwnerGuardService] },
+  { path: 'edit-item/:itemId', component: CreateItemComponent, canActivate: [AuthOwnerGuardService] },
 ];
 
 @NgModule({

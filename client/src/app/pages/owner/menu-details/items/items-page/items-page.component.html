@@ -11,7 +11,7 @@
     
     <div class="itemsList">
           <ng-container *ngFor="let item of items$ | async">
-            <app-item-card [item]="item" [itemId]="item.id!"></app-item-card>
+            <app-item-card (onFunctionCall)="refreshList()" [item]="item" [itemId]="item.id!"></app-item-card>
             <!-- Add a line break after every second card -->
             
           </ng-container>
