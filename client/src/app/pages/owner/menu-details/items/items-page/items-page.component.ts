@@ -37,5 +37,8 @@ export class ItemsPageComponent implements OnInit {
       this.router.navigate(["/"]);
     }
   }
+  refreshList(){
+    this.items$ = this.menuService.getItems(+this.departmentId)
+  }
 
 }

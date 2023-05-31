@@ -38,6 +38,16 @@ export class MenuDetailsService {
       return of(err);
     }));
   }
+  deleteItem(itemId: number) {
+    return this.http.delete(environment.baseUrl + '/owner/delete_item' , {
+      params: {
+        itemId: itemId
+      }
+    }).pipe(catchError(error => {
+      const err = error.statusCode;
+      return of(err);
+    }));
+  }
   addDepartment(department: FormData){
     return this.http.post(environment.baseUrl + '/owner/add_department', department).pipe(catchError(error => {
       const err = error.statusCode;
