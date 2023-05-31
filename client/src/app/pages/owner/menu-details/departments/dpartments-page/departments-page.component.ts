@@ -38,4 +38,7 @@ export class DepartmentsPageComponent implements OnInit {
       this.router.navigate(["/"]);
     }
   }
+  refreshList(){
+    this.departments$ = this.menuService.getDepartments(+this.menuId);
+  }
 }

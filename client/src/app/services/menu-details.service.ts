@@ -28,6 +28,16 @@ export class MenuDetailsService {
       return of(err);
     }));
   }
+  deleteDepartment(departmentId: number) {
+    return this.http.delete(environment.baseUrl + '/owner/delete_department' , {
+      params: {
+        departmentId: departmentId
+      }
+    }).pipe(catchError(error => {
+      const err = error.statusCode;
+      return of(err);
+    }));
+  }
   addDepartment(department: FormData){
     return this.http.post(environment.baseUrl + '/owner/add_department', department).pipe(catchError(error => {
       const err = error.statusCode;
