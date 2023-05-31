@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Menu } from 'src/app/core/entities/menu';
 import { AuthService } from 'src/app/services/auth.service';
 import { MenuDetailsService } from 'src/app/services/menu-details.service';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -29,7 +30,7 @@ export class CreateMenuComponent implements OnInit {
         this.menuForm.patchValue({
           name: res.name
         })
-        this.imageUrl = res.image!
+        this.imageUrl = environment.baseUrl + res.image!
         this.isMenuExixst = true
       })
     }

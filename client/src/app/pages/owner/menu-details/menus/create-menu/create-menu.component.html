@@ -15,8 +15,8 @@
           <input type="file" class="form-control-file" id="logo" (change)="onFileSelected($event)">
         </div>
         <br>
-        <div *ngIf="imageUrl.length">
-          <img [src]="imageUrl">
+        <div *ngIf="imageUrl.length > 0">
+          <img [src]="imageUrl" height="80px" width="80px">
         </div>
         <div class="login-button">
           <button mat-raised-button color="primary" type="submit">שלח</button>
