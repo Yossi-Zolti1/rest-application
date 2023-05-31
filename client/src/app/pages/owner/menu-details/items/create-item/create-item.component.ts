@@ -13,7 +13,7 @@ export class CreateItemComponent implements OnInit {
   departmentId!:string
   itemId!:string
   imageUrl!:string
-  isItemExixst:boolean = false
+  isItemExist:boolean = false
   constructor(public fb: FormBuilder, private menuService: MenuDetailsService, private route: Router
     ,private routes: ActivatedRoute) { }
     itemForm = this.fb.group({
@@ -26,7 +26,8 @@ export class CreateItemComponent implements OnInit {
   ngOnInit(): void {
     this.departmentId = this.routes.snapshot.paramMap.get('departmentId')!;
     this.itemId = this.routes.snapshot.paramMap.get('itemId')!;
-
+    console.log(this.itemId);
+    
     if(this.itemId != null){
       this.menuService.getSingleItem(+this.itemId).subscribe(res => {
         this.itemForm.patchValue({
@@ -36,7 +37,7 @@ export class CreateItemComponent implements OnInit {
           comment: res.comment
         })
         this.imageUrl = environment.baseUrl + res.image!
-        this.isItemExixst = true
+        this.isItemExist = true
       })
     }
   }

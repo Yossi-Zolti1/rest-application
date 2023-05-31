@@ -1,10 +1,10 @@
 <div class="login-container">
     <mat-card class="login-card">
-      <mat-card-title class="text-center">צור מנה</mat-card-title>
+      <mat-card-title class="text-center">{{ isItemExist ? 'ערוך מנה' : 'צור מנה' }}</mat-card-title>
       <br>
       <br>
       <mat-card-content>
-        <form [formGroup]="itemForm" (ngSubmit)="isItemExixst? updateItem() : addItem()">
+        <form [formGroup]="itemForm" (ngSubmit)="isItemExist? updateItem() : addItem()">
           <mat-form-field appearance="outline" class="input-field">
             <mat-label> שם מנה</mat-label>
             <input matInput type="text" formControlName="name" required>
