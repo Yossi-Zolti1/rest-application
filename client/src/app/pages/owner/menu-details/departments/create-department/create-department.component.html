@@ -4,7 +4,7 @@
     <br>
     <br>
     <mat-card-content>
-      <form [formGroup]="departmentForm" (ngSubmit)="addDepartment()">
+      <form [formGroup]="departmentForm" (ngSubmit)="isDepartmentExixst? updateDepartment() : addDepartment()">
         <mat-form-field appearance="outline" class="input-field">
           <mat-label> שם מחלקה</mat-label>
           <input matInput type="text" formControlName="name" required>
@@ -15,6 +15,9 @@
           <input type="file" class="form-control-file" id="logo" (change)="onFileSelected($event)">
         </div>
         <br>
+        <div *ngIf="imageUrl">
+            <img [src]="imageUrl" height="80px" width="80px">
+        </div>
         <div class="login-button">
           <button mat-raised-button color="primary" type="submit">שלח</button>
         </div>

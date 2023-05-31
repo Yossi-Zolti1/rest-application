@@ -64,4 +64,16 @@ export class MenuDetailsService {
       return of(err);
      }))
   }
+  updateDepartment(department: FormData){
+    return this.http.put(environment.baseUrl + '/owner/update_department', department).pipe(catchError(error => {
+      const err = error.statusCode;
+      return of(err);
+     }))
+  }
+  getSingleDepartment(departmentId: number): Observable<Department>{
+    return this.http.get<Department>(environment.baseUrl + '/owner/single_department_details', {
+      params: {
+        departmentId: departmentId,
+      }})
+  }
 }

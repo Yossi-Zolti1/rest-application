@@ -12,7 +12,7 @@
     
     <div class="departmentsList">
           <ng-container *ngFor="let department of departments$ | async">
-            <app-department-card [department]="department" [departmentId]="department.id!"></app-department-card>
+            <app-department-card [menuId]="menuId" [department]="department" [departmentId]="department.id!"></app-department-card>
             <!-- Add a line break after every second card -->
             
           </ng-container>
