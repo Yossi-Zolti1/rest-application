@@ -1,8 +1,9 @@
 
 <div class="manager-container">
-  <app-toolbar [isAuth]="isAuth" [userName]="userName"></app-toolbar>
+  <app-toolbar  [isAuth]="isAuth" [userName]="userName"></app-toolbar>
 
 <mat-grid-list cols="3" rowHeight="fit" gutterSize="15px" style="height: 400px; width: 300;">
+  
   <a href="restaurant-details">
     <mat-grid-tile class="custom-tile">{{ restId ? 'פרטי מסעדה' : 'הוסף מסעדה' }}</mat-grid-tile>
   </a>

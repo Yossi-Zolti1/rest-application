@@ -39,6 +39,7 @@ import { MatIconModule } from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import {MatMenuModule} from '@angular/material/menu';
 
 
 
@@ -83,7 +84,9 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatListModule,
     MatToolbarModule,
     DragDropModule,    
-    MatSidenavModule
+    MatSidenavModule,
+    MatMenuModule
+    
   ],
   providers: [{ 
     provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi:true

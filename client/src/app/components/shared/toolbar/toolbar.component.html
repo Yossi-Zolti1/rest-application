@@ -1,42 +1,69 @@
-<mat-toolbar  class="toolbar">
-    <mat-toolbar-row>
-        <span *ngIf="!isPhoneScreen; else desktopContent"></span>
-        <span class="spacer"></span>
-    
-        <!-- <a mat-button routerLink="/" *ngIf="!isPhoneScreen"> -->
-          <a mat-button routerLink="/" >
-            <mat-icon>home</mat-icon>
-        </a>
-        <!-- <div *ngIf="!isPhoneScreen"> -->
-          <div>
-          <a mat-button routerLink="/owner" *ngIf="isAuth" >
-            <mat-icon>account_circle</mat-icon>
-        </a>
-        </div>
-       
-        
-        <span class="spacer"></span>
-        <!-- <div *ngIf="!isPhoneScreen"> -->
-          <div >
-          <span *ngIf="isAuth; else desktopContent2" class="phone-content">
-            <span>{{ userName}}</span>
-            <button mat-icon-button (click)="logout()">
-              <mat-icon>exit_to_app</mat-icon>
-            </button>
-          </span>
-        </div>
-       
-      </mat-toolbar-row>
-    
-      <ng-template #desktopContent>
-        <button mat-button (click)="sendVith()">
-            <mat-icon>menu</mat-icon>
+<mat-toolbar class="toolbar">
+  <mat-toolbar-row>
+
+    <span *ngIf="!isPhoneScreen; else phoneContent"></span>
+    <span class="spacer"></span>
+
+    <a mat-button routerLink="/" *ngIf="!isPhoneScreen">
+      <mat-icon>home</mat-icon>
+    </a>
+    <div *ngIf="!isPhoneScreen">
+      <a mat-button routerLink="/owner" *ngIf="isAuth">
+        <mat-icon>account_circle</mat-icon>
+      </a>
+    </div>
+
+    <span class="spacer"></span>
+    <div *ngIf="!isPhoneScreen">
+      <span *ngIf="isAuth; else phoneContent2" class="phone-content">
+        <span>{{ userName}}</span>
+        <button mat-icon-button (click)="logout()">
+          <mat-icon>exit_to_app</mat-icon>
         </button>
-     
+      </span>
+    </div>
 
-      </ng-template>
 
-      <ng-template #desktopContent2>
-          <a href="/login" style="color: black; text-decoration: none;">היכנס</a>       
-      </ng-template>
-  </mat-toolbar>
+
+    <ng-template #phoneContent>
+        <button mat-button [matMenuTriggerFor]="menu"><mat-icon>menu</mat-icon></button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item routerLink="/">
+            <a mat-list-item> <mat-icon>home</mat-icon></a> Home
+          </button>
+          <button mat-menu-item routerLink="/owner" *ngIf="isAuth">
+            <a mat-list-item> <mat-icon>account_circle</mat-icon></a> Account
+          </button>
+          <button mat-menu-item (click)="logout()" *ngIf="isAuth else phoneContent3">
+            <a mat-list-item> <mat-icon>exit_to_app</mat-icon></a> LogOut
+          </button>
+        </mat-menu>
+    </ng-template>
+
+    <ng-template #phoneContent2>
+      <a href="/login" style="color: black; text-decoration: none;">היכנס</a>
+    </ng-template>
+
+    <ng-template #phoneContent3>
+      <button mat-menu-item  routerLink="/login">
+        <a mat-list-item> <mat-icon>account_circle</mat-icon></a> Account
+      </button>
+    </ng-template>
+  </mat-toolbar-row>
+
+</mat-toolbar>
+
+
+
+<!-- <mat-sidenav-container>
+  <mat-sidenav #sidenav mode="side">
+    <mat-nav-list>
+      <a mat-list-item>Home</a>
+      <a mat-list-item>Account</a>
+      <a mat-list-item>LogOut</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div style="height: 100vh;"></div>
+  </mat-sidenav-content>
+</mat-sidenav-container> -->
