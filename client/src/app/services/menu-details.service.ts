@@ -58,4 +58,10 @@ export class MenuDetailsService {
         menuId: menuId,
       }})
   }
+  updateMenu(menu:FormData){
+    return this.http.put(environment.baseUrl + '/owner/update_menu', menu).pipe(catchError(error => {
+      const err = error.statusCode;
+      return of(err);
+     }))
+  }
 }

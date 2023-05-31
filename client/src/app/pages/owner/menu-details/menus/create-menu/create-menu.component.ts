@@ -15,6 +15,8 @@ export class CreateMenuComponent implements OnInit {
   formData: FormData = new FormData();
   menu!:Menu
   menuId!:string
+  imageUrl!:string
+  isMenuExixst: boolean = false
   constructor(public fb: FormBuilder, private menuService: MenuDetailsService, private route: Router
     ,private auth: AuthService, private routes: ActivatedRoute) { }
   menuForm = this.fb.group({
@@ -27,6 +29,8 @@ export class CreateMenuComponent implements OnInit {
         this.menuForm.patchValue({
           name: res.name
         })
+        this.imageUrl = res.image!
+        this.isMenuExixst = true
       })
     }
   }
@@ -36,6 +40,19 @@ export class CreateMenuComponent implements OnInit {
     this.menuService.addMenu(this.formData).subscribe(res => {
       if(res === 400 || res === 403){
         alert('ההוספה נכשלה')
+      }
+      else{
+        this.route.navigate(['menus-page']);
+      }
+    })
+  }
+  updateMenu(){
+    this.formData.append('menuId', this.menuId)
+    this.formData.append('name', this.menuForm.controls['name'].value)
+    this.formData.append('reatId', this.auth.getRestId())
+    this.menuService.updateMenu(this.formData).subscribe(res => {
+      if(res === 400 || res === 403){
+        alert('העדכון נכשלה')
       }
       else{
         this.route.navigate(['menus-page']);
