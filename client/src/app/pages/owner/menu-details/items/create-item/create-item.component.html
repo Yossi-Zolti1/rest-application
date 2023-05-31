@@ -4,7 +4,7 @@
       <br>
       <br>
       <mat-card-content>
-        <form [formGroup]="itemForm" (ngSubmit)="addItem()">
+        <form [formGroup]="itemForm" (ngSubmit)="isItemExixst? updateItem() : addItem()">
           <mat-form-field appearance="outline" class="input-field">
             <mat-label> שם מנה</mat-label>
             <input matInput type="text" formControlName="name" required>

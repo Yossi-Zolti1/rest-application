@@ -90,10 +90,25 @@ export class MenuDetailsService {
       return of(err);
      }))
   }
+  updateItem(item: FormData){
+    return this.http.put(environment.baseUrl + '/owner/update_item', item).pipe(catchError(error => {
+      const err = error.statusCode;
+      return of(err);
+     }))
+  }
   getSingleDepartment(departmentId: number): Observable<Department>{
     return this.http.get<Department>(environment.baseUrl + '/owner/single_department_details', {
       params: {
         departmentId: departmentId,
       }})
+  }
+  getSingleItem(itemId: number): Observable<Item>{
+    return this.http.get<Item>(environment.baseUrl + '/owner/single_item_details', {
+      params: {
+        itemId: itemId,
+      }}).pipe(catchError(error => {
+        const err = error.statusCode;
+        return of(err);
+       }))
   }
 }
