@@ -3,10 +3,12 @@
         <span *ngIf="!isPhoneScreen; else desktopContent"></span>
         <span class="spacer"></span>
     
-        <a mat-button routerLink="/" *ngIf="!isPhoneScreen">
+        <!-- <a mat-button routerLink="/" *ngIf="!isPhoneScreen"> -->
+          <a mat-button routerLink="/" >
             <mat-icon>home</mat-icon>
         </a>
-        <div *ngIf="!isPhoneScreen">
+        <!-- <div *ngIf="!isPhoneScreen"> -->
+          <div>
           <a mat-button routerLink="/owner" *ngIf="isAuth" >
             <mat-icon>account_circle</mat-icon>
         </a>
@@ -14,7 +16,8 @@
        
         
         <span class="spacer"></span>
-        <div *ngIf="!isPhoneScreen">
+        <!-- <div *ngIf="!isPhoneScreen"> -->
+          <div >
           <span *ngIf="isAuth; else desktopContent2" class="phone-content">
             <span>{{ userName}}</span>
             <button mat-icon-button (click)="logout()">
@@ -29,6 +32,8 @@
         <button mat-button (click)="sendVith()">
             <mat-icon>menu</mat-icon>
         </button>
+     
+
       </ng-template>
 
       <ng-template #desktopContent2>

@@ -21,6 +21,12 @@ import { DepartmentsPageComponent } from './pages/owner/menu-details/departments
 import { CreateDepartmentComponent } from './pages/owner/menu-details/departments/create-department/create-department.component';
 import { ToolbarComponent } from './components/shared/toolbar/toolbar.component';
 import { ConfirmationDialogComponent } from './components/shared/dialogs/confirmation-dialog/confirmation-dialog.component';
+import { TablesDetailsComponent } from './pages/owner/tablesPage/tables-details/tables-details.component';
+import { ItemsPageComponent } from './pages/owner/menu-details/items/items-page/items-page.component';
+import { DepartmentCardComponent } from './components/owner/menu-details/department-card/department-card.component';
+import { ItemCardComponent } from './components/owner/menu-details/item-card/item-card.component';
+import { CreateItemComponent } from './pages/owner/menu-details/items/create-item/create-item.component';
+
 
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import {MatButtonModule} from '@angular/material/button';
@@ -32,11 +38,8 @@ import {MatInputModule} from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {DragDropModule} from '@angular/cdk/drag-drop';
-import { TablesDetailsComponent } from './pages/owner/tablesPage/tables-details/tables-details.component';
-import { ItemsPageComponent } from './pages/owner/menu-details/items/items-page/items-page.component';
-import { DepartmentCardComponent } from './components/owner/menu-details/department-card/department-card.component';
-import { ItemCardComponent } from './components/owner/menu-details/item-card/item-card.component';
-import { CreateItemComponent } from './pages/owner/menu-details/items/create-item/create-item.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
+
 
 
 
@@ -80,6 +83,7 @@ import { CreateItemComponent } from './pages/owner/menu-details/items/create-ite
     MatListModule,
     MatToolbarModule,
     DragDropModule,    
+    MatSidenavModule
   ],
   providers: [{ 
     provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi:true

@@ -16,7 +16,6 @@ export class ToolbarComponent implements OnInit {
 
   isPhoneScreen: boolean = false;
 
-
   ngOnInit(): void {    
     this.checkScreenSize();
   }

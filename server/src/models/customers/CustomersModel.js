@@ -1,4 +1,7 @@
 import UsersDB from "../../../config/models/users.js";
+import RestDB from "../../../config/models/restaurants.js";
+// import { Op } from 'sequelize';
+import Fuse from "fuse.js";
 
 
 class CustomersModel {
@@ -17,7 +20,47 @@ class CustomersModel {
     return newUser;
   }
 
+  // get all resrs
+  static async getRestsDetails(currentPage, pagesSize) {
 
+    // var currentPage rised only 1 every loading and the offset calculate the position
+    const offset = (currentPage - 1) * pagesSize;
+
+    const restaurants = await RestDB.findAll({
+      limit: pagesSize,
+      offset: offset
+    });
+
+    return restaurants;
+  }
+
+  // get search rest by name
+  // static async getRestByName(nameInserted) {
+
+  //   const restaurants = await RestDB.findAll({
+  //     where: {
+  //       [Op.or]: [
+  //         { name: nameInserted },
+  //         { name: { [Op.like]: `%${nameInserted}%` } }
+  //       ]
+  //     }
+  //   });
+
+  //   return restaurants;
+  // }
+
+
+  // get search rest by name
+  static async getRestByName(nameInserted) {
+
+    const restaurants = await RestDB.findAll();
+    
+    const fuse = new Fuse(restaurants, { keys: ['name'] });
+    const results = fuse.search(nameInserted);
+    const matchedRestaurants = results.map((result) => result.item);
+
+    return matchedRestaurants;
+  }
 
 }
 export default CustomersModel;

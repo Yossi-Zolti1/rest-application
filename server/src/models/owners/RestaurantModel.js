@@ -5,14 +5,6 @@ dotenv.config();
 class RestaurantModel {
   constructor() { }
 
-  static async getRestDetails(userId) {
-
-    const restaurants = await RestDB.findAll({
-      where: { owner_id: userId }
-    });
-    return restaurants;
-  }
-
   static async addRest(rest, userId) {
 
     const newRestaurant = await RestDB.create({
@@ -44,6 +36,16 @@ class RestaurantModel {
     );
     return updatedRestaurant;
   }
+
+  
+  static async getRestDetails(userId) {
+
+    const restaurants = await RestDB.findAll({
+      where: { owner_id: userId }
+    });
+    return restaurants;
+  }
+
   
 }
 export default RestaurantModel;
