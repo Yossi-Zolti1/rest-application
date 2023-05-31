@@ -1,4 +1,9 @@
 <div class="login-container">
+  <app-toolbar [isAuth]="isAuth" [userName]="userName"></app-toolbar>
+
+  <div class="form-container">
+
+ 
     <mat-card class="login-card">
       <mat-card-title class="text-center">{{ isItemExist ? 'ערוך מנה' : 'צור מנה' }}</mat-card-title>
       <br>
@@ -37,5 +42,6 @@
       </mat-card-content>
       
     </mat-card>
+  </div>
   </div>
   

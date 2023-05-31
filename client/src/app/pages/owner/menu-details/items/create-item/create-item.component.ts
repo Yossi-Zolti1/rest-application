@@ -3,6 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MenuDetailsService } from 'src/app/services/menu-details.service';
 import { environment } from 'src/environments/environment';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-create-item',
@@ -14,8 +15,10 @@ export class CreateItemComponent implements OnInit {
   itemId!:string
   imageUrl!:string
   isItemExist:boolean = false
+  isAuth = false;
+  userName: string = "";
   constructor(public fb: FormBuilder, private menuService: MenuDetailsService, private route: Router
-    ,private routes: ActivatedRoute) { }
+    ,private routes: ActivatedRoute, private auth: AuthService) { }
     itemForm = this.fb.group({
       name:[''],
       description:[''],
@@ -24,6 +27,7 @@ export class CreateItemComponent implements OnInit {
     })
     formData: FormData = new FormData();
   ngOnInit(): void {
+    this.showToolbarDetails();
     this.departmentId = this.routes.snapshot.paramMap.get('departmentId')!;
     this.itemId = this.routes.snapshot.paramMap.get('itemId')!;
     console.log(this.itemId);
@@ -63,4 +67,17 @@ export class CreateItemComponent implements OnInit {
   onFileSelected(e: any) {
     this.formData.append('my', e.target.files[0])
   }
+
+
+  showToolbarDetails(): void {
+    let auth = this.auth.checkAuth();
+    if (auth) {
+      this.isAuth = true;
+      this.userName = this.auth.getUserName();
+    }else{
+      this.isAuth = false;
+      this.route.navigate(["/"]);
+    }
+  }
+
 }
