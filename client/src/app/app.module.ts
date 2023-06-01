@@ -27,7 +27,7 @@ import { DepartmentCardComponent } from './components/owner/menu-details/departm
 import { ItemCardComponent } from './components/owner/menu-details/item-card/item-card.component';
 import { CreateItemComponent } from './pages/owner/menu-details/items/create-item/create-item.component';
 
-
+import { FormsModule } from '@angular/forms';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import {MatButtonModule} from '@angular/material/button';
 import {MatGridListModule} from '@angular/material/grid-list';
@@ -40,6 +40,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import {MatMenuModule} from '@angular/material/menu';
+import { RestaurantSearchComponent } from './components/shared/search/restaurant-search/restaurant-search.component';
 
 
 
@@ -65,7 +66,8 @@ import {MatMenuModule} from '@angular/material/menu';
     ItemsPageComponent,
     DepartmentCardComponent,
     ItemCardComponent,
-    CreateItemComponent
+    CreateItemComponent,
+    RestaurantSearchComponent
   ],
   imports: [
     BrowserModule,
@@ -85,7 +87,8 @@ import {MatMenuModule} from '@angular/material/menu';
     MatToolbarModule,
     DragDropModule,    
     MatSidenavModule,
-    MatMenuModule
+    MatMenuModule,
+    FormsModule
     
   ],
   providers: [{ 
