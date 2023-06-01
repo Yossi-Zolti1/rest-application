@@ -13,6 +13,7 @@ import { MenuDetailsService } from 'src/app/services/menu-details.service';
 export class ItemCardComponent implements OnInit {
   @Input() item!: Item;
   @Input() itemId!: number;
+  @Input() departmentId!: string;
   @Output() onFunctionCall: EventEmitter<any> = new EventEmitter<any>();
   constructor(private menuService: MenuDetailsService, 
     private dialog: MatDialog, private route: Router) { }
@@ -40,6 +41,6 @@ export class ItemCardComponent implements OnInit {
     })
   }
   editDetails(){
-    this.route.navigate([`/edit-item/${this.itemId}`])
+    this.route.navigate([`/edit-item/${this.itemId}/${this.departmentId}`])
   }
 }
