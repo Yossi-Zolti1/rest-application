@@ -10,6 +10,7 @@ import { Table } from '../core/entities/table';
 export class TableDetailsService {
 
   constructor(private http: HttpClient) { }
+
   addTables(tables: object, restId: string){
 
         const details: object[] = [{restId}, tables]
@@ -19,5 +20,13 @@ export class TableDetailsService {
       return of(err);
      }))
   }
+
+  getTables(restId: string){
+
+return this.http.get(environment.baseUrl + '/owner/tables_details', {
+  params: {
+    restId: restId,
+  }})
+}
 
 }

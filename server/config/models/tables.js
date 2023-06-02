@@ -1,7 +1,7 @@
 import DataTypes from "sequelize";
 import sequelize from "../database/db.js";
 
-const Menu = sequelize.define(
+const Table = sequelize.define(
   'Table',
   {
     id: {
@@ -21,11 +21,11 @@ const Menu = sequelize.define(
       }
     },
     positionX: {
-        type: DataTypes.NUMBER,
+        type: DataTypes.FLOAT,
         allowNull: false,
       },
       positionY: {
-        type: DataTypes.NUMBER,
+        type: DataTypes.FLOAT,
         allowNull: false,
       },
     restaurant_id: {

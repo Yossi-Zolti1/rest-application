@@ -1,5 +1,4 @@
-// import MenuModel from '../../models/owners/MenuModel.js';
-// import UploadImageController from '../owners/UploadImageController.js';
+import TableModel from '../../models/owners/TableModel.js';
 
 const SAVE_ERROR = "Failed to save table";
 
@@ -10,40 +9,46 @@ class TableController {
   // handle add new menu
   static async addTables(request, response) {
 
-
-    console.log(request.body[0]);
-    console.log(request.body[1]);
-    console.log(request.body[1]);
-    console.log(typeof(request.body[1][0].position.x)  );
-
-    response.status(200).json("success");
-
-  //   const { role} = request;
+     //   const { role} = request;
   //   if (role !== 'owner') {
   //     return response.status(403).json({ message: "You don't have permission to perform this action." });
   //   }
 
-  //   if (request.files) {
-  //     // If file is present in the request, direct to upload controller
-  //     const link = await UploadImageController.uploadImage(request, response, "menus");
-  //     if (!link.link1) {
-  //       return response.status(405).json({ msg: `Error: Upload file failed` });
-  //     }
-  //     request.body.image = link.link1;
-  //   }
+    const restId = request.body[0].restId;
 
-  //   // call function to save new menu in SQL
-  //   try {
-  //     const menu = await MenuModel.addMenu(request.body);
-  //     response.status(200).json(menu);
-  //   } catch (error) {
-  //     response.status(400).json({ message: SAVE_ERROR, details: error });
-  //     console.log(error);
-  //   }
+    const tables = request.body[1];
+
+      try {
+      const tables1 = await TableModel.addTables(tables, restId);
+      response.status(200).json(tables1);
+    } catch (error) {
+      response.status(400).json({ message: SAVE_ERROR, details: error });
+      console.log(error);
+    }
    };
 
   
+ // get all tables details
+   static async getTablesDetails(request, response) {
 
+    const { role} = request;
+    const restId = request.query.restId;
+
+    // if (role !== 'owner') {
+    //   return response.status(403).json({ message: "You don't have permission to perform this action." });
+    // }
+    
+    try {
+      const tables = await TableModel.getTablesDetails(restId);
+      if (!tables[0]) {
+        return response.status(400).json("no tables found");
+      }
+      response.status(200).json(tables);
+    } catch (error) {
+      response.status(400).json(error);
+      console.log(error);
+    }
+  };
 
 
 }

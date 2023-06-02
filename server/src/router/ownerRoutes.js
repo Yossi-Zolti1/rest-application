@@ -35,7 +35,7 @@ router.get('/single_item_details', authToken, ItemClass.getSingleItemDetails);
 router.delete('/delete_item', authToken, ItemClass.deleteItem);
 
 router.post('/add_tables', TableClass.addTables);
-
+router.get('/tables_details', TableClass.getTablesDetails);
 
 
 

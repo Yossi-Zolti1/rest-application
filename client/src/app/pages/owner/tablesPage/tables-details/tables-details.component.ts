@@ -16,6 +16,12 @@ export class TablesDetailsComponent {
     , private routes: ActivatedRoute, private auth: AuthService,) { }
 
   tableNumber: number = 1;
+  // public tables$ = this.tableService.getTables(this.auth.getRestId());
+
+  ngOnInit(): void {
+    this.getTablesDetails();
+  }
+
   createNewItem() {
     const newItem = {
       name: this.tableNumber++,
@@ -44,5 +50,27 @@ export class TablesDetailsComponent {
       }
     })
   }
+
+  getTablesDetails(){
+    
+    let  restId: string =  this.auth.getRestId();
+
+    this.tableService.getTables(restId).subscribe(res => {
+      if(res === 400 || res === 403){
+        alert('קבלת הנתונים נכשלה נכשלה')
+      }
+      else{
+        
+        console.log(res);
+        
+          
+        
+      }
+      
+    })
+
+  }
+
+
 }
 
