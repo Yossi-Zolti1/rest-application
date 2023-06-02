@@ -23,7 +23,8 @@ class ItemModel {
   static async updateItem(item) {
 
     const updatedItem = await ItemDB.update(
-      { name: item.name, image: item.image },
+      { name: item.name, description: item.description, price: item.price,
+         image: item.image, comment: item.description },
       { where: { id: item.itemId } }
     );
     return updatedItem;

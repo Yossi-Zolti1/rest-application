@@ -13,7 +13,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class CreateItemComponent implements OnInit {
   departmentId!:string
   itemId!:string
-  imageUrl!:string
+  imageUrl!:string | null
   isItemExist:boolean = false
   isAuth = false;
   userName: string = "";
@@ -40,7 +40,9 @@ export class CreateItemComponent implements OnInit {
           price: res.price,
           comment: res.comment
         })
-        this.imageUrl = environment.baseUrl + res.image!
+        if(res.image){
+          this.imageUrl = environment.baseUrl + res.image!
+        }
         this.isItemExist = true
       })
     }
@@ -52,6 +54,12 @@ export class CreateItemComponent implements OnInit {
     this.formData.append('comment', this.itemForm.controls['comment'].value)
     this.formData.append('departmentId', this.departmentId)
     this.menuService.addItem(this.formData).subscribe(res => {
+      if(res === 400 || res === 403){
+        alert('ההוספה נכשלה')
+      }
+      else{
+        this.route.navigate([`items-page/${this.departmentId}`]);
+      }
     })
   }
   updateItem(){
@@ -62,6 +70,12 @@ export class CreateItemComponent implements OnInit {
     this.formData.append('departmentId', this.departmentId)
     this.formData.append('itemId', this.itemId)
     this.menuService.updateItem(this.formData).subscribe(res => {
+      if(res === 400 || res === 403){
+        alert('העדכון נכשלה')
+      }
+      else{
+        this.route.navigate([`items-page/${this.departmentId}`]);
+      }
     })
   }
   onFileSelected(e: any) {
