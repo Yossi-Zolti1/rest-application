@@ -27,4 +27,14 @@ export class RestaurantDetailsService {
       return of(err);
      }))
   }
+  getAllRestaurants(page: number):Observable<Restaurant[] | any> {
+    return this.http.get<Restaurant | any>(environment.baseUrl + `/customer/rests_details`, {
+      params: {
+        currentPage: page,
+      }
+    }).pipe(catchError(error => {
+      const statusCode = error.status;
+      return of(statusCode);
+  }))
+  }
 }

@@ -41,6 +41,8 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import {MatMenuModule} from '@angular/material/menu';
 import { RestaurantSearchComponent } from './components/shared/search/restaurant-search/restaurant-search.component';
+import { RestaurantCardComponent } from './components/shared/restaurant-card/restaurant-card.component';
+import { RestaurantsComponent } from './pages/shared/restaurants/restaurants.component';
 
 
 
@@ -67,7 +69,9 @@ import { RestaurantSearchComponent } from './components/shared/search/restaurant
     DepartmentCardComponent,
     ItemCardComponent,
     CreateItemComponent,
-    RestaurantSearchComponent
+    RestaurantSearchComponent,
+    RestaurantCardComponent,
+    RestaurantsComponent
   ],
   imports: [
     BrowserModule,

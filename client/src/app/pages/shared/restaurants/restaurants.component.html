@@ -1,0 +1,12 @@
+<div class="restaurantsList">
+    <ng-container *ngFor="let restaurant of restaurants$ | async">
+   <app-restaurant-card [restaurant]="restaurant"></app-restaurant-card>
+</ng-container>
+</div>
+<!-- <div class="restaurantsList">
+    <ng-container *ngFor="let restaurant of restaurants$ | async">
+      <app-restaurant-card [restaurant]="restaurant"></app-restaurant-card>
+    </ng-container>
+    <div class="loading-spinner" *ngIf="(restaurants$ | async)?.length === 0">Loading...</div>
+  </div>
+   -->
