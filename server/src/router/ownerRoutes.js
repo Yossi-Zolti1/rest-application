@@ -4,6 +4,7 @@ import RestaurantClass from '../controllers/owners/ResturantController.js';
 import MenuClass from '../controllers/owners/MenuController.js';
 import DepartmentClass from '../controllers/owners/DepartmentController.js';
 import ItemClass from '../controllers/owners/ItemController.js';
+import TableClass from '../controllers/owners/TableController.js';
 import authToken from '../middleware/authToken.js';
 
 
@@ -33,6 +34,8 @@ router.get('/items_details', authToken, ItemClass.getItemsDetails);
 router.get('/single_item_details', authToken, ItemClass.getSingleItemDetails);
 router.delete('/delete_item', authToken, ItemClass.deleteItem);
 
+router.post('/add_tables', TableClass.addTables);
+router.get('/tables_details', TableClass.getTablesDetails);
 
 
 
