@@ -43,7 +43,8 @@ import {MatMenuModule} from '@angular/material/menu';
 import { RestaurantSearchComponent } from './components/shared/search/restaurant-search/restaurant-search.component';
 import { RestaurantCardComponent } from './components/shared/restaurant-card/restaurant-card.component';
 import { RestaurantsComponent } from './pages/shared/restaurants/restaurants.component';
-
+import { ScrollingModule } from '@angular/cdk/scrolling';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 
 
@@ -92,7 +93,9 @@ import { RestaurantsComponent } from './pages/shared/restaurants/restaurants.com
     DragDropModule,    
     MatSidenavModule,
     MatMenuModule,
-    FormsModule
+    FormsModule,
+    ScrollingModule,
+    InfiniteScrollModule
     
   ],
   providers: [{ 

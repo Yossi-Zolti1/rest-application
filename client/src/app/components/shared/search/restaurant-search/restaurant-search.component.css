@@ -9,3 +9,11 @@ mat-form-field {
     left: 50%;
     transform: translate(-50%, -50%);
 }
+@media (min-width: 768px) {
+    mat-form-field {
+        width: 700px;
+    }
+}
+mat-icon{
+    margin-left: 1rem;
+}

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, of } from 'rxjs';
-import { Restaurant } from '../core/entities/restaurant';
+import { Restaurant} from '../core/entities/restaurant';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -36,5 +36,16 @@ export class RestaurantDetailsService {
       const statusCode = error.status;
       return of(statusCode);
   }))
+  
   }
+  // getAllRestaurants(page:number): Observable<Restaurant[]>{
+  //   return of(this.getRestaurantsByPage(page))
+  // }
+  // private getRestaurantsByPage(page: number): Restaurant[] {
+  //   const pageSize = 10;
+  //   const startIndex = (page - 1) * pageSize;
+  //   const endIndex = startIndex + pageSize;
+    
+  //   return Restaurants.slice(startIndex, endIndex);
+  // }
 }

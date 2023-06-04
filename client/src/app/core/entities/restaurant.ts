@@ -1,4 +1,4 @@
-export interface Restaurant{
+export interface Restaurant {
     name: string,
     street: string,
     city: string,
