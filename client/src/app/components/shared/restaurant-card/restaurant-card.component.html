@@ -1,4 +1,4 @@
-<mat-card *ngIf="restaurant" class="card" [ngStyle]="{'background-image': 'url(' + logoUrl + ')'}">
+<mat-card [routerLink]="['/menus-details', restaurant.id]" *ngIf="restaurant" class="card" [ngStyle]="{'background-image': 'url(' + logoUrl + ')'}">
     <mat-card-content>
       <h1 class="title">{{restaurant.name}}</h1>
       

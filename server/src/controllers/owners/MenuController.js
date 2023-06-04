@@ -84,9 +84,9 @@ class MenuController {
     const { role} = request;
     const restId = request.query.restId;
 
-    if (role !== 'owner') {
-      return response.status(403).json({ message: "You don't have permission to perform this action." });
-    }
+    // if (role !== 'owner') {
+    //   return response.status(403).json({ message: "You don't have permission to perform this action." });
+    // }
     
     try {
       const menus = await MenuModel.getMenusDetails(restId);

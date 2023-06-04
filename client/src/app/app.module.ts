@@ -45,6 +45,12 @@ import { RestaurantCardComponent } from './components/shared/restaurant-card/res
 import { RestaurantsComponent } from './pages/shared/restaurants/restaurants.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { MenusDetailsComponent } from './pages/shared/menu-details/menus-details/menus-details.component';
+import { DepartmentsDetailsComponent } from './pages/shared/menu-details/departments-details/departments-details.component';
+import { ItemsDetailsComponent } from './pages/shared/menu-details/items-details/items-details.component';
+import { MenuDetailsCardComponent } from './components/customer/menus-card/menu-details-card/menu-details-card.component';
+import { DepartmentDetailsCardComponent } from './components/customer/menus-card/department-details-card/department-details-card.component';
+import { ItemDetailsCardComponent } from './components/customer/menus-card/item-details-card/item-details-card.component';
 
 
 
@@ -72,7 +78,13 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     CreateItemComponent,
     RestaurantSearchComponent,
     RestaurantCardComponent,
-    RestaurantsComponent
+    RestaurantsComponent,
+    MenusDetailsComponent,
+    DepartmentsDetailsComponent,
+    ItemsDetailsComponent,
+    MenuDetailsCardComponent,
+    DepartmentDetailsCardComponent,
+    ItemDetailsCardComponent
   ],
   imports: [
     BrowserModule,

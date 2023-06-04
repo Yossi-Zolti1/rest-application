@@ -14,8 +14,7 @@ export class RestaurantCardComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    // this.logoUrl = environment.baseUrl + this.restaurant.logo!
-    this.logoUrl =  this.restaurant.logo!
+    this.logoUrl = environment.baseUrl + this.restaurant.logo!
   }
 
 }

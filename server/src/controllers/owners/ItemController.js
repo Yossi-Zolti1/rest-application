@@ -85,9 +85,9 @@ class ItemController {
     const {role} = request;
     const departmentId = request.query.departmentId;
 
-    if (role !== 'owner') {
-      return response.status(403).json({ message: "You don't have permission to perform this action." });
-    }
+    // if (role !== 'owner') {
+    //   return response.status(403).json({ message: "You don't have permission to perform this action." });
+    // }
     
     try {
       const items = await ItemModel.getItemsDetails(departmentId);

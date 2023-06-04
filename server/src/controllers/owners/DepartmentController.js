@@ -86,9 +86,9 @@ class DepartmentController {
     const {role} = request;
     const menuId = request.query.menuId;
 
-    if (role !== 'owner') {
-      return response.status(403).json({ message: "You don't have permission to perform this action." });
-    }
+    // if (role !== 'owner') {
+    //   return response.status(403).json({ message: "You don't have permission to perform this action." });
+    // }
     
     try {
       const departments = await DepartmentModel.getDepartmentsDetails(menuId);
