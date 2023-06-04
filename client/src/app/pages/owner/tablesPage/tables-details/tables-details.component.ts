@@ -39,38 +39,29 @@ export class TablesDetailsComponent {
   saveTables(){
     let  restId: string =  this.auth.getRestId();
 
-
     this.tableService.addTables(this.items, restId).subscribe(res => {
+      debugger;
       if(res === 400 || res === 403){
         alert('ההוספה נכשלה')
       }
       else{
+        this.items = res
         console.log("success");
-        
       }
     })
   }
 
   getTablesDetails(){
-    
     let  restId: string =  this.auth.getRestId();
-
     this.tableService.getTables(restId).subscribe(res => {
       if(res === 400 || res === 403){
         alert('קבלת הנתונים נכשלה נכשלה')
       }
       else{
-        
+        this.items = res
         console.log(res);
-        
-          
-        
       }
-      
     })
-
   }
-
-
 }
 

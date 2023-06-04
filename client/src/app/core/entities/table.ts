@@ -4,3 +4,10 @@ export interface Table{
     positionY: number,
     restId?: number
 }
+export interface ModifiedTable {
+    name: string;
+    position: {
+      x: number;
+      y: number;
+    };
+  }
