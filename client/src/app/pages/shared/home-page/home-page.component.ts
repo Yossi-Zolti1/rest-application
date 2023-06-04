@@ -26,5 +26,5 @@ export class HomePageComponent implements OnInit {
       this.isAuth = false;
     }
   }
-
+ 
 }

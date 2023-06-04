@@ -3,7 +3,7 @@
     <input matInput [(ngModel)]="searchQuery" placeholder="חיפוש לפי שם מסעדה">
   </mat-form-field> -->
   <mat-form-field class="search-container">
-    <mat-icon matPrefix class="search-icon">search</mat-icon>
+    <mat-icon (click)="searchRestaurants()" matPrefix class="search-icon">search</mat-icon>
     <input matInput [(ngModel)]="searchQuery" placeholder="חיפוש לפי שם מסעדה" class="search-input">
     <button mat-icon-button matSuffix class="clear-button" *ngIf="searchQuery" (click)="clearSearch()">
       <mat-icon>clear</mat-icon>

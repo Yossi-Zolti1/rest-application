@@ -36,7 +36,16 @@ export class RestaurantDetailsService {
       const statusCode = error.status;
       return of(statusCode);
   }))
-  
+  }
+  getrestByName(name: string):Observable<Restaurant[] | any>{
+    return this.http.get<Restaurant | any>(environment.baseUrl + `/customer/rest_details_by_name`, {
+      params: {
+        nameInserted: name,
+      }
+    }).pipe(catchError(error => {
+      const statusCode = error.status;
+      return of(statusCode);
+  }))
   }
   // getAllRestaurants(page:number): Observable<Restaurant[]>{
   //   return of(this.getRestaurantsByPage(page))
