@@ -11,10 +11,10 @@ import adminRoutes from './src/router/adminRoutes.js';
 import authRoutes from './src/router/authRoutes.js';
 import dotenv from 'dotenv';
 //import UserDB from './config/models/users.js';
-//import RestDB from './config/models/restaurants.js';
-//import MenuDB from './config/models/menus.js';
-//import DepartmentDB from './config/models/departments.js';
-//import ItemDB from './config/models/items.js';
+import Restaurant from './config/models/restaurants.js';
+import Menu from './config/models/menus.js';
+import Department from './config/models/departments.js';
+import Item from './config/models/items.js';
 
 dotenv.config();
 // import logger from'./middleware/logger.js';
@@ -42,6 +42,13 @@ export default function server() {
          origin: "*",
       })
    );
+
+   Restaurant.hasMany(Menu, { foreignKey: 'restaurant_id' });
+   Menu.belongsTo(Restaurant, { foreignKey: 'restaurant_id' });
+   Menu.hasMany(Department, { foreignKey: 'menu_id' });
+   Department.belongsTo(Menu, { foreignKey: 'menu_id' });
+   Department.hasMany(Menu, { foreignKey: 'department_id' });
+   Item.belongsTo(Department, { foreignKey: 'department_id' });
 
    sequelize.sync().then(async (results) => {
       // try {

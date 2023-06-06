@@ -1,7 +1,5 @@
 import DataTypes from "sequelize";
 import sequelize from "../database/db.js";
-import Restaurant from './restaurants.js';
-import Department from './departments.js';
 
 const Menu = sequelize.define(
   'Menu',
@@ -47,7 +45,6 @@ const Menu = sequelize.define(
   }
 );
 
-Menu.belongsTo(Restaurant, { foreignKey: 'restaurant_id' });
-Menu.hasMany(Department, { foreignKey: 'menu_id' });
+
 
 export default Menu;
