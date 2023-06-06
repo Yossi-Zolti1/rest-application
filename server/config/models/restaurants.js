@@ -1,5 +1,6 @@
 import DataTypes from "sequelize";
 import sequelize from "../database/db.js";
+import Menu from './menus.js';
 
 const Restaurant = sequelize.define('Restaurant', {
     id: {
@@ -80,5 +81,7 @@ const Restaurant = sequelize.define('Restaurant', {
     deletedAt: "softDelete",
     createdAt: "created_at",
 });
+
+Restaurant.hasMany(Menu, { foreignKey: 'restaurant_id' });
 
 export default Restaurant;

@@ -1,5 +1,6 @@
 import DataTypes from "sequelize";
 import sequelize from "../database/db.js";
+import Department from './departments.js';
 
 const Item = sequelize.define(
   'Item',
@@ -67,5 +68,7 @@ const Item = sequelize.define(
     createdAt: "created_at",
   }
 );
+
+Item.belongsTo(Department, { foreignKey: 'department_id' });
 
 export default Item;

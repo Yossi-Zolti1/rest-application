@@ -54,13 +54,11 @@ class CustomersController {
       console.log(error);
     }
   };
-  static async getMenusDetails(request, response) {
-    const { role} = request;
-    const restId = request.query.restId;
 
-    // if (role !== 'owner') {
-    //   return response.status(403).json({ message: "You don't have permission to perform this action." });
-    // }
+  //קבלת כל התפריטים והמחלקות והמנות
+  static async getMenusDetails(request, response) {
+
+    const restId = request.query.restId;
     
     try {
       const menus = await CustomersModel.getMenusDetails(restId);
