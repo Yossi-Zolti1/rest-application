@@ -9,3 +9,4 @@ export interface Restaurant {
     logo: string,
     my?: FormData
 }
+

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Observable, catchError, of } from 'rxjs';
-import { Department, Item, Menu } from '../core/entities/menu';
+import { Department, Item, Menu, RestaurantState } from '../core/entities/menu';
 @Injectable({
   providedIn: 'root'
 })
@@ -17,6 +17,12 @@ export class MenuDetailsService {
   }
   getMenus(restId: number) :Observable<Menu[]>{
     return this.http.get<Menu[]>(environment.baseUrl + '/owner/menus_details', {
+      params: {
+        restId: restId,
+      }})
+  }
+  getRestDetails(restId: number) :Observable<RestaurantState>{
+    return this.http.get<RestaurantState>(environment.baseUrl + '/customer/menus_details', {
       params: {
         restId: restId,
       }})

@@ -47,14 +47,4 @@ export class RestaurantDetailsService {
       return of(statusCode);
   }))
   }
-  // getAllRestaurants(page:number): Observable<Restaurant[]>{
-  //   return of(this.getRestaurantsByPage(page))
-  // }
-  // private getRestaurantsByPage(page: number): Restaurant[] {
-  //   const pageSize = 10;
-  //   const startIndex = (page - 1) * pageSize;
-  //   const endIndex = startIndex + pageSize;
-    
-  //   return Restaurants.slice(startIndex, endIndex);
-  // }
 }

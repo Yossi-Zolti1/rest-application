@@ -10,7 +10,9 @@
   
   
   <div class="menuList">
-        <ng-container *ngFor="let menu of menus$ | async; let i = index">
+        <ng-container
+         *ngFor="let menu of menus$ | async; let i = index"
+         >
           <app-menu-card [menu]="menu" [menuId]="menu.id!" (onFunctionCall)="refreshList()"></app-menu-card>
           <!-- Add a line break after every second card -->
           <div *ngIf="(i + 1) % 2 === 0" class="break"></div>

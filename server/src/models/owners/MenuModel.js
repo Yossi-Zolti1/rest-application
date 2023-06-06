@@ -1,5 +1,8 @@
 import dotenv from 'dotenv';
 import MenuDB from "../../../config/models/menus.js";
+import RestDB from "../../../config/models/restaurants.js";
+import DepartmentDB from "../../../config/models/departments.js";
+import ItemDB from "../../../config/models/items.js";
 dotenv.config();
 
 class MenuModel {

@@ -20,7 +20,7 @@ class CustomersController {
       }
     
   }
-
+   
    // get all retaurants details
    static async getRestsDetails(request, response) {
 
@@ -54,7 +54,25 @@ class CustomersController {
       console.log(error);
     }
   };
+  static async getMenusDetails(request, response) {
+    const { role} = request;
+    const restId = request.query.restId;
 
+    // if (role !== 'owner') {
+    //   return response.status(403).json({ message: "You don't have permission to perform this action." });
+    // }
+    
+    try {
+      const menus = await CustomersModel.getMenusDetails(restId);
+      if (!menus) {
+        return response.status(400).json("no menu found");
+      }
+      response.status(200).json(menus);
+    } catch (error) {
+      response.status(400).json(error);
+      console.log(error);
+    }
+  };
 }
 
 export default CustomersController;

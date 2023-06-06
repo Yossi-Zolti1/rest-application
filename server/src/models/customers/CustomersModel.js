@@ -1,5 +1,8 @@
 import UsersDB from "../../../config/models/users.js";
+import MenuDB from "../../../config/models/menus.js";
 import RestDB from "../../../config/models/restaurants.js";
+import DepartmentDB from "../../../config/models/departments.js";
+import ItemDB from "../../../config/models/items.js";
 // import { Op } from 'sequelize';
 import Fuse from "fuse.js";
 
@@ -60,6 +63,31 @@ class CustomersModel {
     const matchedRestaurants = results.map((result) => result.item);
 
     return matchedRestaurants;
+  }
+  static async getMenusDetails(restId) {
+    RestDB.hasMany(MenuDB, { foreignKey: 'restaurant_id' });
+    MenuDB.belongsTo(RestDB, { foreignKey: 'restaurant_id' });
+
+    MenuDB.hasMany(DepartmentDB, { foreignKey: 'menu_id' });
+    DepartmentDB.belongsTo(MenuDB, { foreignKey: 'menu_id' });
+
+    DepartmentDB.hasMany(ItemDB, { foreignKey: 'department_id' });
+    ItemDB.belongsTo(DepartmentDB, { foreignKey: 'department_id' });
+    const menus = await RestDB.findOne({
+      where: { id: restId },
+      include: [
+        {
+          model: MenuDB,
+          include: [
+            {
+              model: DepartmentDB,
+              include: [ItemDB]
+            }
+          ]
+        }
+      ]
+    })
+    return menus;
   }
 
 }

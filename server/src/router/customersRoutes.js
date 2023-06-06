@@ -7,5 +7,5 @@ import CustomersClass from '../controllers/customers/CustomersController.js';
 router.post('/createUser', CustomersClass.createUser);
 router.get('/rests_details', CustomersClass.getRestsDetails);
 router.get('/rest_details_by_name', CustomersClass.getRestByName);
-
+router.get('/menus_details', CustomersClass.getMenusDetails);
 export default router;

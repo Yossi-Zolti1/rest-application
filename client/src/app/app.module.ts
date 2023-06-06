@@ -51,7 +51,10 @@ import { ItemsDetailsComponent } from './pages/shared/menu-details/items-details
 import { MenuDetailsCardComponent } from './components/customer/menus-card/menu-details-card/menu-details-card.component';
 import { DepartmentDetailsCardComponent } from './components/customer/menus-card/department-details-card/department-details-card.component';
 import { ItemDetailsCardComponent } from './components/customer/menus-card/item-details-card/item-details-card.component';
-
+import { NgxsModule } from '@ngxs/store';
+import { RestState, GetRestDetails } from './state/restaurant.state';
+import { GetMenus, MenuState } from './state/menu.state';
+import { MenuDetailsService } from './services/menu-details.service';
 
 
 @NgModule({
@@ -107,12 +110,13 @@ import { ItemDetailsCardComponent } from './components/customer/menus-card/item-
     MatMenuModule,
     FormsModule,
     ScrollingModule,
-    InfiniteScrollModule
+    InfiniteScrollModule,
+    NgxsModule.forRoot([MenuState, RestState])
     
   ],
   providers: [{ 
     provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi:true
-  },],
+  }, MenuDetailsService, MenuState ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
