@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {  FormBuilder } from '@angular/forms';
+import {  UntypedFormBuilder } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { MailValidator } from 'src/app/validations/mailValidator';
 import { NameValidator } from 'src/app/validations/nameValidator';
@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private auth: AuthService, public fb: FormBuilder, private router: Router) { }
+  constructor(private auth: AuthService, public fb: UntypedFormBuilder, private router: Router) { }
   registerForm = this.fb.group({
     email: ['', [MailValidator]],
     name: ['', [NameValidator]],

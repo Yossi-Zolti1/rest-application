@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { UntypedFormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MenuDetailsService } from 'src/app/services/menu-details.service';
 import { environment } from 'src/environments/environment';
@@ -17,7 +17,7 @@ export class CreateItemComponent implements OnInit {
   isItemExist:boolean = false
   isAuth = false;
   userName: string = "";
-  constructor(public fb: FormBuilder, private menuService: MenuDetailsService, private route: Router
+  constructor(public fb: UntypedFormBuilder, private menuService: MenuDetailsService, private route: Router
     ,private routes: ActivatedRoute, private auth: AuthService) { }
     itemForm = this.fb.group({
       name:[''],

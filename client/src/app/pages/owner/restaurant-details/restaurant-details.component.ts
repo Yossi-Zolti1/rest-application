@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { UntypedFormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Restaurant } from 'src/app/core/entities/restaurant';
 import { AuthService } from 'src/app/services/auth.service';
@@ -15,7 +15,7 @@ import { environment } from 'src/environments/environment';
 })
 export class RestaurantDetailsComponent implements OnInit {
 
-  constructor(private restDetailsService: RestaurantDetailsService, public fb: FormBuilder
+  constructor(private restDetailsService: RestaurantDetailsService, public fb: UntypedFormBuilder
     , private route: Router, private auth: AuthService) { }
   restaurant!: Restaurant;
   logoUrl!: string;

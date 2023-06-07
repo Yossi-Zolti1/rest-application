@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { UntypedFormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Menu } from 'src/app/core/entities/menu';
 import { AuthService } from 'src/app/services/auth.service';
@@ -18,7 +18,7 @@ export class CreateMenuComponent implements OnInit {
   menuId!:string
   imageUrl!:string
   isMenuExixst: boolean = false
-  constructor(public fb: FormBuilder, private menuService: MenuDetailsService, private route: Router
+  constructor(public fb: UntypedFormBuilder, private menuService: MenuDetailsService, private route: Router
     ,private auth: AuthService, private routes: ActivatedRoute) { }
   menuForm = this.fb.group({
     name: ['']

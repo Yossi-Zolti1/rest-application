@@ -105,5 +105,7 @@
       }
     }
   },
-  "defaultProject": "rest-front"
+  "cli": {
+    "analytics": "c7e57c1c-949e-4714-8006-6de0f5f18fdd"
+  }
 }
