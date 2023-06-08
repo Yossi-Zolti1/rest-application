@@ -1,17 +1,14 @@
 <div class="menus-container">
   <app-toolbar [isAuth]="isAuth" [userName]="userName"></app-toolbar>
-
   <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; margin-top: 30px;">
     <h1 style="margin: 0; margin-left: 80px;">רשימת התפריטים שלך</h1>
     <a [href]="route">
       <button mat-raised-button type="submit" style="margin-left: 10px; background-color: rgb(241, 236, 236);">הוסף תפריט</button>
     </a>
   </div>
-  
-  
   <div class="menuList">
         <ng-container
-         *ngFor="let menu of menus$ | async; let i = index"
+         *ngFor="let menu of menus; let i = index"
          >
           <app-menu-card [menu]="menu" [menuId]="menu.id!" (onFunctionCall)="refreshList()"></app-menu-card>
           <!-- Add a line break after every second card -->

@@ -43,12 +43,12 @@ export default function server() {
       })
    );
 
-   Restaurant.hasMany(Menu, { foreignKey: 'restaurant_id' });
-   Menu.belongsTo(Restaurant, { foreignKey: 'restaurant_id' });
-   Menu.hasMany(Department, { foreignKey: 'menu_id' });
-   Department.belongsTo(Menu, { foreignKey: 'menu_id' });
-   Department.hasMany(Menu, { foreignKey: 'department_id' });
-   Item.belongsTo(Department, { foreignKey: 'department_id' });
+   // Restaurant.hasMany(Menu, { foreignKey: 'restaurant_id' });
+   // Menu.belongsTo(Restaurant, { foreignKey: 'restaurant_id' });
+   // Menu.hasMany(Department, { foreignKey: 'menu_id' });
+   // Department.belongsTo(Menu, { foreignKey: 'menu_id' });
+   // Department.hasMany(Menu, { foreignKey: 'department_id' });
+   // Item.belongsTo(Department, { foreignKey: 'department_id' });
 
    sequelize.sync().then(async (results) => {
       // try {

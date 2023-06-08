@@ -52,7 +52,7 @@ import { MenuDetailsCardComponent } from './components/customer/menus-card/menu-
 import { DepartmentDetailsCardComponent } from './components/customer/menus-card/department-details-card/department-details-card.component';
 import { ItemDetailsCardComponent } from './components/customer/menus-card/item-details-card/item-details-card.component';
 import { NgxsModule } from '@ngxs/store';
-import { RestState, GetRestDetails } from './state/restaurant.state';
+import { RestState } from './state/restaurant.state';
 import { GetMenus, MenuState } from './state/menu.state';
 import { MenuDetailsService } from './services/menu-details.service';
 

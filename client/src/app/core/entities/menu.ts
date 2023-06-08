@@ -1,19 +1,29 @@
 export interface RestaurantState {
-    menus:Menu[]
+    Menus:Menu[]
+    id: number
+    name: string,
+    street: string,
+    city: string,
+    phone: string,
+    kashrut: string | null,
+    type: string,
+    logo: string,
+    my?: FormData
+    
 }
 export interface Menu{
     id?: number
     name:string
     image?: string
     restId?: number
-    departments?: Department[]
+    Departments?: Department[]
 }
 export interface Department{
     id?: number
     name:string
     image?:string
     menuId?:number
-    items?:Item[]
+    Items?:Item[]
 }
 export interface Item{
     id?:number

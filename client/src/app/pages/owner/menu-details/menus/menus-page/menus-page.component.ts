@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { Menu } from 'src/app/core/entities/menu';
 import { GetMenus } from 'src/app/state/menu.state';
-import { GetRestDetails } from 'src/app/state/restaurant.state';
+import { AddRestaurantDetails} from 'src/app/state/restaurant.state';
 
 
 @Component({
@@ -25,21 +25,24 @@ export class MenusPageComponent implements OnInit {
   public menus$ = this.menuService.getMenus(+this.auth.getRestId());
 
   ngOnInit(): void {
-    ////עבודה עם ה-state/////
-    // const restId = +this.auth.getRestId();
-    // this.store.dispatch(new GetRestDetails(restId)).subscribe(() => {
-    //   this.store.select(state => state.menus.menus).subscribe(menus => {
-    //     this.menus = menus;
-    //   });
-    // });
-    // this.store.dispatch(new GetMenus(restId)).subscribe(() => {
-    //   this.store.select(state => state.menus.menus).subscribe(menus => {
-    //     this.menus = menus;
-    //   });
-    // });
+    this.getMenus();
     this.showToolbarDetails();
   }
-  
+  getMenus(){
+    this.store.select(state => state.restaurant).subscribe(res => {
+       if(res.Menus.length > 0){
+        this.menus = res.Menus
+       }
+       else{
+        this.menuService.getRestDetails(+this.auth.getRestId()).subscribe(res => {
+          this.menus = res.Menus;
+          this.store.dispatch(new AddRestaurantDetails({
+            restaurant: res
+          }))
+        })
+       }
+    });
+  }
   showToolbarDetails(): void {
     let auth = this.auth.checkAuth();
     if (auth) {
