@@ -89,7 +89,7 @@ export class AuthService {
       return this.decodedToken['_expiresIn'];
     }
     checkAuth(): boolean {
-      
+      debugger
       let currentDateTime = new Date();
       const israelCurrentTimeString = currentDateTime.toLocaleString('en-US', { timeZone: 'Asia/Jerusalem' });
       const israelCurrentTime = new Date(israelCurrentTimeString);
@@ -103,7 +103,7 @@ export class AuthService {
      //  console.log(currentDateTime);
     //   console.log(tokenExpireDate);  
    
-      if (israelCurrentTime < tokenExpireDate) {
+      if (israelCurrentTime > tokenExpireDate) {
         // Token has expired
         return false;
       } else {
