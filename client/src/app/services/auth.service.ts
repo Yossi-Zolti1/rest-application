@@ -89,7 +89,7 @@ export class AuthService {
       return this.decodedToken['_expiresIn'];
     }
     checkAuth(): boolean {
-      debugger
+      
       let currentDateTime = new Date();
       const israelCurrentTimeString = currentDateTime.toLocaleString('en-US', { timeZone: 'Asia/Jerusalem' });
       const israelCurrentTime = new Date(israelCurrentTimeString);
