@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment';
 })
 export class MenuDetailsCardComponent implements OnInit {
   @Input() menu!: Menu
+  @Input() menuId!: number;
   image!: string
   constructor() { }
 

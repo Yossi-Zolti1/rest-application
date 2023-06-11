@@ -1,0 +1,13 @@
+.menusList app-department-details-card {
+    margin-bottom: 10px;
+  }
+  
+  
+  .menusList {
+    display: flex;
+    flex-wrap: wrap; /* Add flex-wrap property to wrap the cards to the next row */
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: 50px;
+  }

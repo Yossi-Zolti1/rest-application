@@ -1,1 +1,6 @@
-<p>departments-details works!</p>
+<div class="menusList" >
+    <ng-container *ngFor="let department of departments">
+      <app-department-details-card [department]="department" [departmentId]="department.id!"></app-department-details-card>
+    </ng-container>
+    <!-- <div class="loading-spinner" *ngIf="restaurants?.length === 0">Loading...</div> -->
+  </div>

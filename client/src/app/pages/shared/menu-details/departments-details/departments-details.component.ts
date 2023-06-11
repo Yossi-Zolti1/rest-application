@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Store } from '@ngxs/store';
+import { Department } from 'src/app/core/entities/menu';
+import { MenuDetailsService } from 'src/app/services/menu-details.service';
+import { AddRestaurantDetails } from 'src/app/state/restaurant.state';
 
 @Component({
   selector: 'app-departments-details',
@@ -6,10 +11,30 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./departments-details.component.css']
 })
 export class DepartmentsDetailsComponent implements OnInit {
-
-  constructor() { }
+menuId!:string
+departments!: Department[]
+  constructor(private menusService: MenuDetailsService, private routes: ActivatedRoute,
+    private store: Store) { }
 
   ngOnInit(): void {
+    this.menuId = this.routes.snapshot.paramMap.get('menuId')!;
+    this.getDepartments();
+  }
+  getDepartments(){
+    this.store.select(state => state.restaurant.Menus.find((menu: { id: number; }) => menu.id === +this.menuId)?.Departments).subscribe(res => {
+      if(res != undefined){
+       this.departments = res
+      }
+      else{
+       this.menusService.getRestDetails(+this.menuId).subscribe(res => {
+         this.departments = res.Menus.find(menu => menu.id === +this.menuId)?.Departments!;
+         this.store.dispatch(new AddRestaurantDetails({
+           restaurant: res
+         }))
+       })
+      }
+   });
+
   }
 
 }

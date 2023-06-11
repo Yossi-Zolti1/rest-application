@@ -1,6 +1,6 @@
 <div class="menusList" >
-    <ng-container *ngFor="let menu of menus$ | async">
-      <app-menu-details-card [menu]="menu"></app-menu-details-card>
+    <ng-container *ngFor="let menu of menus">
+      <app-menu-details-card [menu]="menu" [menuId]="menu.id!"></app-menu-details-card>
     </ng-container>
     <!-- <div class="loading-spinner" *ngIf="restaurants?.length === 0">Loading...</div> -->
   </div>
