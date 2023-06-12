@@ -7,6 +7,11 @@ export class AddRestaurantDetails {
   static readonly type = '[Set Restaurant] Set Restaurant Details';
   constructor(public payload: {restaurant: RestaurantState}) {}
 } 
+export class DeleteMenu {
+  static readonly type = '[Delete Menu] Delete Menu';
+  constructor(public menuId: number) {}
+}
+
 @Injectable()
 @State<RestaurantState>({
   name: 'restaurant',
@@ -28,5 +33,12 @@ export class RestState {
   addRestaurantDetails(ctx: StateContext<RestaurantState>, action: AddRestaurantDetails) {
     ctx.setState(action.payload.restaurant)
   }
+  @Action(DeleteMenu)
+  deleteMenu(ctx: StateContext<RestaurantState>, action: DeleteMenu) {
+    const state = ctx.getState();
+    const updatedMenus = state.Menus.filter(menu => menu.id !== action.menuId);
+    ctx.patchState({ Menus: updatedMenus });
+  }
+  
   // Add more actions for updating the state as needed
 }

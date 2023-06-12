@@ -22,7 +22,7 @@ export class MenusPageComponent implements OnInit {
   menus: Menu[] = [];
   constructor(private menuService: MenuDetailsService, private auth: AuthService, 
     private router: Router, private store: Store) { }
-  public menus$ = this.menuService.getMenus(+this.auth.getRestId());
+  // public menus$ = this.menuService.getMenus(+this.auth.getRestId());
 
   ngOnInit(): void {
     this.getMenus();
@@ -53,9 +53,12 @@ export class MenusPageComponent implements OnInit {
       this.router.navigate(["/"]);
     }
   }
-
+  addMenu(){
+    this.router.navigate([`/create-menu`])
+  }
   refreshList(){
-    this.menus$ = this.menuService.getMenus(+this.auth.getRestId());
+    // this.menus$ = this.menuService.getMenus(+this.auth.getRestId());
+    this.getMenus();
   }
 
 }

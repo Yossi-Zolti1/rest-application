@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { MenuDetailsService } from 'src/app/services/menu-details.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from 'src/app/components/shared/dialogs/confirmation-dialog/confirmation-dialog.component';
+import { DeleteMenu } from 'src/app/state/restaurant.state';
+import { Store } from '@ngxs/store';
 
 @Component({
   selector: 'app-menu-card',
@@ -12,7 +14,8 @@ import { ConfirmationDialogComponent } from 'src/app/components/shared/dialogs/c
 })
 export class MenuCardComponent implements OnInit {
 
-  constructor(private menuService: MenuDetailsService, private route: Router, private dialog: MatDialog) { }
+  constructor(private menuService: MenuDetailsService, private route: Router, 
+    private dialog: MatDialog, private store: Store) { }
   @Input() menu!: Menu;
   @Input() menuId!: number;
   @Output() onFunctionCall: EventEmitter<any> = new EventEmitter<any>();
@@ -36,12 +39,13 @@ export class MenuCardComponent implements OnInit {
    
   }
  
-  deleteMenu(menuId: number){
+ deleteMenu(menuId: number){
  this.menuService.deleteMenu(menuId).subscribe(res => {
       if(res === 400 || res === 403){
         alert('המחיקה נכשלה')
       }
       else{
+        this.store.dispatch(new DeleteMenu(menuId));
         this.onFunctionCall.emit();
       }
     })
