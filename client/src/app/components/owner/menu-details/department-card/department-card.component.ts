@@ -1,9 +1,11 @@
 import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { Store } from '@ngxs/store';
 import { ConfirmationDialogComponent } from 'src/app/components/shared/dialogs/confirmation-dialog/confirmation-dialog.component';
 import { Department } from 'src/app/core/entities/menu';
 import { MenuDetailsService } from 'src/app/services/menu-details.service';
+import { DeleteDepartment } from 'src/app/state/restaurant.state';
 
 @Component({
   selector: 'app-department-card',
@@ -16,7 +18,7 @@ export class DepartmentCardComponent implements OnInit {
   @Input() menuId!: string
   @Output() onFunctionCall: EventEmitter<any> = new EventEmitter<any>();
   constructor(private route: Router, private menuService: MenuDetailsService, 
-    private dialog: MatDialog, private changeDetectorRef: ChangeDetectorRef) { }
+    private dialog: MatDialog, private changeDetectorRef: ChangeDetectorRef, private store: Store) { }
 
   ngOnInit(): void {
   }
@@ -40,7 +42,7 @@ export class DepartmentCardComponent implements OnInit {
   }
   deleteDepartment(){
     this.menuService.deleteDepartment(this.departmentId).subscribe(res => {
-      
+      this.store.dispatch(new DeleteDepartment(this.departmentId));
       this.onFunctionCall.emit();
     })
   }

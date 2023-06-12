@@ -1,9 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { Store } from '@ngxs/store';
 import { ConfirmationDialogComponent } from 'src/app/components/shared/dialogs/confirmation-dialog/confirmation-dialog.component';
 import { Item } from 'src/app/core/entities/menu';
 import { MenuDetailsService } from 'src/app/services/menu-details.service';
+import { DeleteItem } from 'src/app/state/restaurant.state';
 
 @Component({
   selector: 'app-item-card',
@@ -16,7 +18,7 @@ export class ItemCardComponent implements OnInit {
   @Input() departmentId!: string;
   @Output() onFunctionCall: EventEmitter<any> = new EventEmitter<any>();
   constructor(private menuService: MenuDetailsService, 
-    private dialog: MatDialog, private route: Router) { }
+    private dialog: MatDialog, private route: Router, private store: Store) { }
 
   ngOnInit(): void {
   }
@@ -37,6 +39,7 @@ export class ItemCardComponent implements OnInit {
   }
   deleteItem(){
     this.menuService.deleteItem(this.itemId).subscribe(res => {
+      this.store.dispatch(new DeleteItem(this.itemId));
       this.onFunctionCall.emit();
     })
   }

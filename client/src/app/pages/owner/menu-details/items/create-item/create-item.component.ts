@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MenuDetailsService } from 'src/app/services/menu-details.service';
 import { environment } from 'src/environments/environment';
 import { AuthService } from 'src/app/services/auth.service';
+import { AddRestaurantDetails } from 'src/app/state/restaurant.state';
+import { Store } from '@ngxs/store';
 
 @Component({
   selector: 'app-create-item',
@@ -18,7 +20,7 @@ export class CreateItemComponent implements OnInit {
   isAuth = false;
   userName: string = "";
   constructor(public fb: UntypedFormBuilder, private menuService: MenuDetailsService, private route: Router
-    ,private routes: ActivatedRoute, private auth: AuthService) { }
+    ,private routes: ActivatedRoute, private auth: AuthService, private store:Store) { }
     itemForm = this.fb.group({
       name:[''],
       description:[''],
@@ -58,6 +60,11 @@ export class CreateItemComponent implements OnInit {
         alert('ההוספה נכשלה')
       }
       else{
+        this.menuService.getRestDetails(+this.auth.getRestId()).subscribe(res => {
+          this.store.dispatch(new AddRestaurantDetails({
+            restaurant: res
+          }))
+        })
         this.route.navigate([`items-page/${this.departmentId}`]);
       }
     })
@@ -74,6 +81,11 @@ export class CreateItemComponent implements OnInit {
         alert('העדכון נכשלה')
       }
       else{
+        this.menuService.getRestDetails(+this.auth.getRestId()).subscribe(res => {
+          this.store.dispatch(new AddRestaurantDetails({
+            restaurant: res
+          }))
+        })
         this.route.navigate([`items-page/${this.departmentId}`]);
       }
     })

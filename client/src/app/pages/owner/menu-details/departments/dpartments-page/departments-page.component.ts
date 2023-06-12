@@ -33,7 +33,7 @@ export class DepartmentsPageComponent implements OnInit {
   }
   getDepartments(){
     this.store.select(state => state.restaurant.Menus.find((menu: { id: number; }) => menu.id === +this.menuId)?.Departments).subscribe(res => {
-       if(res != undefined){
+      if(res != undefined){
         this.departments = res
        }
        else{
