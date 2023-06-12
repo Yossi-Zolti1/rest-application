@@ -1,1 +1,6 @@
-<p>items-details works!</p>
+<div class="menusList" >
+    <ng-container *ngFor="let item of items">
+      <app-item-details-card [item]="item" [itemId]="item.id!"></app-item-details-card>
+    </ng-container>
+    <!-- <div class="loading-spinner" *ngIf="restaurants?.length === 0">Loading...</div> -->
+  </div>

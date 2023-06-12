@@ -1,1 +1,6 @@
-<p>item-details-card works!</p>
+<mat-card *ngIf="item" class="card" [ngStyle]="{'background-image': 'url(' + image + ')'}">
+    <mat-card-content>
+      <h1 class="title">{{item.name}}</h1>
+      <h2 class="title">{{item.price}} &#8362;</h2>
+    </mat-card-content>
+  </mat-card>

@@ -1,5 +1,5 @@
 <mat-card *ngIf="menu" class="card" [ngStyle]="{'background-image': 'url(' + image + ')'}"
-[routerLink]="['/departments-details', menuId]">
+[routerLink]="['/departments-details', menuId, restId]">
     <mat-card-content>
       <h1 class="title">{{menu.name}}</h1>
       
