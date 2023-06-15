@@ -1,7 +1,11 @@
 <mat-toolbar class="toolbar">
   <mat-toolbar-row>
-
+   
     <span *ngIf="!isPhoneScreen; else phoneContent"></span>
+    <a mat-button routerLink="/basket" *ngIf="!isPhoneScreen">
+      <mat-icon>shopping_cart</mat-icon>
+      <span class="badge" *ngIf="basketQuantity > 0">{{ basketQuantity }}</span>
+    </a>
     <span class="spacer"></span>
 
     <a mat-button routerLink="/" *ngIf="!isPhoneScreen">
@@ -26,26 +30,31 @@
 
 
     <ng-template #phoneContent>
-        <button mat-button [matMenuTriggerFor]="menu"><mat-icon>menu</mat-icon></button>
-        <mat-menu #menu="matMenu">
-          <button mat-menu-item routerLink="/">
-            <a mat-list-item> <mat-icon>home</mat-icon></a> Home
-          </button>
-          <button mat-menu-item routerLink="/owner" *ngIf="isAuth">
-            <a mat-list-item> <mat-icon>account_circle</mat-icon></a> Account
-          </button>
-          <button mat-menu-item (click)="logout()" *ngIf="isAuth else phoneContent3">
-            <a mat-list-item> <mat-icon>exit_to_app</mat-icon></a> LogOut
-          </button>
-        </mat-menu>
+      <button mat-button [matMenuTriggerFor]="menu"><mat-icon>menu</mat-icon></button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item routerLink="/">
+          <a mat-list-item> <mat-icon>home</mat-icon></a> Home
+        </button>
+        <button mat-menu-item routerLink="/owner" *ngIf="isAuth">
+          <a mat-list-item> <mat-icon>account_circle</mat-icon></a> Account
+        </button>
+        <button mat-menu-item (click)="logout()" *ngIf="isAuth else phoneContent3">
+          <a mat-list-item> <mat-icon>exit_to_app</mat-icon></a> LogOut
+        </button>
+      </mat-menu>
+
     </ng-template>
+    <a *ngIf="isPhoneScreen" mat-button routerLink="/basket">
+      <mat-icon>shopping_cart</mat-icon>
+      <span class="badge" *ngIf="basketQuantity > 0">{{ basketQuantity }}</span>
+    </a>
 
     <ng-template #phoneContent2>
       <a href="/login" style="color: black; text-decoration: none;">היכנס</a>
     </ng-template>
 
     <ng-template #phoneContent3>
-      <button mat-menu-item  routerLink="/login">
+      <button mat-menu-item routerLink="/login">
         <a mat-list-item> <mat-icon>account_circle</mat-icon></a> Account
       </button>
     </ng-template>

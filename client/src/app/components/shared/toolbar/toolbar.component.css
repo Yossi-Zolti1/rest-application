@@ -7,11 +7,20 @@
   .spacer {
     flex: 1 1 auto;
   }
-  
+  /* .phoneContent{
+    justify-content: space-between;
+  } */
   .phone-content {
     display: flex;
     flex-direction: row;
     align-items: center;
   }
-  
+  .badge {
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 0.25rem;
+    font-size: 0.75rem;
+    margin-left: -0.25rem;
+  }
 

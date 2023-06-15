@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class ToolbarComponent implements OnInit {
 
   constructor(private auth: AuthService, private router: Router) { }
-
+  basketQuantity: number = 2;
    @Input() isAuth = false;
    @Input() userName = "";
 
