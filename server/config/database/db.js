@@ -8,7 +8,7 @@ const sequelize = new Sequelize(
   null,
   {
     dialect: "mysql",
-    timezone: '+03:00', // Set your local timezone offset here
+    timezone: 'Etc/GMT', // Set your local timezone offset here
     host: process.env.HOST,
   });
 

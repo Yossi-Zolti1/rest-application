@@ -1,4 +1,6 @@
 import express from 'express';
+import http  from 'http';
+import socketIO from 'socket.io';
 import path from 'path';
 import * as url from 'url';
 import cors from 'cors';
@@ -26,6 +28,9 @@ const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 export default function server() {
 
    const app = express();
+   const server = http.createServer(app);
+   const io = socketIO(server);
+
    app.use(express.json());
    //  app.use(logger);
 
@@ -43,12 +48,6 @@ export default function server() {
       })
    );
 
-   // Restaurant.hasMany(Menu, { foreignKey: 'restaurant_id' });
-   // Menu.belongsTo(Restaurant, { foreignKey: 'restaurant_id' });
-   // Menu.hasMany(Department, { foreignKey: 'menu_id' });
-   // Department.belongsTo(Menu, { foreignKey: 'menu_id' });
-   // Department.hasMany(Menu, { foreignKey: 'department_id' });
-   // Item.belongsTo(Department, { foreignKey: 'department_id' });
 
    sequelize.sync().then(async (results) => {
       // try {
@@ -65,8 +64,15 @@ export default function server() {
       //   await ItemDB.create(itemsData);
    });
 
+io.on('connection', (socket) => {
+    console.log('A client connected');
+  
+    socket.on('disconnect', () => {
+      console.log('A client disconnected');
+    });
+  });
 
-   app.listen(process.env.PORT, () => {
+   server.listen(process.env.PORT, () => {
       console.log(`Server is running on port ${process.env.PORT}`);
    });
 

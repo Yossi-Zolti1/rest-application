@@ -31,7 +31,7 @@ class MailResetPass {
     let details = {
       from: "ybdevltd@gmail.com",
       to: to,
-      subject: "אתר מסעדות - איפוס סיסמה",
+      subject: subject,
       html: html,
     }
 

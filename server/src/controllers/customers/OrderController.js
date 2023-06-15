@@ -1,4 +1,5 @@
 import OrderModel from '../../models/customers/OrderModel.js';
+import io from 'socket.io-client';
 
 const SAVE_ERROR = "Failed to save order";
 
@@ -21,7 +22,10 @@ class OrderController {
 
       try {
         const order = await OrderModel.saveNewOrder(orders, tableId, restId);
+        io.emit('adminOrder', order);
         response.status(200).json(order);
+
+
       } catch (error) {
         console.log(error);
         response.status(400).json({ message: SAVE_ERROR, details: error });

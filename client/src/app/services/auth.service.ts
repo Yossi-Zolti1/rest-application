@@ -100,8 +100,6 @@ export class AuthService {
       if (!tokenExpireDate) {
         return false;
       }
-     //  console.log(currentDateTime);
-    //   console.log(tokenExpireDate);  
    
       if (israelCurrentTime > tokenExpireDate) {
         // Token has expired
